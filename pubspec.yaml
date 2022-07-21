@@ -18,8 +18,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   get_storage: ^2.0.3
-  google_fonts: ^2.1.0
   http: ^0.13.4
+  sizer: ^2.0.15
+  google_fonts: ^3.0.1
+  shared_preferences: ^2.0.15
+  flutter_screenutil: ^5.5.3+2
+  flutter_svg: ^1.1.1+1
+  pin_code_fields: ^7.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -33,8 +39,10 @@ flutter:
 
   uses-material-design: true
 
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/
+    - assets/onboarding/
+
   #   - images/a_dot_ham.jpeg
 
   
