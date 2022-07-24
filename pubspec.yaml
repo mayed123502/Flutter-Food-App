@@ -17,14 +17,14 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   get: ^4.6.5
-  get_storage: ^2.0.3
-  http: ^0.13.4
-  sizer: ^2.0.15
   google_fonts: ^3.0.1
   shared_preferences: ^2.0.15
   flutter_screenutil: ^5.5.3+2
   flutter_svg: ^1.1.1+1
   pin_code_fields: ^7.4.0
+  dio: ^4.0.6
+  persistent_bottom_nav_bar: ^4.0.2
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: context.theme.backgroundColor,
         body: SingleChildScrollView(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextWithFont().textWithRalewayFont(
-                        color: Colors.black,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                         fontSize: 52.sp,
                         text: 'Login',
                         fontWeight: FontWeight.bold),
@@ -209,7 +209,9 @@ class LoginScreen extends StatelessWidget {
                               text: "Login with",
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w600,
-                              color: authLoginWithTextColor,
+                              color: 
+                              
+                              Get.isDarkMode ?Colors.blueAccent :authLoginWithTextColor,
                             ),
                             LineWidget(left: 30.w, right: 0.0),
                           ],

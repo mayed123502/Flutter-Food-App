@@ -3,17 +3,18 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
+import '../../utils/sharPreferenceUtils .dart';
 
 class ThemeController {
 
   final key = 'isDarkModes';
 
   saveThemeDataInBox(bool isDark) {
-    shaedpref.setBool(key, isDark);
+    SharedPrefs.instance.setBool(key, isDark);
   }
 
   bool getThemeDataFromBox() {
-    return shaedpref.getBool(key) ?? false;
+    return SharedPrefs.instance.getBool(key) ?? false;
   }
 
   ThemeMode get themeDataGet =>

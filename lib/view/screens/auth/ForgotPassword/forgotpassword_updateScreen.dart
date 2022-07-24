@@ -14,13 +14,15 @@ import '../../../widgets/textWithFont.dart';
 class ForgotPasswordUpdateScreen extends StatelessWidget {
   final TextEditingController confirmController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor:  context.theme.appBarTheme.backgroundColor,
         title: TextWithFont().textWithRobotoFont(
             text: 'Forget Password',
             fontSize: 20.sp,
@@ -29,9 +31,9 @@ class ForgotPasswordUpdateScreen extends StatelessWidget {
         bottom: const PreferredSizeInAppBar(),
         leading: GestureDetector(
           onTap: () => Get.back(),
-          child:const Icon(
+          child:  Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: Get.isDarkMode ?Colors.white: Colors.black,
           ),
         ),
       ),
@@ -56,11 +58,15 @@ class ForgotPasswordUpdateScreen extends StatelessWidget {
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Form(
+                  key: _form,
                   child: Column(children: [
                     AuthTextFromField(
                       controller: passwordController,
                       obscureText: false,
-                      validator: (value) {},
+                      validator: (val) {
+                        if (val.isEmpty) return 'Empty';
+                        return null;
+                      },
                       prefixIcon: const Icon(
                         Icons.lock_outline,
                         size: 24,
@@ -75,7 +81,13 @@ class ForgotPasswordUpdateScreen extends StatelessWidget {
                     AuthTextFromField(
                       controller: confirmController,
                       obscureText: false,
-                      validator: (value) {},
+                      validator: (val) {
+                        if (val.isEmpty) return 'Empty';
+
+                        if (val != passwordController.text) return 'Not Match';
+
+                        return null;
+                      },
                       prefixIcon: const Icon(
                         Icons.lock_outline,
                         size: 24,
@@ -92,7 +104,9 @@ class ForgotPasswordUpdateScreen extends StatelessWidget {
             AuthButton(
               text: 'Update Password',
               onPressed: () {
-                Get.toNamed(Routes.forgotPasswordCodeScreen);
+                _form.currentState?.validate();
+
+                // Get.toNamed(Routes.forgotPasswordCodeScreen);
                 // emailController.text.isEmpty
                 //     ? _validate = true
                 //     : _validate = false;

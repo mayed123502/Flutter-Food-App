@@ -5,8 +5,35 @@ import '../../services/auth_api.dart';
 
 class AuthController extends GetxController {
   bool isVisibilty = true;
+
+  bool validate = true;
+  String? currentTextPin;
+
   void visibility() {
     isVisibilty = !isVisibilty;
+
+    update();
+  }
+ void currentTextPinCode(String value) {
+    currentTextPin=value;
+    update();
+  }
+  String? validaterPinCode(String value) {
+    if (value.length < 3) {
+      return "I'm from validator";
+    } else {
+      return null;
+    }
+  }
+
+  void validaterTrue() {
+    validate = true;
+
+    update();
+  }
+
+  void validaterFalse() {
+    validate = false;
 
     update();
   }
@@ -42,5 +69,4 @@ class AuthController extends GetxController {
       return false;
     }
   }
-
 }

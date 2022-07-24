@@ -36,4 +36,22 @@ class TextWithFont {
       textAlign: textAlign,
     );
   }
+
+  Text textWithNunitoSansFont(
+      {required String text,
+      required double fontSize,
+      required FontWeight fontWeight,
+      required Color color,
+      TextAlign? textAlign}) {
+    return Text(
+      text,
+      style: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+        ),
+      ),
+      textAlign: textAlign,
+    );
+  }
 }

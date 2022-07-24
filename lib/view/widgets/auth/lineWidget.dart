@@ -22,7 +22,7 @@ class LineWidget extends StatelessWidget {
     child: Container(
       height: 1.0,
       width: 87.w,
-      color: Colors.black.withOpacity(.8),
+      color:Get.isDarkMode ? Colors.white.withOpacity(.8) : Colors.black.withOpacity(.8),
     ),
   );;
   }

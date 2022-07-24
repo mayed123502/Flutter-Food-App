@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,20 +7,24 @@ import 'package:get/get.dart';
 class OnBoardingController extends GetxController {
   var currentIndex = 0.obs;
   late PageController pageController;
+  @override
+  void onInit() {
+    pageController = PageController();
+  }
+
   next() {
     currentIndex.value++;
     pageController.animateToPage(currentIndex.value,
         duration: Duration(microseconds: 900), curve: Curves.easeInOut);
   }
 
-  onPageChanged(int index) {
-    currentIndex.value = index;
+  @override
+  void onClose() {
+    currentIndex.value = 0;
+    super.onClose();
   }
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    pageController = PageController();
-    super.onInit();
+  onPageChanged(int index) {
+    currentIndex.value = index;
   }
 }

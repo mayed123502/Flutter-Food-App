@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 import '../model/user.dart';
 
@@ -18,15 +18,14 @@ class AuthApi {
       'password': password,
       'email': email,
     });
-    var response = await http.post(
-      Uri.parse(url),
-      headers: headers,
-      body: body,
+    var response = await Dio().post(
+      url,
+      data: body,
     );
 
     if (response.statusCode == 200) {
-      print(response.body);
-      var data = jsonDecode(response.body);
+      print(response.data);
+      var data = jsonDecode(response.data);
       UserModel user = UserModel.fromJson(data);
       return user;
     } else {
@@ -44,14 +43,13 @@ class AuthApi {
       'email': email,
       'password': password,
     });
-    var response = await http.post(
-      Uri.parse(url),
-      headers: headers,
-      body: body,
+    var response = await Dio().post(
+      url,
+      data: body,
     );
     if (response.statusCode == 200) {
-      print(response.body);
-      var data = jsonDecode(response.body);
+      print(response.data);
+      var data = jsonDecode(response.data);
       UserModel user = UserModel.fromJson(data);
       return user;
     } else {

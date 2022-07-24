@@ -1,7 +1,7 @@
-import 'package:ecommerce_app/logic/controllers/main_controller.dart';
+// ignore_for_file: file_names
+
 import 'package:get/get.dart';
 
-import '../controllers/auth_controllers.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnBoardingBinding extends Bindings{
