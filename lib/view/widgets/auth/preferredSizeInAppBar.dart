@@ -10,8 +10,8 @@ class PreferredSizeInAppBar extends StatelessWidget with PreferredSizeWidget {
     return PreferredSize(
       // ignore: sort_child_properties_last
       child: Container(
-        color: appBarPreferredSizeColor,
-        height: 1.0,
+        color: appBarPreferredSizeColor.withOpacity(.8),
+        height: .5,
       ),
       preferredSize: const Size.fromHeight(4.0),
     );

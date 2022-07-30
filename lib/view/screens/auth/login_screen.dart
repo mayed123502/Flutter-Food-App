@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../logic/controllers/auth_controllers.dart';
-import '../../../routes/routes.dart';
-import '../../../utils/constant/imageasset.dart';
+
 import '../../../utils/my_string.dart';
 import '../../../utils/theme.dart';
 import '../../widgets/auth/auth_button.dart';
 import '../../widgets/auth/auth_textFromField.dart';
-import '../../widgets/auth/gestureDetectorloginScreen.dart';
-import '../../widgets/auth/lineWidget.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import '../../widgets/auth/login/LoginWith.dart';
+import '../../widgets/auth/login/forgotPassword.dart';
 
-import '../../widgets/textWithFont.dart';
+import '../../widgets/auth/login/noAccountText.dart';
+import '../../widgets/auth/login/socialLogin.dart';
+import '../../widgets/auth/login/topImage.dart';
+import '../../widgets/auth/login/topTitile.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -31,44 +31,13 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: context.theme.backgroundColor,
         body: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                ImageAsset.login,
-                height: 205.h,
-                width: double.infinity,
-                fit: BoxFit.fill,
-              ),
+              TopImage(),
               SizedBox(
                 width: double.infinity,
                 height: 20.h,
               ),
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.only(left: 20.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextWithFont().textWithRalewayFont(
-                        color: Get.isDarkMode ? Colors.white : Colors.black,
-                        fontSize: 52.sp,
-                        text: 'Login',
-                        fontWeight: FontWeight.bold),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    Text(
-                      'Good to see you back!',
-                      style: GoogleFonts.nunitoSans(
-                        textStyle: TextStyle(
-                          fontSize: 19.sp,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              TopTitile(),
               SizedBox(
                 width: double.infinity,
                 height: 0.62.sh,
@@ -97,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                           hintText: 'Email',
                         ),
                         SizedBox(
-                          height: 8.h,
+                          height: 15.h,
                         ),
                         GetBuilder<AuthController>(
                           builder: (_) {
@@ -136,20 +105,7 @@ class LoginScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: TextButton(
-                            child: TextWithFont().textWithRalewayFont(
-                              color: mainColor,
-                              fontSize: 15.sp,
-                              text: 'Forgot Password?',
-                              fontWeight: FontWeight.w300,
-                            ),
-                            onPressed: () {
-                              Get.toNamed(Routes.forgotPasswordScreen);
-                            },
-                          ),
-                        ),
+                        ForgotPassword(),
                         SizedBox(
                           height: 1.5.h,
                         ),
@@ -170,67 +126,15 @@ class LoginScreen extends StatelessWidget {
                             },
                           );
                         }),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'I don\'t have an account.',
-                              style: GoogleFonts.nunitoSans(
-                                textStyle: TextStyle(
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w200,
-                                    color: mainColor),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.signUpScreen);
-                              },
-                              child: Text(
-                                'Sign up',
-                                style: GoogleFonts.nunitoSans(
-                                  textStyle: TextStyle(
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w200,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                         SizedBox(
-                          height: 25.h,
+                          height: 20.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            LineWidget(left: 0.0, right: 30.w),
-                            TextWithFont().textWithRobotoFont(
-                              text: "Login with",
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                              color: 
-                              
-                              Get.isDarkMode ?Colors.blueAccent :authLoginWithTextColor,
-                            ),
-                            LineWidget(left: 30.w, right: 0.0),
-                          ],
+                        NoAccountText(),
+                        SizedBox(
+                          height: 45.h,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.w, vertical: 13.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              DetectorloginScreen(
-                                imageAsset: ImageAsset.facebook,
-                              ),
-                              DetectorloginScreen(
-                                imageAsset: ImageAsset.google,
-                              ),
-                            ],
-                          ),
-                        )
+                        LoginWithText(),
+                        SocialLogin(),
                       ],
                     ),
                   ),

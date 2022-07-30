@@ -19,13 +19,13 @@ class OnBoardingRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 11.w),
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TextButton(
             onPressed: () {
-              Get.toNamed(Routes.mainScreen);
+              Get.offAndToNamed(Routes.mainScreen);
             },
             child: TextWithFont().textWithRobotoFont(
               text: 'Skip',
@@ -34,21 +34,26 @@ class OnBoardingRow extends StatelessWidget {
               color: onBoardingSkipButtonColor,
             ),
           ),
-          GestureDetector(
+          Padding(
+            padding:  EdgeInsets.only(right:10.w ),
+            child: GestureDetector(
               onTap: () {
                 controller.next();
               },
               child: CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.orange.withOpacity(.09),
+                radius: 35,
+                backgroundColor: Colors.orange.withOpacity(.07),
                 child: TextWithFont().textWithNunitoSansFont(
                   text: 'Next',
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w400,
                   color: mainColor,
                 ),
-              )),
+              ),
+            ),
+          ),
         ],
+        
       ),
     );
   }

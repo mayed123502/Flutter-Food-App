@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../utils/theme.dart';
+
+class Counter extends StatelessWidget {
+  const Counter({
+    Key? key,
+    required this.text,
+    required this.fun,
+  }) : super(key: key);
+  final String text;
+  final Function fun;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      // ignore: sort_child_properties_last
+      child: Container(
+        width: 20.w,
+        height: 20.h,
+        decoration: BoxDecoration(color: mainColor, shape: BoxShape.circle),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.white, fontSize: 14),
+          ),
+        ),
+      ),
+      onTap: fun(),
+    );
+  }
+}

@@ -21,6 +21,8 @@ class AuthButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          shadowColor: Colors.white,
+          side: BorderSide.none,
           primary: context.theme.buttonColor,
           minimumSize: Size(337.w, 50),
           shape: RoundedRectangleBorder(
@@ -32,17 +34,6 @@ class AuthButton extends StatelessWidget {
           fontSize: 20.sp,
           fontWeight: FontWeight.bold,
           text: text,
-        )
-
-        //  Text(text,
-        //     style: GoogleFonts.roboto(
-        //       textStyle:  TextStyle(
-        //         color: Colors.white,
-        //         fontSize: 20.sp,
-        //         fontWeight: FontWeight.bold,
-        //       ),
-        //     )
-        //     ),
-        );
+        ));
   }
 }

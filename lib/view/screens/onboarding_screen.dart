@@ -25,6 +25,7 @@ class OnBoardingScreen extends StatelessWidget {
             Expanded(
               flex: 3,
               child: PageView.builder(
+                physics: const BouncingScrollPhysics(),
                 controller: controller.pageController,
                 onPageChanged: (value) {
                   controller.onPageChanged(value);
@@ -39,9 +40,12 @@ class OnBoardingScreen extends StatelessWidget {
               flex: 1,
               child: Column(
                 children: [
-                  OnBoardingIndicator(controller: controller, margin: 15,),
+                  OnBoardingIndicator(
+                    controller: controller,
+                    margin: 15,
+                  ),
                   SizedBox(
-                    height: 60.h,
+                    height: 50.h,
                   ),
                   controller.currentIndex.value != 2
                       ? OnBoardingRow(controller: controller)

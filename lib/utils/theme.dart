@@ -23,9 +23,15 @@ const Color pinCodeTextFieldColor = Color.fromRGBO(112, 112, 112, 1);
 const Color fullColorLogo = Color.fromRGBO(255, 161, 51, .08);
 
 const Color darkGreyClr = Color(0xFF121212);
-const Color darkMainColor= Color.fromRGBO(197, 58, 25,1);
-const Color onBoardingHomeScreen= Color.fromRGBO(249, 86, 11,1);
-const Color priceColor= Color.fromRGBO(227, 163, 106,1);
+const Color darkMainColor = Color.fromRGBO(197, 58, 25, 1);
+const Color onBoardingHomeScreen = Color.fromRGBO(249, 86, 11, 1);
+const Color priceColor = Color.fromRGBO(227, 163, 106, 1);
+const Color headline1Color = Color.fromRGBO(0, 76, 255, 1);
+const Color headline2Color = Color.fromRGBO(144, 152, 177, 1);
+const Color filterTitlesColor = Color.fromRGBO(28, 39, 96, 1);
+const Color dateColor = Color.fromRGBO(39, 174, 96, 1);
+
+
 
 // Color colorTheme({required Colors lightColors ,required Colors darkColors}){
 //   return   Get.isDarkMode ?
@@ -37,16 +43,27 @@ class ThemesApp {
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
     buttonColor: mainColor,
-    textTheme: TextTheme()
-
+    textTheme: TextTheme(
+      headline1: TextStyle(color: headline1Color),
+      headline2: TextStyle(color: headline2Color),
+    ),
   );
 
   static final dark = ThemeData(
-    primaryColor: darkGreyClr,
-    backgroundColor: darkGreyClr,
-    brightness: Brightness.dark,
-    appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
-buttonColor: darkMainColor
-
-  );
+      primaryColor: darkGreyClr,
+      backgroundColor: darkGreyClr,
+      brightness: Brightness.dark,
+      appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+      buttonColor: darkMainColor);
 }
+
+final List<Color> colors = [
+  const Color.fromRGBO(246, 59, 8, 1),
+  const Color.fromRGBO(250, 123, 9, 1),
+  const Color.fromRGBO(100, 206, 75, 1),
+  const Color.fromRGBO(255, 209, 71, 1),
+  const Color.fromRGBO(246, 59, 8, 1),
+  const Color.fromRGBO(250, 123, 9, 1),
+  const Color.fromRGBO(100, 206, 75, 1),
+  const Color.fromRGBO(255, 209, 71, 1),
+];

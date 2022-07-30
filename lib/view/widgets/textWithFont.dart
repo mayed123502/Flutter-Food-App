@@ -6,7 +6,7 @@ class TextWithFont {
       {required String text,
       required double fontSize,
       required FontWeight fontWeight,
-      required Color color,
+       Color ?color,
       TextAlign? textAlign}) {
     return Text(
       text,
@@ -41,7 +41,7 @@ class TextWithFont {
       {required String text,
       required double fontSize,
       required FontWeight fontWeight,
-      required Color color,
+       Color? color,
       TextAlign? textAlign}) {
     return Text(
       text,
@@ -49,6 +49,7 @@ class TextWithFont {
         textStyle: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,
+          color: color,
         ),
       ),
       textAlign: textAlign,

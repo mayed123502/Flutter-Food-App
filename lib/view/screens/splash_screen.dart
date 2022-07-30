@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
@@ -9,6 +10,8 @@ import '../../routes/routes.dart';
 import '../../utils/constant/imageasset.dart';
 import '../../utils/theme.dart';
 import '../widgets/auth/auth_button.dart';
+import '../widgets/splash/buttomRow.dart';
+import '../widgets/splash/logoContainer.dart';
 import '../widgets/textWithFont.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -18,27 +21,16 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: context.theme.backgroundColor,
-
-          // ignore: sized_box_for_whitespace
-          body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            child: Column(children: [
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            children: [
               SizedBox(
                 height: 178.h,
                 width: double.infinity,
               ),
-              Container(
-                width: 134.w,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: fullColorLogo),
-                child: Image.asset(
-                  ImageAsset.splash,
-                  width: 134.w,
-                  height: 134.h,
-                ),
-              ),
+              LogoContainer(),
               SizedBox(
                 height: 27.h,
                 width: double.infinity,
@@ -53,7 +45,7 @@ class SplashScreen extends StatelessWidget {
                 width: double.infinity,
               ),
               Text(
-                'Beautiful eCommerce app for \n resturant',
+                'Beautiful eCommerce app for \n resturant'.tr,
                 style: GoogleFonts.nunitoSans(
                   textStyle:
                       TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300),
@@ -67,44 +59,18 @@ class SplashScreen extends StatelessWidget {
               AuthButton(
                 onPressed: () {
                   Get.toNamed(Routes.onBoardingScreen);
-                  // Get.toNamed(Routes.homeScreen);
                 },
-                text: 'Let\'s get Started',
+                text: 'Let\'s get Started'.tr,
               ),
               SizedBox(
                 height: 49.h,
                 width: double.infinity,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'I already have an account. ',
-                    style: GoogleFonts.nunitoSans(
-                      textStyle: TextStyle(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.loginScreen);
-                    },
-                    child: Text(
-                      'Log in'.tr,
-                      style: GoogleFonts.nunitoSans(
-                        textStyle: TextStyle(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ]),
-          )),
+              ButtomRow(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

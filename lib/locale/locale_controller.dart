@@ -5,13 +5,21 @@ class MyLocale implements Translations {
   Map<String, Map<String, String>> get keys => {
         "ar": {
           "Log in": "تسجيل دخول",
-          "Beautiful eCommerce app for \n resturant": "تطبيق التجارة الإلكترونية الجميل للمطاعم",
-          "3": "التحويل الى العربية"
+          'I already have an account. ': 'لدي حساب بالفعل.',
+          'Beautiful eCommerce app for \n resturant':
+              'تطبيق تجارة إلكترونية جميل للمطاعم',
+          'Let\'s get Started': 'هيا بنا نبدأ',
+          'Achieve more of your long-term \n goals in less time and stay on \n top of your important food in \n one place.':
+              'حقق المزيد من أهدافك طويلة المدى في وقت أقل وابق على القمة طعامك المهم في مكان واحد.',
         },
         "en": {
           "Log in": "Log in",
-          "Beautiful eCommerce app for \n resturant": "Beautiful eCommerce app for \n resturant",
-          "3": "Change To Arbic"
+          'I already have an account. ': 'I already have an account. ',
+          'Beautiful eCommerce app for \n resturant':
+              'Beautiful eCommerce app for \n resturant',
+          'Let\'s get Started': 'Let\'s get Started',
+          'Achieve more of your long-term \n goals in less time and stay on \n top of your important food in \n one place.':
+              'Achieve more of your long-term \n goals in less time and stay on \n top of your important food in \n one place.',
         },
       };
 }

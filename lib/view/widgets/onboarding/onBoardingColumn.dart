@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,7 @@ class OnBoardingColumn extends StatelessWidget {
           },
           text: 'Get Start',
         ),
+        SizedBox(height:15.h,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -34,24 +36,15 @@ class OnBoardingColumn extends StatelessWidget {
                 ),
               ),
             ),
-            TextButton(
-              onPressed: () {
+            InkWell(
+              onTap: () {
                 Get.toNamed(Routes.loginScreen);
               },
-              child:
-                  // textWithNunitoSansFont
-
-                  //  'Log in',
-                  // style: GoogleFonts.nunitoSans(
-                  //   textStyle: TextStyle(
-                  //     fontSize: 15.sp,
-                  //     fontWeight: FontWeight.w300,
-                  //   ),
-                  TextWithFont().textWithNunitoSansFont(
+              child: TextWithFont().textWithNunitoSansFont(
                 text: 'Log in',
                 fontSize: 15.sp,
                 fontWeight: FontWeight.w300,
-                color: Colors.white,
+                color: ThemesApp.light.textTheme.headline1?.color,
               ),
             ),
           ],

@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../utils/theme.dart';
-import '../../view/screens/cart_screen.dart';
+import '../../view/screens/cart/cart_screen.dart';
 import '../../view/screens/favorites_screen.dart';
 import '../../view/screens/home_screen.dart';
-import '../../view/screens/settings_screen.dart';
+import '../../view/screens/settings/settings_screen.dart';
 
 class MainController extends GetxController {
 

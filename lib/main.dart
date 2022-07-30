@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/routes/routes.dart';
-import 'package:ecommerce_app/utils/my_string.dart';
 import 'package:ecommerce_app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await SharedPrefs.init();
+
   runApp(MyApp());
 }
 

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,49 +23,45 @@ class AuthTextFromField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-   
-       TextFormField(
-        
-        controller: controller,
-        obscureText: obscureText,
-        cursorColor: Colors.black,
-        keyboardType: TextInputType.text,
-        validator: (value) => validator(value),
-        style: const TextStyle(
-          color: Colors.black,
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      cursorColor: Colors.black,
+      keyboardType: TextInputType.text,
+      validator: (value) => validator(value),
+      style: const TextStyle(
+        color: Colors.black,
+      ),
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+        fillColor: authTextFromFieldFillColor.withOpacity(.3),
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        hintText: hintText,
+        hintStyle: TextStyle(
+          color: authTextFromFieldHintTextColor,
+          fontSize: 17.sp,
+          fontWeight: FontWeight.w500,
         ),
-        decoration: InputDecoration(
-      contentPadding:const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-
-          fillColor: authTextFromFieldFillColor,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          hintText: hintText,
-          hintStyle:  TextStyle(
-            color: authTextFromFieldHintTextColor,
-            fontSize: 17.sp,
-            fontWeight: FontWeight.w500,
-          ),
-          filled: true,
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: authTextFromFieldPorderColor),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color:authTextFromFieldPorderColor),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: authTextFromFieldErrorBorderColor),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.circular(10),
-          ),
+        filled: true,
+        enabledBorder: OutlineInputBorder(
+          borderSide:  BorderSide(color: authTextFromFieldPorderColor.withOpacity(.5),),
+          borderRadius: BorderRadius.circular(10),
         ),
-
+        focusedBorder: OutlineInputBorder(
+          borderSide:  BorderSide(color: authTextFromFieldPorderColor.withOpacity(.5),),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide:
+               BorderSide(color: authTextFromFieldErrorBorderColor.withOpacity(.5),),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
     );
   }
 }

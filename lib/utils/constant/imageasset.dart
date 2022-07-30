@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class ImageAsset {
   static const String rootImage = 'assets';
   static const String onBoardingImageOne =
@@ -6,8 +8,19 @@ class ImageAsset {
       '$rootImage/onboarding/onboarding2.png';
   static const String onBoardingImageThree =
       '$rootImage/onboarding/onboarding3.png';
-  static const String splash = '$rootImage/splash.png';
+  static const String logo = '$rootImage/logo.png';
   static const String login = '$rootImage/login.png';
-  static const String facebook = '$rootImage/facebook.svg';
-  static const String google = '$rootImage/google.svg';
+  static const String facebook = '$rootImage/icons/facebook-2.svg';
+  static const String google = '$rootImage/icons/google-icon.svg';
+    static const String loc = '$rootImage/icons/loc.png';
+
+
+  final List<String> images = [
+    'assets/hamburger3.jpg',
+    'assets/pizza4.jpg',
+    'assets/coffee.jpg',
+    'assets/fruit.jpg',
+    'assets/hamburger.jpg',
+    'assets/pizza2.jpg',
+  ];
 }

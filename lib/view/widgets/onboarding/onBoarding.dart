@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../data/static/static.dart';
 import '../../../utils/theme.dart';
@@ -28,7 +29,7 @@ class PageViewOnBoarding extends StatelessWidget {
           height: 40.h,
         ),
         TextWithFont().textWithRobotoFont(
-            text: onBoardingList[index].title!,
+            text: onBoardingList[index].title!.tr,
             fontSize: 28.sp,
             textAlign: TextAlign.center,
             fontWeight: FontWeight.bold,
@@ -40,8 +41,8 @@ class PageViewOnBoarding extends StatelessWidget {
             text: onBoardingList[index].body!,
             fontSize: 18.sp,
             textAlign: TextAlign.center,
-            fontWeight: FontWeight.w300,
-            color: onBoardingDocsColor),
+            fontWeight: FontWeight.w400,
+            color: ThemesApp.light.textTheme.headline2?.color?.withOpacity(.8)),
       ],
     );
   }

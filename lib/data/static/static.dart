@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import '../../model/onboardingmodel.dart';
 import '../../utils/constant/imageasset.dart';
 
@@ -5,7 +7,7 @@ List<OnBoardingModel> onBoardingList = [
   OnBoardingModel(
       body:
           'Achieve more of your long-term \n goals in less time and stay on \n top of your important food in \n one place.',
-      title: 'search for favourit food',
+      title: 'search for favourit food \n near you',
       image: ImageAsset.onBoardingImageOne),
   OnBoardingModel(
       body:
