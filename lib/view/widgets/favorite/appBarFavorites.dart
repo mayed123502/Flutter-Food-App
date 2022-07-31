@@ -17,13 +17,13 @@ class AppBarFavorites extends StatelessWidget with PreferredSizeWidget{
             fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
       ),
       centerTitle: true,
-      leading: IconButton(
-        onPressed: () => Get.back(),
-        icon: Icon(
-          Icons.arrow_back_ios,
-          color: Get.isDarkMode ? Colors.white : Colors.black,
-        ),
-      ),
+      // leading: IconButton(
+      //   onPressed: () => Get.back(),
+      //   icon: Icon(
+      //     Icons.arrow_back_ios,
+      //     color: Get.isDarkMode ? Colors.white : Colors.black,
+      //   ),
+      // ),
     );
   }
 }

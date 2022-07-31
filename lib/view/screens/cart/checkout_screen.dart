@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/routes.dart';
+import '../../../utils/constant/imageasset.dart';
 import '../../widgets/cart/counter.dart';
 import '../../widgets/cart/customTextInput.dart';
 import '../../widgets/textWithFont.dart';
@@ -532,8 +533,6 @@ class CheckoutScreen extends StatelessWidget {
                               )
                             ],
                           ),
-                        
-                     
                           Divider(
                             height: 40,
                             color: mainColor.withOpacity(0.25),
@@ -594,7 +593,102 @@ class CheckoutScreen extends StatelessWidget {
                 color: Colors.grey.withOpacity(.2),
               ),
               child: AuthButton(
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      isScrollControlled: true,
+                      isDismissible: false,
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                          height: Get.height * 0.82,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    icon: Icon(Icons.clear),
+                                  ),
+                                ],
+                              ),
+                              Image.asset(
+                                ImageAsset.vector4,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "Thank You!",
+                                style: TextStyle(
+                                  color: mainColor,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 30,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextWithFont().textWithRalewayFont(
+                                color: mainColor,
+                                text: 'for your order',
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: TextWithFont().textWithNunitoSansFont(
+                                  color: Colors.black.withOpacity(.6),
+                                  text:
+                                      "Your order is now being processed. We will let you know once the order is picked from the outlet. Check the status of your order",
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 50,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                child: SizedBox(
+                                    height: 50,
+                                    width: double.infinity,
+                                    child: AuthButton(
+                                      text: "Track My Order",
+                                      onPressed: () {},
+                                    )),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Back To Home",
+                                    style: TextStyle(
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      });
+                },
                 text: 'Send Order',
               ),
             ),

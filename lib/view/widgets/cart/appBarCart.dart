@@ -15,13 +15,14 @@ class AppBarCart  extends StatelessWidget with PreferredSizeWidget{
     return AppBar(
       centerTitle: true,
       bottom: const PreferredSizeInAppBar(),
-      leading: GestureDetector(
-        onTap: () => Get.back(),
-        child: Icon(
-          Icons.arrow_back_ios,
-          color: Get.isDarkMode ? Colors.white : Colors.black,
-        ),
-      ),
+      // leading: GestureDetector(
+      //   onTap: () => Get.back(),
+      //   child: Icon(
+      //     Icons.arrow_back_ios,
+      //     color: Get.isDarkMode ? Colors.white : Colors.black,
+      //     size: 20,
+      //   ),
+      // ),
       title: Text(
         'Your Carts',
         style: TextStyle(

@@ -6,8 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
 
+import '../widgets/productDetails/backIcon.dart';
+import '../widgets/productDetails/customTriangle.dart';
+import '../widgets/productDetails/description.dart';
+import '../widgets/productDetails/descriptionText.dart';
+import '../widgets/productDetails/imageShadow.dart';
+import '../widgets/productDetails/itemCounter.dart';
+import '../widgets/productDetails/ratingBarRev.dart';
+import '../widgets/productDetails/reviewProduct.dart';
+import '../widgets/productDetails/seeMore.dart';
+import '../widgets/productDetails/showImage.dart';
+import '../widgets/productDetails/supTitle.dart';
+import '../widgets/productDetails/titelText.dart';
 import '../widgets/textWithFont.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -23,51 +36,14 @@ class ProductDetailsScreen extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/hamburger.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: [0.0, 0.4],
-                        colors: [
-                          Colors.black.withOpacity(0.9),
-                          Colors.black.withOpacity(0.0),
-                        ],
-                      ),
-                    ),
-                  ),
+                  ShowImage(),
+                  ImageShadow(),
                 ],
               ),
               SafeArea(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Icon(
-                              Icons.arrow_back_ios_rounded,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    BackIcon(),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.35,
                     ),
@@ -94,108 +70,20 @@ class ProductDetailsScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20),
-                                    child: TextWithFont().textWithRalewayFont(
-                                        color: Get.isDarkMode
-                                            ? Colors.white
-                                            : Colors.black,
-                                        fontSize: 20.sp,
-                                        text: 'Beef Burger',
-                                        fontWeight: FontWeight.bold),
+                                  TitelText(),
+                                  SupTitle(),
+                                  SizedBox(
+                                    height: 10.h,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        TextWithFont().textWithRalewayFont(
-                                            color: Get.isDarkMode
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontSize: 12.sp,
-                                            text: 'Cheesy Mazarella',
-                                            fontWeight: FontWeight.w500),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              const SizedBox(
-                                                height: 2,
-                                              ),
-                                              Text(
-                                                "Rs. 750",
-                                                style: TextStyle(
-                                                  color: mainColor,
-                                                  fontSize: 30,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Image.asset('assets/fir.png'),
-                                                  TextWithFont()
-                                                      .textWithRalewayFont(
-                                                          color: Get.isDarkMode
-                                                              ? Colors.white
-                                                              : Colors.black,
-                                                          fontSize: 14.sp,
-                                                          text: '150 Kcal',
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                  SizedBox(
-                                                    width: 15.w,
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20),
-                                    child: TextWithFont().textWithRalewayFont(
-                                        color: Get.isDarkMode
-                                            ? Colors.white
-                                            : Colors.black,
-                                        fontSize: 15.sp,
-                                        text: 'Review Product',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  // const SizedBox(
-                                  //   height: 10,
-                                  // ),
+
+                                  ReviewProduct(),
+
                                   Padding(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 20),
                                     child: Row(
                                       children: [
-                                        RatingBar.builder(
-                                          initialRating: 5,
-                                          minRating: 1,
-                                          direction: Axis.horizontal,
-                                          allowHalfRating: true,
-                                          itemCount: 5,
-                                          itemSize: 20.0,
-                                          itemPadding:
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 0),
-                                          itemBuilder: (context, _) =>
-                                              const Icon(
-                                            Icons.star,
-                                            color: Colors.amber,
-                                          ),
-                                          onRatingUpdate: (rating) {},
-                                        ),
+                                        RatingBarRev(),
                                         TextWithFont().textWithRalewayFont(
                                             color: Get.isDarkMode
                                                 ? Colors.white
@@ -208,22 +96,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                              // const SizedBox(
-                                              //   height: 20,
-                                              // ),
-                                              TextButton(
-                                                child: Text(
-                                                  "See More",
-                                                  style: TextStyle(
-                                                    color: mainColor,
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                ),
-                                                onPressed: () {
-                                                  Get.toNamed(Routes.allReviewScreen);
-                                                },
-                                              ),
+                                              SeeMore(),
                                             ],
                                           ),
                                         ),
@@ -232,47 +105,15 @@ class ProductDetailsScreen extends StatelessWidget {
                                   ),
 
                                   // "Description",
-
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20),
-                                    child: TextWithFont().textWithRalewayFont(
-                                        color: Get.isDarkMode
-                                            ? Colors.white
-                                            : Colors.black,
-                                        fontSize: 15.sp,
-                                        text: 'Description',
-                                        fontWeight: FontWeight.bold),
+                                  SizedBox(
+                                    height: 20.h,
                                   ),
+
+                                  Description(),
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: ReadMoreText(
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare leo non mollis id cursus. Eu euismod faucibus in leo malesuada",
-                                        trimLines: 2,
-                                        // colorClickableText:mainColor,
-                                        style: const TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300),
-                                        trimMode: TrimMode.Line,
-                                        trimCollapsedText: 'Show more',
-                                        trimExpandedText: 'Show less',
-
-                                        moreStyle: TextStyle(
-                                          color: mainColor,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        lessStyle: TextStyle(
-                                          color: mainColor,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),),
+                                  DescriptionText(),
 
                                   const SizedBox(
                                     height: 10,
@@ -285,113 +126,20 @@ class ProductDetailsScreen extends StatelessWidget {
                                       thickness: 1.5,
                                     ),
                                   ),
-                                  // const SizedBox(
-                                  //   height: 10,
-                                  // ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Row(
-                                      children: [
-                                        // const Text(
-                                        //   "Number of Portions",
-                                        //   style: TextStyle(
-                                        //     fontSize: 14,
-                                        //   ),
-                                        // ),
-                                        Expanded(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              ElevatedButton(
-                                                style: ButtonStyle(
-                                                  shape:
-                                                      MaterialStateProperty.all<
-                                                          RoundedRectangleBorder>(
-                                                    RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              18.0),
-                                                    ),
-                                                  ),
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                          mainColor),
-                                                  elevation:
-                                                      MaterialStateProperty.all(
-                                                          5.0),
-                                                ),
-                                                onPressed: () {},
-                                                child: Text("-"),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                height: 35,
-                                                width: 55,
-                                                decoration:
-                                                    const ShapeDecoration(
-                                                  shape: StadiumBorder(
-                                                    side: BorderSide(
-                                                        color: Colors.orange),
-                                                  ),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  // ignore: prefer_const_literals_to_create_immutables
-                                                  children: [
-                                                    const Text(
-                                                      "2",
-                                                      style: TextStyle(
-                                                        color: Colors.orange,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              ElevatedButton(
-                                                style: ButtonStyle(
-                                                    shape: MaterialStateProperty
-                                                        .all<
-                                                            RoundedRectangleBorder>(
-                                                      RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(18.0),
-                                                      ),
-                                                    ),
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(mainColor),
-                                                    elevation:
-                                                        MaterialStateProperty
-                                                            .all(5.0)),
-                                                onPressed: () {},
-                                                child: Text("+"),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+
+                                  ItemCounter(),
 
                                   SizedBox(
                                     height: 20.h,
                                   ),
                                   Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20),
-                                      child: AuthButton(
-                                        onPressed: () {},
-                                        text: 'Add to Cart',
-                                      )),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: AuthButton(
+                                      onPressed: () {},
+                                      text: 'Add to Cart',
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -436,50 +184,22 @@ class ProductDetailsScreen extends StatelessWidget {
   }
 }
 
-class CustomTriangle extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Offset controlpoint = Offset(size.width * 0, size.height * 0.5);
-    Offset endpoint = Offset(size.width * 0.2, size.height * 0.85);
-    Offset controlpoint2 = Offset(size.width * 0.33, size.height);
-    Offset endpoint2 = Offset(size.width * 0.6, size.height * 0.9);
-    Offset controlpoint3 = Offset(size.width * 1.4, size.height * 0.5);
-    Offset endpoint3 = Offset(size.width * 0.6, size.height * 0.1);
-    Offset controlpoint4 = Offset(size.width * 0.33, size.height * 0);
-    Offset endpoint4 = Offset(size.width * 0.2, size.height * 0.15);
 
-    Path path = new Path()
-      ..moveTo(size.width * 0.2, size.height * 0.15)
-      ..quadraticBezierTo(
-        controlpoint.dx,
-        controlpoint.dy,
-        endpoint.dx,
-        endpoint.dy,
-      )
-      ..quadraticBezierTo(
-        controlpoint2.dx,
-        controlpoint2.dy,
-        endpoint2.dx,
-        endpoint2.dy,
-      )
-      ..quadraticBezierTo(
-        controlpoint3.dx,
-        controlpoint3.dy,
-        endpoint3.dx,
-        endpoint3.dy,
-      )
-      ..quadraticBezierTo(
-        controlpoint4.dx,
-        controlpoint4.dy,
-        endpoint4.dx,
-        endpoint4.dy,
-      );
 
-    return path;
-  }
 
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

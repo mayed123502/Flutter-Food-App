@@ -13,6 +13,7 @@ class ImageAsset {
   static const String facebook = '$rootImage/icons/facebook-2.svg';
   static const String google = '$rootImage/icons/google-icon.svg';
     static const String loc = '$rootImage/icons/loc.png';
+        static const String vector4 = '$rootImage/icons/vector4.png';
 
 
   final List<String> images = [
