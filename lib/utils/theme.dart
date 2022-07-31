@@ -31,8 +31,6 @@ const Color headline2Color = Color.fromRGBO(144, 152, 177, 1);
 const Color filterTitlesColor = Color.fromRGBO(28, 39, 96, 1);
 const Color dateColor = Color.fromRGBO(39, 174, 96, 1);
 
-
-
 // Color colorTheme({required Colors lightColors ,required Colors darkColors}){
 //   return   Get.isDarkMode ?
 // }
@@ -50,11 +48,12 @@ class ThemesApp {
   );
 
   static final dark = ThemeData(
-      primaryColor: darkGreyClr,
-      backgroundColor: darkGreyClr,
-      brightness: Brightness.dark,
-      appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
-      buttonColor: darkMainColor);
+    primaryColor: darkGreyClr,
+    backgroundColor: darkGreyClr,
+    brightness: Brightness.dark,
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+    buttonColor: darkMainColor,
+  );
 }
 
 final List<Color> colors = [
