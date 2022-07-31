@@ -1,17 +1,11 @@
 import 'package:ecommerce_app/routes/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../widgets/auth/auth_button.dart';
-import '../../widgets/category/choseMenuRating.dart';
-import '../../widgets/profile/viewImage.dart';
 import '../../widgets/review/appBarRev.dart';
 import '../../widgets/review/cardRev.dart';
 import '../../widgets/review/reviewRating.dart';
-import '../../widgets/textWithFont.dart';
 
 class AllReviewScreen extends StatelessWidget {
   const AllReviewScreen({Key? key}) : super(key: key);
@@ -71,6 +65,3 @@ class AllReviewScreen extends StatelessWidget {
     );
   }
 }
-
-
-
