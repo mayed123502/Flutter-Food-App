@@ -7,6 +7,7 @@ import '../logic/bindings/onBoarding_bindings.dart';
 import '../logic/bindings/onBoarding_home_bindings.dart';
 import '../logic/bindings/profileSettingBinding.dart';
 import '../logic/bindings/settengs_bindings.dart';
+import '../view/screens/allFood_Screen.dart';
 import '../view/screens/auth/ForgotPassword/sendOTPScreen.dart';
 import '../view/screens/auth/ForgotPassword/forgotpassword_screen.dart';
 import '../view/screens/auth/ForgotPassword/newPwScreen.dart';
@@ -152,6 +153,10 @@ class AppRoutes {
       name: Routes.writeReviewScreen,
       page: () => WriteReviewScreen(),
     ),
+    GetPage(
+      name: Routes.allFoodScreen,
+      page: () => AllFoodScreen(),
+    ),
   ];
 }
 
@@ -187,6 +192,7 @@ class Routes {
 
   static const allReviewScreen = '/allReviewScreen';
   static const writeReviewScreen = '/writeReviewScreen';
+  static const allFoodScreen = '/allFoodScreen';
 
   // ForgotPasswordCodeScreen
 

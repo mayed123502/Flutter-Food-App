@@ -32,12 +32,13 @@ class CategoryScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 11,
-                  itemBuilder: (context, index) {
-                    return CardCatrgory();
-                  }),
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 11,
+                itemBuilder: (context, index) {
+                  return CardCatrgory();
+                },
+              ),
             ),
           ],
         ),

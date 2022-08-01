@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/view/widgets/textWithFont.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class CostomColumn extends StatelessWidget {
   const CostomColumn({
@@ -21,8 +22,12 @@ class CostomColumn extends StatelessWidget {
     return Padding(
       // padding: EdgeInsets.only(left: 70.w, top: 20.h, bottom: 10.h,right: 0),
 
-      padding:
-          EdgeInsets.only(left: left, top: 20.h, bottom: 10.h, right: right),
+      padding: EdgeInsets.only(
+        left: Get.locale?.languageCode == 'en' ? left : right,
+        top: 20.h,
+        bottom: 10.h,
+        right: Get.locale?.languageCode == 'en' ? right : left,
+      ),
       child: Column(
         children: [
           Image.asset(

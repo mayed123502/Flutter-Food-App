@@ -9,16 +9,18 @@ import '../textWithFont.dart';
 class CustomRowHomePage extends StatelessWidget {
   final String firstText;
   final String scoindText;
+  final Function? press;
 
   CustomRowHomePage({
     required this.firstText,
     required this.scoindText,
+    this.press,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 18.w, right: 18.w),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -29,9 +31,7 @@ class CustomRowHomePage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           GestureDetector(
-            onTap: () {
-              Get.toNamed(Routes.categoryScreen);
-            },
+            onTap: press as void Function()?,
             child: TextWithFont().textWithRobotoFont(
               text: scoindText,
               color: mainColor,

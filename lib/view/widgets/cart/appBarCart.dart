@@ -13,6 +13,7 @@ class AppBarCart  extends StatelessWidget with PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.transparent,
       centerTitle: true,
       bottom: const PreferredSizeInAppBar(),
       // leading: GestureDetector(

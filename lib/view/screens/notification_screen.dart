@@ -22,7 +22,7 @@ class NotificatonScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: ListView.builder(
           itemCount: 5,
  

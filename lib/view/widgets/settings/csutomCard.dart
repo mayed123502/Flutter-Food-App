@@ -27,14 +27,14 @@ class CsutomCard extends StatelessWidget {
               Get.toNamed(Routes.myOrdersScreen);
             },
             child: CostomColumn(
-              text: 'Orders',
+              text: 'Orders'.tr,
               left: 65.0,
               right: 0.0,
               imageUrl: 'assets/bus.png',
             ),
           ),
           CostomColumn(
-            text: 'Address',
+            text: 'Address'.tr,
             left: 0.0,
             right: 65.0,
             imageUrl: 'assets/map.png',

@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                           obscureText: false,
                           validator: (value) {
                             if (!RegExp(validationEmail).hasMatch(value)) {
-                              return 'Invalid email';
+                              return 'Invalid email'.tr;
                             } else {
                               return null;
                             }
@@ -63,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                             color: authTextFromFieldHintTextColor,
                           ),
                           suffixIcon: const Text(""),
-                          hintText: 'Email',
+                          hintText: 'Email'.tr,
                         ),
                         SizedBox(
                           height: 15.h,
@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                                   controller.isVisibilty ? true : false,
                               validator: (value) {
                                 if (value.toString().length < 6) {
-                                  return 'Password should be longer or equal to 6 characters';
+                                  return 'Password should be longer or equal to 6 characters'.tr;
                                 } else {
                                   return null;
                                 }
@@ -86,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                                 size: 24,
                                 color: authTextFromFieldHintTextColor,
                               ),
-                              hintText: 'Password',
+                              hintText: 'Password'.tr,
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   controller.visibility();
@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         GetBuilder<AuthController>(builder: (_) {
                           return AuthButton(
-                            text: 'Login',
+                            text: 'Login'.tr,
                             onPressed: () {
                               if (fromKey.currentState!.validate()) {
                                 String email = emailController.text.trim();

@@ -19,7 +19,6 @@ class ImageAsset {
   final List<String> images = [
     'assets/hamburger3.jpg',
     'assets/pizza4.jpg',
-    'assets/coffee.jpg',
     'assets/fruit.jpg',
     'assets/hamburger.jpg',
     'assets/pizza2.jpg',

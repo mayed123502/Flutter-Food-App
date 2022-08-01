@@ -28,7 +28,7 @@ class OnBoardingRow extends StatelessWidget {
               Get.offAndToNamed(Routes.mainScreen);
             },
             child: TextWithFont().textWithRobotoFont(
-              text: 'Skip',
+              text: 'Skip'.tr,
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
               color: onBoardingSkipButtonColor,
@@ -44,7 +44,7 @@ class OnBoardingRow extends StatelessWidget {
                 radius: 35,
                 backgroundColor: Colors.orange.withOpacity(.07),
                 child: TextWithFont().textWithNunitoSansFont(
-                  text: 'Next',
+                  text: 'Next'.tr,
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w400,
                   color: mainColor,

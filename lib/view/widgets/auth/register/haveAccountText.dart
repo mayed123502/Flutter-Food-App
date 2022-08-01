@@ -19,7 +19,7 @@ class HaveAccountText extends StatelessWidget {
         TextWithFont().textWithRobotoFont(
             fontSize: 15.sp,
             fontWeight: FontWeight.w300,
-            text: 'Already have an account? ',
+            text: 'I already have an account. '.tr,
             color: mainColor),
         InkWell(
           onTap: () {
@@ -28,9 +28,8 @@ class HaveAccountText extends StatelessWidget {
           child: TextWithFont().textWithRobotoFont(
               fontSize: 15.sp,
               fontWeight: FontWeight.w300,
-              text: 'Login',
-              color: ThemesApp
-                  .light.textTheme.headline1?.color),
+              text: 'Login'.tr,
+              color: ThemesApp.light.textTheme.headline1?.color),
         ),
       ],
     );

@@ -16,7 +16,6 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBarFavorites(),
         body: Padding(
           padding: EdgeInsets.only(top: 40.h, bottom: 10.h),

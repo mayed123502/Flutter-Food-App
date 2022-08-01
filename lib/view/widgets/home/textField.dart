@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/theme.dart';
 
@@ -16,7 +17,7 @@ class HomeTextField extends StatelessWidget {
         contentPadding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
         prefixIcon: Icon(Icons.search,size: 30,),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
-        hintText: 'Search for a food or resurant',
+        hintText: 'Search for a food or resurant'.tr,
         filled: true,
         fillColor: authTextFromFieldFillColor.withOpacity(.5),
         hintStyle: TextStyle(

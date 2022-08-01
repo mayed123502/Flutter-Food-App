@@ -12,49 +12,16 @@ class CardCatrgory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shadowColor:Colors.grey,
-      surfaceTintColor:Colors.grey,
-      elevation:1,
+      shadowColor: Colors.grey,
+      surfaceTintColor: Colors.grey,
+      elevation: 1,
       child: Row(
         children: [
           SizedBox(
             width: 15.w,
           ),
-          Column(
-            children: [
-              TextWithFont().textWithRalewayFont(
-                  color: Get.isDarkMode
-                      ? Colors.white
-                      : Colors.black,
-                  fontSize: 20.sp,
-                  text: 'Burger King',
-                  fontWeight: FontWeight.bold),
-              SizedBox(
-                height: 10.h,
-              ),
-              RatingBar.builder(
-                initialRating: 5,
-                minRating: 1,
-                direction: Axis.horizontal,
-                allowHalfRating: true,
-                itemCount: 5,
-                itemSize: 20.0,
-                itemPadding:
-                    const EdgeInsets.symmetric(horizontal: 0),
-                itemBuilder: (context, _) => const Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-                onRatingUpdate: (rating) {},
-              ),
-            ],
-          ),
-          SizedBox(
-            width: 50.w,
-          ),
-
           Padding(
-            padding:  EdgeInsets.symmetric(vertical: 10.h,horizontal: 10.w),
+            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
             child: Container(
               height: 100.h,
               width: 130.w,
@@ -72,20 +39,39 @@ class CardCatrgory extends StatelessWidget {
               // ),
             ),
           ),
-          // ClipOval(
-          //   child: SizedBox.fromSize(
-          //     size: Size.fromRadius(48), // Image radius
-          //     child:
+          SizedBox(
+            width: 30.w,
+          ),
 
-          //      Image.asset(
-          //       'assets/hamburger.jpg',
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // )
+       
+          Column(
+            children: [
+              TextWithFont().textWithRalewayFont(
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                  fontSize: 20.sp,
+                  text: 'Burger King',
+                  fontWeight: FontWeight.bold),
+              SizedBox(
+                height: 10.h,
+              ),
+              RatingBar.builder(
+                initialRating: 5,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemSize: 20.0,
+                itemPadding: const EdgeInsets.symmetric(horizontal: 0),
+                itemBuilder: (context, _) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {},
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 }
-

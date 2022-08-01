@@ -20,6 +20,19 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: TextWithFont().textWithRobotoFont(
+          text: 'Reset Password',
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w500,
+          color: Colors.black.withOpacity(.6),
+          
+        ),
+        elevation: 0,
+      ),
       body: Container(
         width: Get.width,
         height: Get.height,
@@ -31,12 +44,12 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                TextWithFont().textWithRobotoFont(
-                  text: 'Reset Password',
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black.withOpacity(.6),
-                ),
+                //   TextWithFont().textWithRobotoFont(
+                //     text: 'Reset Password',
+                //     fontSize: 22.sp,
+                //     fontWeight: FontWeight.w500,
+                //     color: Colors.black.withOpacity(.6),
+                //   ),
 
                 SizedBox(
                   height: 30.h,
@@ -67,8 +80,12 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
                 // Spacer(),
 
-                AuthButton(text:'Send',onPressed: (){          Get.toNamed(Routes.sendOTPScreen);
-},),
+                AuthButton(
+                  text: 'Send',
+                  onPressed: () {
+                    Get.toNamed(Routes.sendOTPScreen);
+                  },
+                ),
 //                 SendButton(icon:'Send',press: (){          Get.toNamed(Routes.sendOTPScreen);
 // },)
               ],

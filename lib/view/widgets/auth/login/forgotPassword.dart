@@ -20,7 +20,7 @@ class ForgotPassword extends StatelessWidget {
         child: TextWithFont().textWithRobotoFont(
           color: mainColor,
           fontSize: 15.sp,
-          text: 'Forgot Password?',
+          text: 'Forgot Password?'.tr,
           fontWeight: FontWeight.w300,
         ),
         onPressed: () {

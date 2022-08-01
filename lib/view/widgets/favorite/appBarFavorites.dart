@@ -10,6 +10,7 @@ class AppBarFavorites extends StatelessWidget with PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.transparent,
       elevation: 0,
       title: Text(
         'Favorites',

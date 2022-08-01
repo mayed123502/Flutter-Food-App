@@ -19,7 +19,7 @@ class NoAccountText extends StatelessWidget {
         TextWithFont().textWithRobotoFont(
             fontSize: 15.sp,
             fontWeight: FontWeight.w300,
-            text: 'I don\'t have an account. ',
+            text: 'I don\'t have an account. '.tr,
             color: mainColor),
         InkWell(
           onTap: () {
@@ -28,7 +28,7 @@ class NoAccountText extends StatelessWidget {
           child: TextWithFont().textWithRobotoFont(
               fontSize: 15.sp,
               fontWeight: FontWeight.w300,
-              text: 'Sign up',
+              text: 'Sign up'.tr,
               color: ThemesApp
                   .light.textTheme.headline1?.color),
         ),

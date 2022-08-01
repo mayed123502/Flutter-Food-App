@@ -6,6 +6,7 @@ import '../../locale/locale.dart';
 
 import '../../logic/controllers/main_controller.dart';
 import '../../logic/controllers/onboarding_controller.dart';
+import '../../utils/theme.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -15,10 +16,13 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+                print(Get.isDarkMode);
+
     return SafeArea(
       child: Obx(
         () {
           return Scaffold(
+            backgroundColor:Get.isDarkMode? ThemesApp.dark.backgroundColor:ThemesApp.dark.backgroundColor,
             body: PersistentTabView(
               context,
               controller: mainController.controller.value,

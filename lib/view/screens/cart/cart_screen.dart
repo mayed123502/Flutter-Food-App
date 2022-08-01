@@ -18,7 +18,6 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBarCart(),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),

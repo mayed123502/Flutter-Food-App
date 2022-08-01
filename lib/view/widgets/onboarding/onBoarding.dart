@@ -25,8 +25,10 @@ class PageViewOnBoarding extends StatelessWidget {
           height: 262.h,
           width: 312.06.w,
         ),
-        SizedBox(
+       Get.locale?.languageCode == 'en'?  SizedBox(
           height: 40.h,
+        ):SizedBox(
+          height: 20.h,
         ),
         TextWithFont().textWithRobotoFont(
             text: onBoardingList[index].title!.tr,

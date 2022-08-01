@@ -16,16 +16,18 @@ class LoginWithText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        LineWidget(left: 0.0, right: 30.w),
+        Get.locale?.languageCode == 'en'
+            ? LineWidget(left: 0.0, right: 30.w)
+            : LineWidget(left: 30.w, right: 0),
         TextWithFont().textWithRobotoFont(
-          text: "Login with",
+          text: "Login with".tr,
           fontSize: 16.sp,
           fontWeight: FontWeight.w500,
-          color: Get.isDarkMode
-              ? Colors.blueAccent
-              : authLoginWithTextColor,
+          color: Get.isDarkMode ? Colors.blueAccent : authLoginWithTextColor,
         ),
-        LineWidget(left: 30.w, right: 0.0),
+        Get.locale?.languageCode == 'en'
+            ? LineWidget(left: 30.w, right: 0.0)
+            : LineWidget(left: 0, right: 30.w),
       ],
     );
   }

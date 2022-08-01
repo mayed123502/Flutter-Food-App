@@ -25,7 +25,7 @@ class DropdownMenuItemLanguage extends StatelessWidget {
             width: 20.w,
           ),
           TextWithFont().textWithRobotoFont(
-            text: 'Language',
+            text: 'Language'.tr,
             fontSize: 14.sp,
             fontWeight: FontWeight.normal,
             color: Colors.black,

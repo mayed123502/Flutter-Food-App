@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
           theme: ThemesApp.light,
           darkTheme: ThemesApp.dark,
           themeMode: ThemeController().themeDataGet,
+          // ThemeController().themeDataGet
           initialRoute: AppRoutes.splash,
           getPages: AppRoutes.routes,
         );

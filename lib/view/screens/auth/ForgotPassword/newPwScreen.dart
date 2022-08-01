@@ -17,6 +17,18 @@ class NewPwScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    appBar:  AppBar(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: TextWithFont().textWithRobotoFont(
+          text: 'New Password',
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w500,
+          color: Colors.black.withOpacity(.6),
+          
+        ),
+        elevation: 0,
+      ),
       body: Container(
         width: Get.width,
         height: Get.height,
@@ -28,11 +40,11 @@ class NewPwScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                TextWithFont().textWithRobotoFont(
-                    text: "New Password",
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black.withOpacity(.6)),
+                // TextWithFont().textWithRobotoFont(
+                //     text: "New Password",
+                //     fontSize: 20.sp,
+                //     fontWeight: FontWeight.w500,
+                //     color: Colors.black.withOpacity(.6)),
                 SizedBox(
                   height: 20,
                 ),

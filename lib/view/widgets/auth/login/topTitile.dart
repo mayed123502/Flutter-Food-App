@@ -14,20 +14,20 @@ class TopTitile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.only(left: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextWithFont().textWithRalewayFont(
               color: Get.isDarkMode ? Colors.white : Colors.black,
               fontSize: 28.sp,
-              text: 'Login',
+              text: 'Login'.tr,
               fontWeight: FontWeight.bold),
           SizedBox(
             height: 2.h,
           ),
           Text(
-            'Good to see you back!',
+            'Good to see you back!'.tr,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
                 fontSize: 19.sp,

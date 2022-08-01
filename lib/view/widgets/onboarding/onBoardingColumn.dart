@@ -21,14 +21,14 @@ class OnBoardingColumn extends StatelessWidget {
           onPressed: () {
             Get.toNamed(Routes.mainScreen);
           },
-          text: 'Get Start',
+          text: 'Get Start'.tr,
         ),
         SizedBox(height:15.h,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'I already have an account. ',
+             'I already have an account. '.tr,
               style: GoogleFonts.nunitoSans(
                 textStyle: TextStyle(
                   fontSize: 15.sp,
@@ -41,7 +41,7 @@ class OnBoardingColumn extends StatelessWidget {
                 Get.toNamed(Routes.loginScreen);
               },
               child: TextWithFont().textWithNunitoSansFont(
-                text: 'Log in',
+                text: "Log in".tr,
                 fontSize: 15.sp,
                 fontWeight: FontWeight.w300,
                 color: ThemesApp.light.textTheme.headline1?.color,

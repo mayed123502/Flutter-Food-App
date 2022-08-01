@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../logic/controllers/auth_controllers.dart';
-import '../../../routes/routes.dart';
-import '../../../utils/constant/imageasset.dart';
 import '../../../utils/my_string.dart';
 import '../../../utils/theme.dart';
 import '../../widgets/auth/auth_button.dart';
@@ -13,7 +10,6 @@ import '../../widgets/auth/auth_textFromField.dart';
 import '../../widgets/auth/login/topImage.dart';
 import '../../widgets/auth/register/haveAccountText.dart';
 import '../../widgets/auth/register/topTitile.dart';
-import '../../widgets/textWithFont.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -57,7 +53,7 @@ class SignUpScreen extends StatelessWidget {
                           validator: (value) {
                             if (value.toString().length <= 2 ||
                                 !RegExp(validationName).hasMatch(value)) {
-                              return 'Enter valid name';
+                              return 'Enter valid name'.tr;
                             } else {
                               return null;
                             }
@@ -68,7 +64,7 @@ class SignUpScreen extends StatelessWidget {
                             color: authTextFromFieldHintTextColor,
                           ),
                           suffixIcon: const Text(""),
-                          hintText: 'Full name',
+                          hintText: 'Full name'.tr,
                         ),
                         SizedBox(
                           height: 15.h,
@@ -81,7 +77,7 @@ class SignUpScreen extends StatelessWidget {
                           obscureText: false,
                           validator: (value) {
                             if (!RegExp(validationEmail).hasMatch(value)) {
-                              return 'Invalid email';
+                              return 'Invalid email'.tr;
                             } else {
                               return null;
                             }
@@ -92,7 +88,7 @@ class SignUpScreen extends StatelessWidget {
                             color: authTextFromFieldHintTextColor,
                           ),
                           suffixIcon: const Text(""),
-                          hintText: 'Email',
+                          hintText: 'Email'.tr,
                         ),
                         SizedBox(
                           height: 15.h,
@@ -105,7 +101,7 @@ class SignUpScreen extends StatelessWidget {
                           obscureText: false,
                           validator: (value) {
                             if (value.length != 10) {
-                              return 'Mobile Number must be of 10 digit';
+                              return 'Mobile Number must be of 10 digit'.tr;
                             } else {
                               return null;
                             }
@@ -116,7 +112,7 @@ class SignUpScreen extends StatelessWidget {
                             color: authTextFromFieldHintTextColor,
                           ),
                           suffixIcon: const Text(""),
-                          hintText: 'Phone number',
+                          hintText: 'Phone number'.tr,
                         ),
                         SizedBox(
                           height: 15.h,
@@ -132,7 +128,7 @@ class SignUpScreen extends StatelessWidget {
                                   controller.isVisibilty ? true : false,
                               validator: (value) {
                                 if (value.toString().length < 6) {
-                                  return 'Password should be longer or equal to 6 characters';
+                                  return 'Password should be longer or equal to 6 characters'.tr;
                                 } else {
                                   return null;
                                 }
@@ -142,7 +138,7 @@ class SignUpScreen extends StatelessWidget {
                                 size: 24,
                                 color: authTextFromFieldHintTextColor,
                               ),
-                              hintText: 'password',
+                              hintText: 'Password'.tr,
                               suffixIcon: const Text(""),
                             );
                           },
@@ -152,7 +148,7 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         GetBuilder<AuthController>(builder: (_) {
                           return AuthButton(
-                            text: 'Register',
+                            text: 'Register'.tr,
                             onPressed: () {
                               if (fromKey.currentState!.validate()) {
                                 String name = nameController.text.trim();

@@ -3,7 +3,9 @@
 import 'package:ecommerce_app/view/widgets/settings/rowWithSwitchTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '../../../utils/theme.dart';
 import '../../widgets/settings/csutomCard.dart';
 import '../../widgets/settings/dropdownMenuItemLanguage.dart';
 import '../../widgets/settings/rowWithSwitchNotification.dart';
@@ -19,7 +21,6 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(226, 226, 227, 1),
       body: Padding(
         padding: const EdgeInsets.all(30).r,
         child: Column(
@@ -38,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     RowWithoutSwitchProfile(
-                      text: 'Manage Profile',
+                      text: 'Manage Profile'.tr,
                       icon: Icons.person_outline,
                       paddingSize: 0,
                       sizedBoxWidth: 120.w,
@@ -47,17 +48,17 @@ class SettingsScreen extends StatelessWidget {
                       height: 40.h,
                     ),
                     RowWithoutSwitchPassword(
-                      text: 'Change Password',
+                      text: 'Change Password'.tr,
                       icon: Icons.lock_outline,
                       paddingSize: 0,
-                      sizedBoxWidth: 100.w,
+                      sizedBoxWidth:Get.locale!.languageCode =='en'? 100.w:124.w,
                       // Get.toNamed(Routes.restPasswordScreen);
                     ),
                     SizedBox(
                       height: 40.h,
                     ),
                     RowWithSwitchNotification(
-                      text: 'Notification',
+                      text: 'Notification'.tr,
                       icon: Icons.notifications_none_outlined,
                       paddingSize: 110.w,
                     ),
@@ -69,7 +70,7 @@ class SettingsScreen extends StatelessWidget {
                       height: 40.h,
                     ),
                     RowWithSwitchTheme(
-                      text: 'Theme Mode',
+                      text: 'Theme Mode'.tr,
                       icon: Icons.color_lens_outlined,
                       paddingSize: 100.w,
                     ),
@@ -87,7 +88,7 @@ class SettingsScreen extends StatelessWidget {
                           width: 20.w,
                         ),
                         TextWithFont().textWithRobotoFont(
-                          text: 'Logout',
+                          text: 'Logout'.tr,
                           fontSize: 14.sp,
                           fontWeight: FontWeight.normal,
                           color: Colors.black,

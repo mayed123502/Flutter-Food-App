@@ -1,5 +1,8 @@
+import 'package:ecommerce_app/view/screens/search/searchForMeal.dart';
+import 'package:ecommerce_app/view/screens/search/searchForRestant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/theme.dart';
 import '../../widgets/search/filterContainer.dart';
@@ -15,46 +18,66 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: SearchAppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 10.h,
-            ),
-            Container(
-              width: double.infinity,
-              height: 60.h,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: SearchTextField(),
-                  ),
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  FilterContainer(),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            embty
-                ? Expanded(
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: 15,
-                      itemBuilder: (BuildContext context, int index) =>
-                          ListTileCard(), 
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: SearchAppBar(),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 60.h,
+                margin: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SearchTextField(),
                     ),
-                  )
-                : ShowNotFound(),
-          ],
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    FilterContainer(),
+                  ],
+                ),
+              ),
+              Container(
+                // color: Colors.amber,
+                width: double.infinity,
+                height: 30.h,
+                margin: EdgeInsets.symmetric(
+                  vertical: 20.h,
+                ),
+                child: TabBar(
+                  labelColor: mainColor,
+                  indicatorColor: mainColor,
+                  unselectedLabelColor: Colors.grey,
+                  tabs: const [
+                    Tab(
+                      text: 'Meals',
+                    ),
+                    Tab(
+                      text: 'Restaurants',
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: Get.height * .73,
+                child: TabBarView(
+                  children: [
+                    SearchForMeal(
+                      embty: true,
+                    ),
+                    SearchForRestrant(
+                      embty: true,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

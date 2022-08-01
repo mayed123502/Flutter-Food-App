@@ -19,6 +19,18 @@ class SendOTPScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+          appBar:  AppBar(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: TextWithFont().textWithRobotoFont(
+          text: 'OTP',
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w500,
+          color: Colors.black.withOpacity(.6),
+          
+        ),
+        elevation: 0,
+      ),
         body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -27,12 +39,12 @@ class SendOTPScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            TextWithFont().textWithRobotoFont(
-                text: 'We have sent you an OTP to your Mobile',
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.black.withOpacity(.6),
-                textAlign: TextAlign.center),
+            // TextWithFont().textWithRobotoFont(
+            //     text: 'We have sent you an OTP to your Mobile',
+            //     fontSize: 20.sp,
+            //     fontWeight: FontWeight.w500,
+            //     color: Colors.black.withOpacity(.6),
+            //     textAlign: TextAlign.center),
             SizedBox(
               height: 20,
             ),

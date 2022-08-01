@@ -14,11 +14,11 @@ class TopTitile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.only(left: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: TextWithFont().textWithRobotoFont(
           color: Get.isDarkMode ? Colors.white : Colors.black,
           fontSize: 20.sp,
-          text: 'Creat a new account',
+          text: 'Creat a new account'.tr,
           fontWeight: FontWeight.bold),
     );
   }

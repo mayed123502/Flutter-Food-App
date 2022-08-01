@@ -36,6 +36,7 @@ const Color dateColor = Color.fromRGBO(39, 174, 96, 1);
 // }
 class ThemesApp {
   static final light = ThemeData(
+    scaffoldBackgroundColor: Colors.white,
     primaryColor: mainColor,
     backgroundColor: Colors.white,
     brightness: Brightness.light,
@@ -48,6 +49,8 @@ class ThemesApp {
   );
 
   static final dark = ThemeData(
+        scaffoldBackgroundColor: Colors.black,
+
     primaryColor: darkGreyClr,
     backgroundColor: darkGreyClr,
     brightness: Brightness.dark,
