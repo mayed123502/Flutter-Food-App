@@ -8,13 +8,18 @@ class PinCodeTextFieldOTP extends StatelessWidget {
   const PinCodeTextFieldOTP({
     Key? key,
     required this.controller,
+    required this.controllerText,
+    required this.validator,
   }) : super(key: key);
 
   final AuthController controller;
+  final TextEditingController controllerText;
+  final Function validator;
 
   @override
   Widget build(BuildContext context) {
     return PinCodeTextField(
+      controller: controllerText,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
@@ -29,8 +34,8 @@ class PinCodeTextFieldOTP extends StatelessWidget {
         selectedFillColor: Color(0xFFFeaedf0),
       ),
       onChanged: (value) => controller.currentTextPinCode(value),
-      validator: (v) => controller.validaterPinCode(v!),
-      length: 4,
+      validator: (value) => validator(value),
+      length: 6,
       obscureText: false,
       animationType: AnimationType.scale,
       animationDuration: const Duration(milliseconds: 300),
@@ -70,4 +75,3 @@ class OTPInput extends StatelessWidget {
     );
   }
 }
-    

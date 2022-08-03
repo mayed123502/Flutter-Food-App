@@ -76,7 +76,8 @@ class LoginScreen extends StatelessWidget {
                                   controller.isVisibilty ? true : false,
                               validator: (value) {
                                 if (value.toString().length < 6) {
-                                  return 'Password should be longer or equal to 6 characters'.tr;
+                                  return 'Password should be longer or equal to 6 characters'
+                                      .tr;
                                 } else {
                                   return null;
                                 }
@@ -110,21 +111,23 @@ class LoginScreen extends StatelessWidget {
                           height: 1.5.h,
                         ),
                         GetBuilder<AuthController>(builder: (_) {
-                          return AuthButton(
-                            text: 'Login'.tr,
-                            onPressed: () {
-                              if (fromKey.currentState!.validate()) {
-                                String email = emailController.text.trim();
-                                String password = passwordController.text;
+                          return controller.loding
+                              ? CircularProgressIndicator()
+                              : AuthButton(
+                                  text: 'Login'.tr,
+                                  onPressed: () {
+                                    if (fromKey.currentState!.validate()) {
+                                      String email =
+                                          emailController.text.trim();
+                                      String password = passwordController.text;
 
-                                controller
-                                    .login(email: email, password: password)
-                                    .then((value) {
-                                  print(value);
-                                });
-                              }
-                            },
-                          );
+                                      controller.login(
+                                          email: email, password: password);
+
+                                          
+                                    }
+                                  },
+                                );
                         }),
                         SizedBox(
                           height: 20.h,

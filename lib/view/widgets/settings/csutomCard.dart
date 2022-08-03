@@ -28,15 +28,20 @@ class CsutomCard extends StatelessWidget {
             },
             child: CostomColumn(
               text: 'Orders'.tr,
-              left: 65.0,
-              right: 0.0,
               imageUrl: 'assets/bus.png',
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.offerScreen);
+            },
+            child: CostomColumn(
+              text: 'Offer'.tr,
+              imageUrl: 'assets/icons/offer.png',
             ),
           ),
           CostomColumn(
             text: 'Address'.tr,
-            left: 0.0,
-            right: 65.0,
             imageUrl: 'assets/map.png',
           ),
         ],

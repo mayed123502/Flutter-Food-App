@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -100,7 +101,7 @@ class SignUpScreen extends StatelessWidget {
                           controller: phoneController,
                           obscureText: false,
                           validator: (value) {
-                            if (value.length != 10) {
+                            if (value.length != 9) {
                               return 'Mobile Number must be of 10 digit'.tr;
                             } else {
                               return null;
@@ -128,7 +129,8 @@ class SignUpScreen extends StatelessWidget {
                                   controller.isVisibilty ? true : false,
                               validator: (value) {
                                 if (value.toString().length < 6) {
-                                  return 'Password should be longer or equal to 6 characters'.tr;
+                                  return 'Password should be longer or equal to 6 characters'
+                                      .tr;
                                 } else {
                                   return null;
                                 }
@@ -147,28 +149,28 @@ class SignUpScreen extends StatelessWidget {
                           height: 70.h,
                         ),
                         GetBuilder<AuthController>(builder: (_) {
-                          return AuthButton(
-                            text: 'Register'.tr,
-                            onPressed: () {
-                              if (fromKey.currentState!.validate()) {
-                                String name = nameController.text.trim();
-                                String email = emailController.text.trim();
-                                String password =
-                                    passwordController.text.trim();
-                                String phone = phoneController.text.trim();
-                                controller
-                                    .signup(
-                                  phone: phone,
-                                  fullName: name,
-                                  password: password,
-                                  email: email,
-                                )
-                                    .then((value) {
-                                  print(value);
-                                });
-                              }
-                            },
-                          );
+                          return controller.loding
+                              ? CircularProgressIndicator()
+                              : AuthButton(
+                                  text: 'Register'.tr,
+                                  onPressed: () {
+                                    if (fromKey.currentState!.validate()) {
+                                      String name = nameController.text.trim();
+                                      String email =
+                                          emailController.text.trim();
+                                      String password =
+                                          passwordController.text.trim();
+                                      String phone =
+                                          phoneController.text.trim();
+                                      controller.signup(
+                                        phone: phone,
+                                        fullName: name,
+                                        password: password,
+                                        email: email,
+                                      );
+                                    }
+                                  },
+                                );
                         }),
                         SizedBox(
                           height: 40.h,

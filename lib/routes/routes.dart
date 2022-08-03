@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 
 import '../logic/bindings/auth_bindings.dart';
+import '../logic/bindings/category_bindings.dart';
 import '../logic/bindings/main_bindings.dart';
 import '../logic/bindings/myLocaleBinding.dart';
 import '../logic/bindings/onBoarding_bindings.dart';
 import '../logic/bindings/onBoarding_home_bindings.dart';
 import '../logic/bindings/profileSettingBinding.dart';
 import '../logic/bindings/settengs_bindings.dart';
+import '../logic/controllers/category_controller.dart';
 import '../view/screens/allFood_Screen.dart';
 import '../view/screens/auth/ForgotPassword/sendOTPScreen.dart';
 import '../view/screens/auth/ForgotPassword/forgotpassword_screen.dart';
@@ -29,6 +31,7 @@ import '../view/screens/notification_screen.dart';
 import '../view/screens/onboarding_screen.dart';
 import '../view/screens/resturant_Screen.dart';
 import '../view/screens/search/search_screen.dart';
+import '../view/screens/settings/offer_screen.dart';
 import '../view/screens/settings/profileSetting.dart';
 
 import '../view/screens/settings/restPassword.dart';
@@ -67,10 +70,12 @@ class AppRoutes {
       name: Routes.mainScreen,
       page: () => MainScreen(),
       bindings: [
+        AuthBindings(),
         MyLocaleBindings(),
         MainBindings(),
         OnBoardingHomeBinding(),
-        SettengsBindings()
+        SettengsBindings(),
+        CategotyBindings(),
       ],
     ),
     GetPage(
@@ -157,6 +162,12 @@ class AppRoutes {
       name: Routes.allFoodScreen,
       page: () => AllFoodScreen(),
     ),
+    GetPage(
+      name: Routes.offerScreen,
+      page: () => OfferScreen(),
+    ),
+
+    
   ];
 }
 
@@ -193,6 +204,8 @@ class Routes {
   static const allReviewScreen = '/allReviewScreen';
   static const writeReviewScreen = '/writeReviewScreen';
   static const allFoodScreen = '/allFoodScreen';
+    static const offerScreen = '/offerScreen';
+
 
   // ForgotPasswordCodeScreen
 

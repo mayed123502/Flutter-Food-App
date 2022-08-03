@@ -1,8 +1,8 @@
+import 'package:ecommerce_app/utils/sharPreferenceUtils%20.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../utils/my_string.dart';
-import '../utils/sharPreferenceUtils .dart';
 
 class MyLocaleController extends GetxController {
   var langLocal = ene.obs;
@@ -11,7 +11,7 @@ class MyLocaleController extends GetxController {
   void onInit() async {
     super.onInit();
 
-    langLocal.value = SharedPrefs.instance.getString("curruntLang")!;
+    langLocal.value = (SharedPrefs.instance.getString("curruntLang") != null?SharedPrefs.instance.getString("curruntLang"):Get.deviceLocale?.languageCode.toString())!;
   }
 
   void changeLang(String codeLang) {

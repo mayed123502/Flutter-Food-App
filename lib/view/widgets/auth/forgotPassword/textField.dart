@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,26 +10,22 @@ class TextFieldForget extends StatelessWidget {
   const TextFieldForget({
     Key? key,
     required this.emailController,
-    required this.controller,
+    required this.validator,
   }) : super(key: key);
 
   final TextEditingController emailController;
-  final AuthController controller;
+  final Function validator;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
         controller: emailController,
         // validator:
-
+        validator: (value) => validator(value),
         decoration: InputDecoration(
           fillColor: authTextFromFieldFillColor.withOpacity(.5),
           filled: true,
-          errorText: controller.validate == false
-              ? 'Value Can\'t Be Empty'
-              : null,
-          contentPadding:
-              const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+          contentPadding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide(
@@ -41,19 +39,18 @@ class TextFieldForget extends StatelessWidget {
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-                color:
-                    authTextFromFieldFillColor.withOpacity(1)),
+            borderSide:
+                BorderSide(color: authTextFromFieldFillColor.withOpacity(1)),
             borderRadius: BorderRadius.circular(15),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: authTextFromFieldErrorBorderColor),
+            borderSide:
+                const BorderSide(color: authTextFromFieldErrorBorderColor),
             borderRadius: BorderRadius.circular(15),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: authTextFromFieldErrorBorderColor),
+            borderSide:
+                const BorderSide(color: authTextFromFieldErrorBorderColor),
             borderRadius: BorderRadius.circular(15),
           ),
           hintText: 'Email',
@@ -70,5 +67,3 @@ class TextFieldForget extends StatelessWidget {
         ));
   }
 }
-    
-   

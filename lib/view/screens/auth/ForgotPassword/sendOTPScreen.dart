@@ -15,75 +15,93 @@ class SendOTPScreen extends StatelessWidget {
   TextEditingController textEditingController = TextEditingController();
   final controller = Get.find<AuthController>();
   final formKey = GlobalKey<FormState>();
+  final TextEditingController code = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar:  AppBar(
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
-        title: TextWithFont().textWithRobotoFont(
-          text: 'OTP',
-          fontSize: 22.sp,
-          fontWeight: FontWeight.w500,
-          color: Colors.black.withOpacity(.6),
-          
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          centerTitle: true,
+          title: TextWithFont().textWithRobotoFont(
+            text: 'OTP',
+            fontSize: 22.sp,
+            fontWeight: FontWeight.w500,
+            color: Colors.black.withOpacity(.6),
+          ),
+          elevation: 0,
         ),
-        elevation: 0,
-      ),
         body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            // TextWithFont().textWithRobotoFont(
-            //     text: 'We have sent you an OTP to your Mobile',
-            //     fontSize: 20.sp,
-            //     fontWeight: FontWeight.w500,
-            //     color: Colors.black.withOpacity(.6),
-            //     textAlign: TextAlign.center),
-            SizedBox(
-              height: 20,
-            ),
-            TextWithFont().textWithRobotoFont(
-                text:
-                    "Please check your mobile number 071*****12 continue to reset your password",
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.black.withOpacity(.4),
-                textAlign: TextAlign.center),
-            SizedBox(
-              height: 50,
-            ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                // TextWithFont().textWithRobotoFont(
+                //     text: 'We have sent you an OTP to your Mobile',
+                //     fontSize: 20.sp,
+                //     fontWeight: FontWeight.w500,
+                //     color: Colors.black.withOpacity(.6),
+                //     textAlign: TextAlign.center),
+                SizedBox(
+                  height: 20,
+                ),
+                TextWithFont().textWithRobotoFont(
+                    text:
+                        "Please check your mobile number 071*****12 continue to reset your password",
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black.withOpacity(.4),
+                    textAlign: TextAlign.center),
+                SizedBox(
+                  height: 50,
+                ),
 
-            Container(
-              width: double.infinity,
-              height: Get.height * .1,
-              child: GetBuilder<AuthController>(builder: (_) {
-                return Form(
-                  key: formKey,
-                  child: PinCodeTextFieldOTP(controller: controller),
-                );
-              }),
-            ),
-            // ),
-            SizedBox(
-              height: 20,
-            ),
-            AuthButton(
-                text: 'Next',
-                onPressed: () {
-                  Get.toNamed(Routes.newPwScreen);
+                Container(
+                  width: double.infinity,
+                  height: Get.height * .1,
+                  child: GetBuilder<AuthController>(builder: (_) {
+                    return Form(
+                      key: formKey,
+                      child: PinCodeTextFieldOTP(
+                        controller: controller,
+                        controllerText: code,
+                        validator: (value) {
+                          if (value.toString().length < 6) {
+                            return 'Code should be equal to 6 characters'.tr;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    );
+                  }),
+                ),
+                // ),
+                SizedBox(
+                  height: 20,
+                ),
+                GetBuilder<AuthController>(builder: (_) {
+                  return controller.loding
+                      ? CircularProgressIndicator()
+                      : AuthButton(
+                          text: 'Next',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              String codeRes = code.text.trim();
+                              controller.resetPasswordStep2(code: codeRes);
+                            }
+                            // Get.toNamed(Routes.newPwScreen);
+                          });
                 }),
 
-            SizedBox(height: 20),
-          ],
-        ),
-      ),
-    ));
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ));
   }
 }
 

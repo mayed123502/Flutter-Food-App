@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../logic/controllers/auth_controllers.dart';
 import '../../../../utils/theme.dart';
 import '../../../widgets/auth/auth_button.dart';
 import '../../../widgets/auth/auth_textFromField.dart';
@@ -13,11 +14,14 @@ class NewPwScreen extends StatelessWidget {
   final TextEditingController confirmController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _form = GlobalKey<FormState>();
+  final controller = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
+    var one = Get.arguments;
+    print(one[0]['code']);
     return Scaffold(
-    appBar:  AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: TextWithFont().textWithRobotoFont(
@@ -25,7 +29,6 @@ class NewPwScreen extends StatelessWidget {
           fontSize: 22.sp,
           fontWeight: FontWeight.w500,
           color: Colors.black.withOpacity(.6),
-          
         ),
         elevation: 0,
       ),
@@ -102,7 +105,21 @@ class NewPwScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                AuthButton(text: 'Update Password', onPressed: () {}),
+                GetBuilder<AuthController>(builder: (_) {
+                  return controller.loding
+                      ? CircularProgressIndicator()
+                      : AuthButton(
+                          text: 'Update Password',
+                          onPressed: () {
+                            if (_form.currentState!.validate()) {
+                              String password = passwordController.text;
+
+                              controller.resetPasswordStep3(
+                                  code: '${one[0]['code']}',
+                                  password: password);
+                            }
+                          });
+                }),
               ],
             ),
           ),

@@ -6,14 +6,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'locale/locale_controller.dart';
+import 'logic/controllers/auth_controllers.dart';
 import 'logic/controllers/theme_controller.dart';
 import 'utils/sharPreferenceUtils .dart';
 
-late SharedPreferences shaedpref;
+// late SharedPreferences shaedpref;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await SharedPrefs.init();
 
   runApp(MyApp());
@@ -22,6 +22,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // SharedPrefs.instance.clear();
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
@@ -30,18 +31,18 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Ecommerce app',
-          locale: const Locale('en'),
-
-          // SharedPrefs.instance.getString("curruntLang") == null
-          //     ? Get.deviceLocale
-          //     : Locale(SharedPrefs.instance.getString("curruntLang")!),
+          locale: SharedPrefs.instance.getString("curruntLang") == null
+              ? Get.deviceLocale
+              : Locale(SharedPrefs.instance.getString("curruntLang")!),
           translations: MyLocale(),
           fallbackLocale: const Locale('en'),
           theme: ThemesApp.light,
           darkTheme: ThemesApp.dark,
           themeMode: ThemeController().themeDataGet,
           // ThemeController().themeDataGet
-          initialRoute: AppRoutes.splash,
+          initialRoute: SharedPrefs.instance.getString('token') != null
+              ? Routes.mainScreen
+              : AppRoutes.splash,
           getPages: AppRoutes.routes,
         );
       },

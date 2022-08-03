@@ -48,7 +48,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.35,
                     ),
                     SizedBox(
-                      height: 800,
+                      height: Get.height*.64,
                       width: double.infinity,
                       child: Stack(
                         children: [
@@ -183,23 +183,3 @@ class ProductDetailsScreen extends StatelessWidget {
     ]));
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

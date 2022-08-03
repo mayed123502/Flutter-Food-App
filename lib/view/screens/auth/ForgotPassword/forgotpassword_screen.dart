@@ -2,6 +2,7 @@ import 'package:ecommerce_app/view/widgets/auth/forgotPassword/sendButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import '../../../../logic/controllers/auth_controllers.dart';
 
@@ -14,13 +15,12 @@ import '../../../widgets/textWithFont.dart';
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({Key? key}) : super(key: key);
   final TextEditingController emailController = TextEditingController();
-  bool _validate = false;
   final controller = Get.find<AuthController>();
+  final fromKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -29,7 +29,6 @@ class ForgotPasswordScreen extends StatelessWidget {
           fontSize: 22.sp,
           fontWeight: FontWeight.w500,
           color: Colors.black.withOpacity(.6),
-          
         ),
         elevation: 0,
       ),
@@ -42,53 +41,63 @@ class ForgotPasswordScreen extends StatelessWidget {
               horizontal: 40,
               vertical: 30,
             ),
-            child: Column(
-              children: [
-                //   TextWithFont().textWithRobotoFont(
-                //     text: 'Reset Password',
-                //     fontSize: 22.sp,
-                //     fontWeight: FontWeight.w500,
-                //     color: Colors.black.withOpacity(.6),
-                //   ),
+            child: Form(
+              key: fromKey,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 30.h,
+                  ),
 
-                SizedBox(
-                  height: 30.h,
-                ),
+                  TextWithFont().textWithRobotoFont(
+                      text:
+                          "Please enter your email to recieve a link to create a new password via email",
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black.withOpacity(.4),
+                      textAlign: TextAlign.center),
 
-                TextWithFont().textWithRobotoFont(
-                    text:
-                        "Please enter your email to recieve a link to create a new password via email",
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black.withOpacity(.4),
-                    textAlign: TextAlign.center),
+                  SizedBox(
+                    height: 50.h,
+                  ),
 
-                SizedBox(
-                  height: 50.h,
-                ),
-
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: GetBuilder<AuthController>(builder: (_) {
-                    return TextFieldForget(
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    child: GetBuilder<AuthController>(builder: (_) {
+                      return TextFieldForget(
                         emailController: emailController,
-                        controller: controller);
-                  }),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                // Spacer(),
+                        validator: (value) {
+                          if (value == '') {
+                            return 'Value Can\'t Be Empty'.tr;
+                          } else {
+                            return null;
+                          }
+                        },
+                      );
+                    }),
+                  ),
 
-                AuthButton(
-                  text: 'Send',
-                  onPressed: () {
-                    Get.toNamed(Routes.sendOTPScreen);
-                  },
-                ),
-//                 SendButton(icon:'Send',press: (){          Get.toNamed(Routes.sendOTPScreen);
-// },)
-              ],
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  // Spacer(),
+
+                  GetBuilder<AuthController>(builder: (_) {
+                    return controller.loding
+                        ? CircularProgressIndicator()
+                        : AuthButton(
+                            text: 'Send',
+                            onPressed: () {
+                              if (fromKey.currentState!.validate()) {
+                                String email = emailController.text.trim();
+                                controller.resetPasswordStep1(email: email);
+                              }
+                              // Get.toNamed(Routes.sendOTPScreen);
+                            },
+                          );
+                  }),
+                ],
+              ),
             ),
           ),
         ),
