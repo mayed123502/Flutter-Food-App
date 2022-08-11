@@ -164,8 +164,9 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> logout() async {
-    await SharedPrefs.instance.remove('token');
+  void logout() {
+    AuthApi().logout();
+    Get.toNamed(Routes.loginScreen);
     update();
   }
 }

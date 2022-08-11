@@ -5,10 +5,13 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../locale/locale.dart';
 
+import '../../logic/controllers/cart_controllers.dart';
 import '../../logic/controllers/category_controller.dart';
 import '../../logic/controllers/main_controller.dart';
 import '../../logic/controllers/onboarding_controller.dart';
 import '../../main.dart';
+import '../../services/home_services.dart';
+import '../../utils/sharPreferenceUtils .dart';
 import '../../utils/theme.dart';
 
 class MainScreen extends StatelessWidget {
@@ -21,8 +24,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    categoryController.viewRestaurants(pageIndex: 1, pagesize: 2);
-
+    // HomeServices.viewHomeRestaurants;
 // context.theme.appBarTheme
     return SafeArea(
       child: Obx(

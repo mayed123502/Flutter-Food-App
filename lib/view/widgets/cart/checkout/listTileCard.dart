@@ -80,7 +80,7 @@ class ListTileCard extends StatelessWidget {
                       children: [
                         Counter(
                           text: '-',
-                          fun: () {},
+                          onPressed: () {},
                         ),
                         SizedBox(
                           width: 4.w,
@@ -91,7 +91,7 @@ class ListTileCard extends StatelessWidget {
                         ),
                         Counter(
                           text: '+',
-                          fun: () {},
+                          onPressed: () {},
                         )
                       ],
                     )

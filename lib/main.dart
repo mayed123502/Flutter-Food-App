@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/routes/routes.dart';
 import 'package:ecommerce_app/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +16,13 @@ import 'utils/sharPreferenceUtils .dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefs.init();
-
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      systemNavigationBarColor:
+          Colors.white.withOpacity(.8), // navigation bar color
+      statusBarColor: Colors.white.withOpacity(.8), // status bar color
+    ),
+  );
   runApp(MyApp());
 }
 

@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/auth_controllers.dart';
+import '../../../logic/controllers/settings_controller.dart';
 import '../../../utils/theme.dart';
 import '../../widgets/settings/csutomCard.dart';
 import '../../widgets/settings/dropdownMenuItemLanguage.dart';
@@ -20,17 +21,17 @@ import 'dart:math' as math;
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
   final controller = Get.find<AuthController>();
+  final settingController = Get.find<SettingsController>();
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      backgroundColor:Colors.grey.shade300,
+      backgroundColor: Colors.grey.shade300,
       body: Padding(
         padding: const EdgeInsets.all(30).r,
         child: Column(
           children: [
-            UserDetails(),
+            UserDetails(settingsController: settingController,),
             CsutomCard(),
             SizedBox(
               height: 15.h,
@@ -86,8 +87,7 @@ class SettingsScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         print('logout');
-                        controller.logout().then((value) => Get.toNamed(Routes.loginScreen));
-
+                        controller.logout();
                       },
                       child: Row(
                         children: [

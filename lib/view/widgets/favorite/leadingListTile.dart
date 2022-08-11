@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/theme.dart';
+
 class LeadingListTile extends StatelessWidget {
   const LeadingListTile({
     Key? key,
+    required this.name,
   }) : super(key: key);
-
+  final String name;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,22 +27,61 @@ class LeadingListTile extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Burger',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: Text(
+                            maxLines: 1,
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
+                            name,
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 30.w,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.favorite,
+                            color: mainColor,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 5.h,
                     ),
-                    Text('Burger King',
-                        style: TextStyle(
-                          fontSize: 12,
-                        )),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: Text(
+                            'Burger King',
+                            style: TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 30.w,
+                        ),
+                        Text(
+                          '80\$',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: mainColor,
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: 5.h,
                     ),
@@ -59,25 +101,6 @@ class LeadingListTile extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 10.w),
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                elevation: 0.0,
-                primary: context.theme.buttonColor,
-                minimumSize: Size(120.w, 30.h),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      8), // <-- Radius
-                ),
-              ),
-              child: Text(
-                'Order',
-                style: TextStyle(fontSize: 14),
-              ),
-            ),
           ),
         ],
       ),

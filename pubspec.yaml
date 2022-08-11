@@ -29,6 +29,8 @@ dependencies:
   clip_shadow:
   readmore: ^2.2.0
   flutter_native_splash: ^2.2.6
+  cached_network_image: ^3.2.1
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:

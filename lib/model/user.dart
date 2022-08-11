@@ -29,7 +29,7 @@ class User {
   int? id;
   String? name;
   String? phoneNumber;
-  Null? image;
+  String? image;
   String? email;
   Null? emailVerifiedAt;
   String? createdAt;

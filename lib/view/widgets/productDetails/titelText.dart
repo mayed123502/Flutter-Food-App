@@ -6,9 +6,9 @@ import '../textWithFont.dart';
 
 class TitelText extends StatelessWidget {
   const TitelText({
-    Key? key,
+    Key? key, required this.title,
   }) : super(key: key);
-
+final String title;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,7 +16,7 @@ class TitelText extends StatelessWidget {
       child: TextWithFont().textWithRalewayFont(
           color: Get.isDarkMode ? Colors.white : Colors.black,
           fontSize: 20.sp,
-          text: 'Beef Burger',
+          text: title,
           fontWeight: FontWeight.bold),
     );
   }

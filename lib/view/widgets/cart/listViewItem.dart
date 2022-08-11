@@ -1,24 +1,33 @@
 import 'package:ecommerce_app/view/widgets/cart/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '../../../logic/controllers/cart_controllers.dart';
+import '../../../model/homeProdect/homeProdectData.dart';
 import '../../../utils/theme.dart';
 
 class ListViewItem extends StatelessWidget {
-  const ListViewItem({
+  ListViewItem({
     Key? key,
-    required List<String> values, required this.index,
-  }) : _values = values, super(key: key);
+    required this.homeProdectData,
+    required this.cartController,
+    required this.index,
+    required this.quantity,
+  });
 
-  final List<String> _values;
+  // final int index;
+  final HomeProdectData homeProdectData;
+  final CartController cartController;
   final int index;
-
+  final int quantity;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Dismissible(
-        key: Key('item ${_values[index]}'),
+    // key: Key('item ${_values[index]}'),
+
+    return Obx(
+      () => Dismissible(
+        key: Key('item ${homeProdectData.id}'),
         background: Container(
           color: Colors.blue,
           child: Padding(
@@ -29,7 +38,6 @@ class ListViewItem extends StatelessWidget {
                 Text('Move to favorites',
                     style: TextStyle(color: Colors.white)),
               ],
-              
             ),
           ),
         ),
@@ -65,7 +73,7 @@ class ListViewItem extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset('assets/gridview.png',
+                      child: Image.network(homeProdectData.image!,
                           height: 70.0.h, width: 70.w),
                     ),
                     SizedBox(
@@ -75,13 +83,12 @@ class ListViewItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Pizza',
+                          homeProdectData.name!,
                           style: TextStyle(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 18.sp, fontWeight: FontWeight.w400),
                         ),
                         Text(
-                          '100\$',
+                          '\$ ${cartController.productSubTotal[index].toStringAsFixed(2)}',
                           style: TextStyle(
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w400,
@@ -109,18 +116,23 @@ class ListViewItem extends StatelessWidget {
                       children: [
                         Counter(
                           text: '-',
-                          fun: () {},
+                          onPressed: () {
+                            cartController
+                                .removeProductsFarmCart(homeProdectData);
+                          },
                         ),
                         SizedBox(
                           width: 4.w,
                         ),
-                        Text('2'),
+                        Text('${quantity}'),
                         SizedBox(
                           width: 4.w,
                         ),
                         Counter(
                           text: '+',
-                          fun: () {},
+                          onPressed: () {
+                            cartController.addProductToCart(homeProdectData);
+                          },
                         )
                       ],
                     )
@@ -134,4 +146,3 @@ class ListViewItem extends StatelessWidget {
     );
   }
 }
-

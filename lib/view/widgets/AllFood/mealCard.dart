@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../model/homeProdect/homeProdectData.dart';
+import '../../../model/prodect/productDetails_modle.dart';
 import '../textWithFont.dart';
 
 class MealCard extends StatelessWidget {
   const MealCard({
-    Key? key,
+    Key? key, required this.prodectDetails,
   }) : super(key: key);
-
+  final HomeProdectData prodectDetails;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,15 +42,14 @@ class MealCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 10, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWithFont().textWithRalewayFont(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
-                  text: 'Lorem Ipsum',
+                  text: '${prodectDetails.name}',
                   color: Colors.black,
                 ),
                 const SizedBox(
@@ -72,4 +73,3 @@ class MealCard extends StatelessWidget {
     );
   }
 }
-

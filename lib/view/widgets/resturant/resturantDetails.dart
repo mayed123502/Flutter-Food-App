@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/model/restauntAll/dataOfRestaurant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,8 +9,9 @@ import '../textWithFont.dart';
 class ResturantDetails extends StatelessWidget {
   const ResturantDetails({
     Key? key,
+    required this.restaurantData,
   }) : super(key: key);
-
+  final DataOfRestaurant restaurantData;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +21,7 @@ class ResturantDetails extends StatelessWidget {
             TextWithFont().textWithRalewayFont(
                 color: filterTitlesColor,
                 fontSize: 20.sp,
-                text: 'Burger king',
+                text: restaurantData.name!,
                 fontWeight: FontWeight.bold),
             SizedBox(
               width: 5.w,
@@ -36,17 +38,6 @@ class ResturantDetails extends StatelessWidget {
         ),
         Row(
           children: [
-            SizedBox(
-              width: 2.w,
-            ),
-            TextWithFont().textWithRalewayFont(
-                color: Colors.black.withOpacity(.5),
-                fontSize: 16.sp,
-                text: 'Burger',
-                fontWeight: FontWeight.w600),
-            SizedBox(
-              width: 10.w,
-            ),
             Image.asset(
               ImageAsset.loc,
               width: 20.w,
@@ -55,7 +46,7 @@ class ResturantDetails extends StatelessWidget {
             TextWithFont().textWithRalewayFont(
                 color: Colors.black.withOpacity(.5),
                 fontSize: 16.sp,
-                text: 'Al-Jalal Street',
+                text: restaurantData.name!,
                 fontWeight: FontWeight.w500),
           ],
         ),
@@ -70,7 +61,7 @@ class ResturantDetails extends StatelessWidget {
             TextWithFont().textWithRalewayFont(
                 color: Colors.black.withOpacity(.5),
                 fontSize: 16.sp,
-                text: '4.9',
+                text: restaurantData.rating.toString(),
                 fontWeight: FontWeight.w500),
             Icon(
               Icons.star,
@@ -82,22 +73,11 @@ class ResturantDetails extends StatelessWidget {
             TextWithFont().textWithRalewayFont(
                 color: Colors.black.withOpacity(.5),
                 fontSize: 16.sp,
-                text: '300+Rating',
+                text: '${restaurantData.name}+Rating',
                 fontWeight: FontWeight.w500),
             SizedBox(
               width: 16.w,
             ),
-            Icon(
-              Icons.access_time,
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-            TextWithFont().textWithRalewayFont(
-                color: Colors.black.withOpacity(.5),
-                fontSize: 16.sp,
-                text: '12min',
-                fontWeight: FontWeight.w500),
           ],
         ),
       ],

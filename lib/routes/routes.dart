@@ -1,12 +1,19 @@
 import 'package:get/get.dart';
 
 import '../logic/bindings/auth_bindings.dart';
+import '../logic/bindings/cart_bindings.dart';
 import '../logic/bindings/category_bindings.dart';
+import '../logic/bindings/favorites_bindings.dart';
+import '../logic/bindings/fode_bindings.dart';
+import '../logic/bindings/home_bindings.dart';
 import '../logic/bindings/main_bindings.dart';
 import '../logic/bindings/myLocaleBinding.dart';
 import '../logic/bindings/onBoarding_bindings.dart';
 import '../logic/bindings/onBoarding_home_bindings.dart';
+import '../logic/bindings/productDetails_bindings.dart';
 import '../logic/bindings/profileSettingBinding.dart';
+import '../logic/bindings/resturantPage_bindings.dart';
+import '../logic/bindings/resturant_bindings.dart';
 import '../logic/bindings/settengs_bindings.dart';
 import '../logic/controllers/category_controller.dart';
 import '../view/screens/allFood_Screen.dart';
@@ -73,9 +80,11 @@ class AppRoutes {
         AuthBindings(),
         MyLocaleBindings(),
         MainBindings(),
+        FavoritesBindings(),
         OnBoardingHomeBinding(),
         SettengsBindings(),
         CategotyBindings(),
+        HomeBindings(),
       ],
     ),
     GetPage(
@@ -95,6 +104,7 @@ class AppRoutes {
     GetPage(
       name: Routes.cartScreen,
       page: () => CartScreen(),
+      // binding:  CartBindings(),
     ),
     GetPage(
       name: Routes.searchScreen,
@@ -121,13 +131,13 @@ class AppRoutes {
       page: () => NotificatonScreen(),
     ),
     GetPage(
-      name: Routes.categoryScreen,
-      page: () => CategoryScreen(),
-    ),
+        name: Routes.categoryScreen,
+        page: () => CategoryScreen(),
+        binding: ResturantBinding()),
     GetPage(
-      name: Routes.resturantScreen,
-      page: () => ResturantScreen(),
-    ),
+        name: Routes.resturantScreen,
+        page: () => ResturantScreen(),
+        binding: ResturantBageBinding()),
     GetPage(
       name: Routes.myOrdersScreen,
       page: () => MyOrdersScreen(),
@@ -138,9 +148,12 @@ class AppRoutes {
     // ),
 
     GetPage(
-      name: Routes.productDetailsScreen,
-      page: () => ProductDetailsScreen(),
-    ),
+        name: Routes.productDetailsScreen,
+        page: () => ProductDetailsScreen(),
+        bindings: [
+          ProductDetailsBindings(),
+          FavoritesBindings(),
+        ]),
     GetPage(
       name: Routes.checkoutScreen,
       page: () => CheckoutScreen(),
@@ -159,15 +172,13 @@ class AppRoutes {
       page: () => WriteReviewScreen(),
     ),
     GetPage(
-      name: Routes.allFoodScreen,
-      page: () => AllFoodScreen(),
-    ),
+        name: Routes.allFoodScreen,
+        page: () => AllFoodScreen(),
+        binding: FodeBindings()),
     GetPage(
       name: Routes.offerScreen,
       page: () => OfferScreen(),
     ),
-
-    
   ];
 }
 
@@ -204,8 +215,7 @@ class Routes {
   static const allReviewScreen = '/allReviewScreen';
   static const writeReviewScreen = '/writeReviewScreen';
   static const allFoodScreen = '/allFoodScreen';
-    static const offerScreen = '/offerScreen';
-
+  static const offerScreen = '/offerScreen';
 
   // ForgotPasswordCodeScreen
 

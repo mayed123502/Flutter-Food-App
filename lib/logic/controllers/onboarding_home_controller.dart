@@ -22,21 +22,25 @@ class OnBoardingHomeController extends GetxController {
       } else {
         currentIndex.value = 0;
       }
-      pageController.animateToPage(
-        currentIndex.value,
-        duration: Duration(milliseconds: 350),
-        curve: Curves.easeIn,
-        
-      );
+      if (pageController.hasClients) {
+        pageController.animateToPage(
+          currentIndex.value,
+          duration: Duration(milliseconds: 350),
+          curve: Curves.easeIn,
+        );
+      }
     });
   }
+
   @override
   void dispose() {
     super.dispose();
     _timer.cancel();
   }
+
   next() {
     currentIndex.value++;
+
     pageController.animateToPage(currentIndex.value,
         duration: Duration(microseconds: 900), curve: Curves.easeInOut);
   }

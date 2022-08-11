@@ -7,8 +7,9 @@ import '../../../utils/theme.dart';
 class CustomCard extends StatelessWidget {
   const CustomCard({
     Key? key,
+    required this.total,
   }) : super(key: key);
-
+  final String total;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -16,12 +17,12 @@ class CustomCard extends StatelessWidget {
       shadowColor: Colors.grey.withOpacity(.3),
       child: Column(
         children: [
-          CustomRow(
-            FontWeight.normal,
-            Colors.black,
-            name: 'Items (2)',
-            price: '150\$',
-          ),
+          // CustomRow(
+          //   FontWeight.normal,
+          //   Colors.black,
+          //   name: 'Items (2)',
+          //   price: '150\$',
+          // ),
           CustomRow(
             FontWeight.normal,
             Colors.black,
@@ -33,11 +34,10 @@ class CustomCard extends StatelessWidget {
             FontWeight.bold,
             mainColor,
             name: 'Total Price',
-            price: '200\$',
+            price: '$total\$',
           ),
         ],
       ),
     );
   }
 }
-

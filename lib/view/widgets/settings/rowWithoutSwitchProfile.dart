@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../logic/controllers/settings_controller.dart';
 import '../textWithFont.dart';
 
 class RowWithoutSwitchProfile extends StatelessWidget {
@@ -18,6 +19,7 @@ class RowWithoutSwitchProfile extends StatelessWidget {
   final IconData icon;
   final double paddingSize;
   final double sizedBoxWidth;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -40,7 +42,7 @@ class RowWithoutSwitchProfile extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: paddingSize),
           child: GestureDetector(
-            onTap: (){
+            onTap: () {
               Get.toNamed(Routes.profileSetting);
             },
             child: const Icon(

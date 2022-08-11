@@ -7,10 +7,10 @@ class Counter extends StatelessWidget {
   const Counter({
     Key? key,
     required this.text,
-    required this.fun,
+ required this.onPressed,
   }) : super(key: key);
   final String text;
-  final Function fun;
+  final Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,7 +26,7 @@ class Counter extends StatelessWidget {
           ),
         ),
       ),
-      onTap: fun(),
+      onTap: onPressed,
     );
   }
 }

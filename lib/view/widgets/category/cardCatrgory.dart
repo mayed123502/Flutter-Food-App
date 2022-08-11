@@ -1,14 +1,19 @@
+import 'package:ecommerce_app/model/restauntAll/dataOfRestaurant.dart';
+import 'package:ecommerce_app/model/restaurants/restaurantsData_modle.dart';
 import 'package:ecommerce_app/view/widgets/textWithFont.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class CardCatrgory extends StatelessWidget {
-  const CardCatrgory({
-    Key? key,
-  }) : super(key: key);
 
+
+class CardCatrgory extends StatelessWidget {
+  const CardCatrgory(
+    this.dataRestaurants,
+  ) ;
+
+  final DataOfRestaurant dataRestaurants;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -30,8 +35,8 @@ class CardCatrgory extends StatelessWidget {
                 borderRadius: BorderRadius.circular(7),
                 color: Colors.grey.shade300,
                 image: DecorationImage(
-                  image: ExactAssetImage(
-                    'assets/pizza2.jpg',
+                  image: NetworkImage(
+                   '${dataRestaurants.logo}',
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -42,20 +47,18 @@ class CardCatrgory extends StatelessWidget {
           SizedBox(
             width: 30.w,
           ),
-
-       
           Column(
             children: [
               TextWithFont().textWithRalewayFont(
                   color: Get.isDarkMode ? Colors.white : Colors.black,
                   fontSize: 20.sp,
-                  text: 'Burger King',
+                  text: dataRestaurants.name!,
                   fontWeight: FontWeight.bold),
               SizedBox(
                 height: 10.h,
               ),
               RatingBar.builder(
-                initialRating: 5,
+                initialRating: dataRestaurants.rating!.toDouble(),
                 minRating: 1,
                 direction: Axis.horizontal,
                 allowHalfRating: true,

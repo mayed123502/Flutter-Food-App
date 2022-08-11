@@ -20,8 +20,11 @@ class TapBarScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding:
-            EdgeInsets.only(top: 40.w, left: 20.w, right: 20.w, bottom: 100.h),
+        padding: EdgeInsets.only(
+          top: 40.w,
+          left: 20.w,
+          right: 20.w,
+        ),
         child: Card(
           child: ListView.builder(
             itemCount: 8,
@@ -29,7 +32,7 @@ class TapBarScreen extends StatelessWidget {
               return Container(
                 decoration: BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(width: 1.0,color :Colors.grey.shade300),
+                    bottom: BorderSide(width: 1.0, color: Colors.grey.shade300),
                   ),
                 ),
                 child: ListTile(

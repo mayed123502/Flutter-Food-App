@@ -4,17 +4,22 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../logic/controllers/profileSetting.dart';
+import '../../../logic/controllers/settings_controller.dart';
 import '../../../utils/theme.dart';
 
 class RowWithText extends StatelessWidget {
   RowWithText({
     Key? key,
     required this.nameController,
+    required this.name,
   }) : super(key: key);
 
   final TextEditingController nameController;
   final controller = Get.find<ProfileSettingController>();
-FocusNode inputNode = FocusNode();
+  final settingController = Get.find<SettingsController>();
+
+  FocusNode inputNode = FocusNode();
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +36,9 @@ FocusNode inputNode = FocusNode();
             width: 150,
             child: TextField(
               // autofocus:controller.enabled.value,
-             
+
               enabled: controller.enabled.value,
-              controller: nameController..text = 'Alaa Mahmoud',
+              controller: nameController..text = name,
               cursorColor: Colors.black,
               keyboardType: TextInputType.text,
               // validator: (value) {},
@@ -43,6 +48,10 @@ FocusNode inputNode = FocusNode();
                     fontWeight: FontWeight.w500,
                     color: Colors.black),
               ),
+              onChanged: (value) {
+                settingController.nameFromTextFild.value = value;
+                print(settingController.nameFromTextFild.value);
+              },
               decoration: InputDecoration(
                 contentPadding:
                     const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),

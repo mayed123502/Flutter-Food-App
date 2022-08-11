@@ -4,10 +4,11 @@ import 'package:ecommerce_app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../../logic/controllers/home_controllers.dart';
 import '../../logic/controllers/onboarding_home_controller.dart';
-import '../../utils/constant/imageasset.dart';
+
+import '../../utils/sharPreferenceUtils .dart';
 import '../../utils/theme.dart';
 import '../widgets/home/appbarItem.dart';
 import '../widgets/home/customRowHomePage.dart';
@@ -25,8 +26,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final controller = Get.find<OnBoardingHomeController>();
+  final homeController = Get.find<HomeController>();
+
   @override
   Widget build(BuildContext context) {
+// SharedPrefs.instance.clear();
+
+    // print(SharedPrefs.instance.getString('token'));
+
+    // print(SharedPrefs.instance.getString('phone_number'));
+    // print(SharedPrefs.instance.getString('email'));
+    // print(SharedPrefs.instance.getString('image'));
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -35,25 +46,39 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 12.h,
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                height: 155.h,
-                width: 342.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: onBoardingHomeScreen,
-                ),
-                child: PageView.builder(
-                  controller: controller.pageController,
-                  onPageChanged: (value) {
-                    controller.onPageChanged(value);
-                  },
-                  itemCount: 3,
-                  itemBuilder: (context, i) => OnBordingItem(),
-                ),
-              ),
-            ),
+            Obx(() {
+              if (homeController.isLoadinghomeOfferList.value) {
+                return SizedBox(
+                  height: 100,
+                  child: Center(
+                      child: CircularProgressIndicator(
+                    color: mainColor,
+                  )),
+                );
+              } else {
+                return Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    height: 155.h,
+                    width: 342.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: onBoardingHomeScreen,
+                    ),
+                    child: PageView.builder(
+                      controller: controller.pageController,
+                      onPageChanged: (value) {
+                        controller.onPageChanged(value);
+                      },
+                      itemCount: homeController.homeOfferList.length,
+                      itemBuilder: (context, i) => OnBordingItem(
+                        offerListData: homeController.homeOfferList[i],
+                      ),
+                    ),
+                  ),
+                );
+              }
+            }),
             SizedBox(height: 13.h),
             OnBoardingIndicatorHome(
               margin: 3.w,
@@ -71,54 +96,103 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10.h,
             ),
-            SizedBox(
-              height: 100,
-              child: Padding(
-                padding: EdgeInsets.only(left: 12.w),
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: 11,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.resturantScreen);
+
+            // CircularProgressIndicator.adaptive(),
+            Obx(() {
+              if (homeController.isLoadinghomeRestaurantsList.value) {
+                return SizedBox(
+                  height: 100,
+                  child: Center(
+                      child: CircularProgressIndicator(
+                    color: mainColor,
+                  )),
+                );
+              } else {
+                return SizedBox(
+                  height: 100,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 12.w),
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: homeController.homeRestaurantsList.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.resturantScreen, arguments: [
+                              {
+                                "id": homeController
+                                    .homeRestaurantsList[index].id
+                                    .toString()
+                              }
+                            ]);
+                          },
+                          child: ResturantCard(
+                            homeRestaurantsData:
+                                homeController.homeRestaurantsList[index],
+                          ),
+                        );
                       },
-                      child: ResturantCard(),
-                    );
-                  },
-                ),
-              ),
-            ),
+                    ),
+                  ),
+                );
+              }
+            }),
             SizedBox(
               height: 10.h,
             ),
             CustomRowHomePage(
-              firstText: 'Popular foods'.tr,
-              scoindText: 'SeeMore'.tr,
+                firstText: 'Popular foods'.tr,
+                scoindText: 'SeeMore'.tr,
                 press: () {
-                Get.toNamed(Routes.allFoodScreen);
-              }
-            ),
+                  Get.toNamed(Routes.allFoodScreen);
+                }),
             SizedBox(
               height: 10.h,
             ),
-            Container(
-              height: 200,
-              width: double.infinity,
-              padding: const EdgeInsets.only(left: 2),
-              child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: ImageAsset().images.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return FoodsView(
-                      imageUrl: ImageAsset().images[index],
-                    );
-                  }),
-            ),
+            Obx(() {
+              if (homeController.isLoadinghomeFodeList.value) {
+                return SizedBox(
+                  height: 100,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: mainColor,
+                    ),
+                  ),
+                );
+              } else {
+                return Container(
+                  height: 200,
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(left: 2),
+                  child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: homeController.homeFoodsList.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.toNamed(
+                              Routes.productDetailsScreen,
+                              arguments: [
+                                {
+                                  'prodectData':
+                                      homeController.homeFoodsList[index]
+                                }
+                              ],
+                            );
+                          },
+                          child: FoodsView(
+                            homeProdectData:
+                                homeController.homeFoodsList[index],
+                          ),
+                        );
+                      }),
+                );
+              }
+            }),
           ],
         ),
       ),

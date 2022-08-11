@@ -7,9 +7,9 @@ import '../textWithFont.dart';
 
 class SupTitle extends StatelessWidget {
   const SupTitle({
-    Key? key,
+    Key? key, required this.supTitle,
   }) : super(key: key);
-
+final String supTitle;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,7 +20,7 @@ class SupTitle extends StatelessWidget {
           TextWithFont().textWithRalewayFont(
               color: Get.isDarkMode ? Colors.white : Colors.black,
               fontSize: 12.sp,
-              text: 'Cheesy Mazarella',
+              text: supTitle,
               fontWeight: FontWeight.w500),
           Expanded(
             child: Column(

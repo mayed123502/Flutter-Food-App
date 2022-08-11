@@ -1,17 +1,15 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:ecommerce_app/main.dart';
 import 'package:ecommerce_app/services/baseAPI.dart';
 
-import '../logic/controllers/auth_controllers.dart';
 import '../model/user.dart';
 import '../utils/sharPreferenceUtils .dart';
 import 'dart:convert' as convert;
 
 class AuthApi {
   String baseUrl = '/api';
-
+  final shaedpref = SharedPrefs.instance;
   Future<bool> signupAPI(
       String phone, String fullName, String password, String email) async {
     var url = '${BaseAPI.authPath}' + '/register';
@@ -32,8 +30,12 @@ class AuthApi {
       if (data['message'] == 'fails') {
         return false;
       } else {
-        final shaedpref =
-            SharedPrefs.instance.setString("token", '${data['access_token']}');
+        shaedpref.setString("token", '${data['access_token']}');
+        shaedpref.setString("phone_number", '${data['user']['phone_number']}');
+        shaedpref.setString("email", '${data['user']['email']}');
+        shaedpref.setString("image", '${data['user']['image']}');
+        shaedpref.setString("name", '${data['user']['name']}');
+
         return true;
       }
     } else {
@@ -57,10 +59,18 @@ class AuthApi {
       data: body,
       options: Options(headers: BaseAPI.headers),
     );
-    if (response.statusCode == 200) {
+    int? statusCode = response.statusCode;
+    if (statusCode == 200) {
       UserModel user = UserModel.fromJson(response.data);
-      final shaedpref =
-          SharedPrefs.instance.setString("token", '${user.accessToken}');
+
+      var imageUrl = '${BaseAPI.baseImage}' + '/${user.user!.image}';
+
+      shaedpref.setString("token", '${user.accessToken}');
+      shaedpref.setString("phone_number", '${user.user!.phoneNumber}');
+      shaedpref.setString("email", '${user.user!.email}');
+      shaedpref.setString("image", imageUrl);
+      shaedpref.setString("name", '${user.user!.name}');
+
       return user;
     } else {
       throw Exception('Gagal Login');
@@ -70,7 +80,7 @@ class AuthApi {
   Future<bool> resetPasswordStep1({
     required String email,
   }) async {
-    var url = '${BaseAPI.authPath}' + '/password/email';
+    var url = '${BaseAPI.baseImage}' + '/password/email';
 
     var body = jsonEncode({
       'email': email,
@@ -149,5 +159,19 @@ class AuthApi {
       // throw Exception('Gagal Login');
       return false;
     }
+  }
+
+  void logout() async {
+    var url = '${BaseAPI.authPath}' + '/logout';
+
+    await Dio()
+        .post(url,
+            options: Options(headers: {
+              'Authorization':
+                  'Bearer ${SharedPrefs.instance.getString('token')}'
+            }))
+        .whenComplete(() {
+      SharedPrefs.instance.remove('token');
+    });
   }
 }

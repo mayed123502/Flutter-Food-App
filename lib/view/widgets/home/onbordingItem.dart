@@ -1,30 +1,41 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/view/widgets/home/onboardingtime.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../model/offer/offerListData_model.dart';
 import '../textWithFont.dart';
 
 class OnBordingItem extends StatelessWidget {
   const OnBordingItem({
     Key? key,
+    required this.offerListData,
   }) : super(key: key);
-
+  final OfferListData offerListData;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned(
-          child: Image.asset(
-            'assets/onbordingHome.png',
+          child: ClipOval(
+            child: SizedBox.fromSize(
+              size: Size.fromRadius(65), // Image radius
+              child: CachedNetworkImage(
+                imageUrl: offerListData.product!.image!,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          top: -3,
-          right: -20.w,
+
+       
+          top: -20,
+          right: 5,
         ),
         Positioned(
           top: 25.h,
           left: 40.w,
           child: TextWithFont().textWithRobotoFont(
-              text: 'Super food Sale \n 50% off',
+              text: '${offerListData.title} \n 50% off',
               fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -35,4 +46,3 @@ class OnBordingItem extends StatelessWidget {
     );
   }
 }
-
