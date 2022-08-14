@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../enums/loading_types.dart';
 import '../../logic/controllers/food_controller.dart';
+import '../../routes/routes.dart';
 import '../widgets/AllFood/appBarMeal.dart';
 import '../widgets/AllFood/mealCard.dart';
 
@@ -54,8 +55,21 @@ class AllFoodScreen extends GetView<FodeController> {
                             controller.loadingState.value.completed.toString(),
                           );
                         } else {
-                          return MealCard(
-                            prodectDetails: controller.allFoodsList[index],
+                          return GestureDetector(
+                            onTap: () {
+                              Get.toNamed(
+                                Routes.productDetailsScreen,
+                                arguments: [
+                                  {
+                                    'prodectData':
+                                        controller.allFoodsList[index]
+                                  }
+                                ],
+                              );
+                            },
+                            child: MealCard(
+                              prodectDetails: controller.allFoodsList[index],
+                            ),
                           );
                         }
                       }),

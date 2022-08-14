@@ -5,7 +5,7 @@ class OfferListData {
   String? title;
   int? productId;
   int? discountPercent;
-  int? priceAfterDiscount;
+  double? priceAfterDiscount;
   String? deadline;
   OfferProduct? product;
 

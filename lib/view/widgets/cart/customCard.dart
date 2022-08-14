@@ -9,7 +9,7 @@ class CustomCard extends StatelessWidget {
     Key? key,
     required this.total,
   }) : super(key: key);
-  final String total;
+  final double total;
   @override
   Widget build(BuildContext context) {
     return Card(

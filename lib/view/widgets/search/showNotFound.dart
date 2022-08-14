@@ -15,7 +15,7 @@ class ShowNotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: .7.sh,
+        height: .6.sh,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

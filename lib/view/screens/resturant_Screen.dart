@@ -28,9 +28,9 @@ class ResturantScreen extends GetView<ResturantPageController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // Image.asset('assets/5.png'),
-                    // ImageRes(
-                    //   imageUrl: controller..value.logo,
-                    // ),
+                    ImageRes(
+                      imageUrl: controller.restaurantData.value.logo,
+                    ),
                     SizedBox(
                       height: 20.h,
                     ),
@@ -47,22 +47,22 @@ class ResturantScreen extends GetView<ResturantPageController> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    // Expanded(
-                    //   flex: 3,
-                    //   child: ListView.builder(
-                    //     physics: BouncingScrollPhysics(),
-                    //     itemCount:
-                    //         controller.restaurantData.value.product?.length,
-                    //     itemBuilder: (BuildContext context, int index) =>
-                    //         ClipRRect(
-                    //       borderRadius: BorderRadius.circular(15),
-                    //       child: CardRes(
-                    //         restaurantMeal:
-                    //             controller.restaurantData.value.product![index],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    Expanded(
+                      flex: 3,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount:
+                            controller.restaurantData.value.product?.length,
+                        itemBuilder: (BuildContext context, int index) =>
+                            ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: CardRes(
+                            restaurantMeal:
+                                controller.restaurantData.value.product![index],
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               );

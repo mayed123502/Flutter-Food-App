@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../model/restaurantsDetails_model.dart';
 import '../textWithFont.dart';
 
 class CardRes extends StatelessWidget {
@@ -13,7 +14,7 @@ class CardRes extends StatelessWidget {
     Key? key,
     required this.restaurantMeal,
   }) : super(key: key);
-  final DataOfRestaurant restaurantMeal;
+  final Product restaurantMeal;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -26,7 +27,7 @@ class CardRes extends StatelessWidget {
           child: SizedBox.fromSize(
             size: Size.fromRadius(30), // Image radius
             child: CachedNetworkImage(
-              imageUrl: restaurantMeal.logo!,
+              imageUrl: restaurantMeal.image!,
               fit: BoxFit.cover,
             ),
           ),
@@ -51,7 +52,7 @@ class CardRes extends StatelessWidget {
               width: 5.w,
             ),
             
-            Text('${restaurantMeal.categories}Cal',
+            Text('${restaurantMeal.calories}Cal',
                 style: TextStyle(
                   fontSize: 12,
                 )),

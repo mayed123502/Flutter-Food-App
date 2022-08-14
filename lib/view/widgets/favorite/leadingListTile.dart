@@ -7,9 +7,11 @@ import '../../../utils/theme.dart';
 class LeadingListTile extends StatelessWidget {
   const LeadingListTile({
     Key? key,
-    required this.name,
+    required this.name, required this.image,
   }) : super(key: key);
   final String name;
+    final String image;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +23,7 @@ class LeadingListTile extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset('assets/gridview.png',
+                child: Image.network(image,
                     height: 90.0.h, width: 90.w),
               ),
               Padding(

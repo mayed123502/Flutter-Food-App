@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -24,8 +25,24 @@ class ViewImage extends StatelessWidget {
                     child: settingController.file.path != ''
                         ? Image.file(settingController.file,
                             height: 150.0.h, width: 150.w)
-                        : Image.asset('assets/userimage.png',
-                            height: 150.0.h, width: 150.w),
+                        : CachedNetworkImage(
+                            imageUrl: settingController.image.value,
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Icon(
+                              Icons.person,
+                              color: Colors.grey.shade700,
+                              size: 100,
+                            ),
+                            width: 150.w,
+                            height: 150.h,
+                          ),
+
+                    //  settingController.file.path != ''
+                    //     ? Image.file(settingController.file,
+                    //         height: 150.0.h, width: 150.w)
+                    //     : Image.asset('assets/userimage.png',
+                    //         height: 150.0.h, width: 150.w),
                   ),
                   Positioned(
                     top: 80.h,

@@ -152,28 +152,32 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                           SizedBox(
                                             height: 20.h,
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 20),
-                                            child: AuthButton(
-                                              onPressed: () {
-                                                controller.counter.value > 1
-                                                    ? cartController
-                                                        .addProductToCartCounter(
-                                                            controller
-                                                                .prodectData
-                                                                .value,
-                                                            controller
-                                                                .counter.value)
-                                                    : cartController
-                                                        .addProductToCart(
-                                                            controller
-                                                                .prodectData
-                                                                .value);
-                                              },
-                                              text: 'Add to Cart',
+                                          GetBuilder<CartController>(
+                                            builder: (_) => Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              child: AuthButton(
+                                                onPressed: () {
+                                                  String name = controller
+                                                      .prodectData.value.name!;
+                                                  String image = controller
+                                                      .prodectData.value.image!;
+
+                                                  cartController
+                                                      .addProductToCart(
+                                                    quantity: controller
+                                                        .counter.value,
+                                                    product_id: controller
+                                                        .prodectData.value.id!,
+                                                    nameProduct: name,
+                                                    imageProduct: image,
+                                                  );
+                                                },
+                                                text: 'Add to Cart',
+                                              ),
                                             ),
-                                          ),
+                                          )
                                         ],
                                       ),
                                     ),
@@ -200,7 +204,6 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                           ]),
                                           child: ClipPath(
                                             clipper: CustomTriangle(),
-                                            
                                             child: Container(
                                                 width: 60,
                                                 height: 60,

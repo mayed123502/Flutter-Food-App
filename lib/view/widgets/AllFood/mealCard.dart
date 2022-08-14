@@ -7,7 +7,8 @@ import '../textWithFont.dart';
 
 class MealCard extends StatelessWidget {
   const MealCard({
-    Key? key, required this.prodectDetails,
+    Key? key,
+    required this.prodectDetails,
   }) : super(key: key);
   final HomeProdectData prodectDetails;
   @override
@@ -35,8 +36,8 @@ class MealCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(7),
                   color: Colors.grey.shade300,
                   image: DecorationImage(
-                      image: AssetImage(
-                        'assets/hamburger.jpg',
+                      image: NetworkImage(
+                        prodectDetails.image ?? '',
                       ),
                       fit: BoxFit.cover)),
             ),
@@ -61,7 +62,7 @@ class MealCard extends StatelessWidget {
                     TextWithFont().textWithRalewayFont(
                         color: Colors.black.withOpacity(.5),
                         fontSize: 16.sp,
-                        text: 'simply dummy',
+                        text: '${prodectDetails.description} ',
                         fontWeight: FontWeight.w500)
                   ],
                 ),

@@ -1,45 +1,28 @@
-import 'package:dio/dio.dart';
 import 'package:ecommerce_app/services/baseAPI.dart';
-
-import '../model/homeProdect/homeProdectData.dart';
-import '../model/homeRestaurant/homeRestaurantData.dart';
-import '../model/offer/offerListData_model.dart';
+import 'package:ecommerce_app/services/helper/crud.dart';
 
 class HomeServices {
-  static Future<List<HomeRestaurantsData>> viewHomeRestaurants() async {
+  static viewHomeRestaurants() async {
     var url = '${BaseAPI.authPath}' + '/restaurants/popularRestaurant';
-    var response = await Dio().get(
-      url,
-    );
-    Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
-    final dataList = (response.data['data'] as List)
-        .map((e) => HomeRestaurantsData.fromJson(e))
-        .toList();
-    return dataList;
+
+    var response = await Crud.getData(url);
+    return response.fold((l) => l, (r) => r);
   }
 
-  static Future<List<HomeProdectData>> viewHomeFoods() async {
+  static viewHomeFoods() async {
     var url = '${BaseAPI.authPath}' + '/products/popularProduct';
-    var response = await Dio().get(
-      url,
-    );
-    Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
-    final dataList = (response.data['data'] as List)
-        .map((e) => HomeProdectData.fromJson(e))
-        .toList();
-    return dataList;
+
+    var response = await Crud.getData(url);
+    return response.fold((l) => l, (r) => r);
   }
 
-static  Future<List<OfferListData>> viewHomeOffers() async {
+  static viewHomeOffers() async {
     var url = '${BaseAPI.authPath}' + '/discounts';
-    var response = await Dio().get(url, queryParameters: {
+
+    var response = await Crud.getData(url, map: {
       "pagesize": 3,
       "page": 1,
     });
-    Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
-    final dataList = (response.data['data']['data'] as List)
-        .map((e) => OfferListData.fromJson(e))
-        .toList();
-    return dataList;
+    return response.fold((l) => l, (r) => r);
   }
 }

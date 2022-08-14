@@ -15,6 +15,7 @@ class CategoryScreen extends GetView<ResturantController> {
 
   @override
   Widget build(BuildContext context) {
+    print(controller.allCategoriesList.length);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarCategory(),
@@ -35,13 +36,14 @@ class CategoryScreen extends GetView<ResturantController> {
               SizedBox(
                 height: 15.h,
               ),
-              controller.isLoading.value
+              controller.isLoadingCategoriesList.value &&
+                      controller.isLoadingRestaurants.value &&
+                      controller.isLoadingRestaurantsWithOutPage.value
                   ? Center(
-                      child: CircularProgressIndicator.adaptive(),
+                      child: CircularProgressIndicator(),
                     )
-                  : controller.isLoading.value
-                      ? Text("No Data")
-                      : Expanded(
+                  : controller.currentSeletected.value == 0
+                      ? Expanded(
                           child: ListView.builder(
                             controller: controller.scrollController,
                             physics: const BouncingScrollPhysics(),
@@ -73,6 +75,30 @@ class CategoryScreen extends GetView<ResturantController> {
                                   controller.allRestaurantsList[index],
                                 );
                               }
+                            },
+                          ),
+                        )
+                      : Expanded(
+                          child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount:
+                                controller.allRestaurantsListWithOutPage.length,
+                            itemBuilder: (context, index) {
+                              print('${controller.allRestaurantsListWithOutPage[index].name}' +
+                                  '${controller.allRestaurantsListWithOutPage[index].categories![0].title}');
+
+                              return controller
+                                          .allRestaurantsListWithOutPage[index]
+                                          .categories![0]
+                                          .title ==
+                                      controller.allCategoriesList[
+                                          controller.currentSeletected.value]
+                                  ? CardCatrgory(
+                                      controller
+                                          .allRestaurantsListWithOutPage[index],
+                                    )
+                                  : Container();
                             },
                           ),
                         ),

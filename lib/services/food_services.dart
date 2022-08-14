@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_app/services/baseAPI.dart';
 
 import '../model/homeProdect/homeProdectData.dart';
-import '../model/prodect/prodect_modle.dart';
-import '../model/prodect/productDetails_modle.dart';
 
 class FoodApi {
   static Future<List<HomeProdectData>> viewAllFoods(int pageIndex) async {
@@ -14,8 +12,7 @@ class FoodApi {
       "page": pageIndex,
     });
     Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
-    if (response.statusCode == 200 && data['status'] == 200)
-     final x = '';
+    if (response.statusCode == 200 && data['status'] == 200) final x = '';
     final dataList = (response.data['data']['data'] as List)
         .map((e) => HomeProdectData.fromJson(e))
         .toList();

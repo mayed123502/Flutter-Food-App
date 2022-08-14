@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:ecommerce_app/routes/routes.dart';
+import 'package:ecommerce_app/services/helper/handlingdataview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import '../../logic/controllers/home_controllers.dart';
 import '../../logic/controllers/onboarding_home_controller.dart';
 
+import '../../services/helper/statusrequest.dart';
 import '../../utils/sharPreferenceUtils .dart';
 import '../../utils/theme.dart';
 import '../widgets/home/appbarItem.dart';
@@ -30,13 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-// SharedPrefs.instance.clear();
-
-    // print(SharedPrefs.instance.getString('token'));
-
-    // print(SharedPrefs.instance.getString('phone_number'));
-    // print(SharedPrefs.instance.getString('email'));
-    // print(SharedPrefs.instance.getString('image'));
+    // SharedPrefs.instance.clear();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -46,39 +42,13 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 12.h,
             ),
-            Obx(() {
-              if (homeController.isLoadinghomeOfferList.value) {
-                return SizedBox(
-                  height: 100,
-                  child: Center(
-                      child: CircularProgressIndicator(
-                    color: mainColor,
-                  )),
-                );
-              } else {
-                return Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: 155.h,
-                    width: 342.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: onBoardingHomeScreen,
-                    ),
-                    child: PageView.builder(
-                      controller: controller.pageController,
-                      onPageChanged: (value) {
-                        controller.onPageChanged(value);
-                      },
-                      itemCount: homeController.homeOfferList.length,
-                      itemBuilder: (context, i) => OnBordingItem(
-                        offerListData: homeController.homeOfferList[i],
-                      ),
-                    ),
-                  ),
-                );
-              }
+            GetBuilder<HomeController>(builder: (_) {
+              return HandlingDataView(
+                statusRequest: homeController.statusRequestOffer,
+                widget: OfferShow(),
+              );
             }),
+
             SizedBox(height: 13.h),
             OnBoardingIndicatorHome(
               margin: 3.w,
@@ -98,46 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // CircularProgressIndicator.adaptive(),
-            Obx(() {
-              if (homeController.isLoadinghomeRestaurantsList.value) {
-                return SizedBox(
-                  height: 100,
-                  child: Center(
-                      child: CircularProgressIndicator(
-                    color: mainColor,
-                  )),
-                );
-              } else {
-                return SizedBox(
-                  height: 100,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.w),
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: homeController.homeRestaurantsList.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.resturantScreen, arguments: [
-                              {
-                                "id": homeController
-                                    .homeRestaurantsList[index].id
-                                    .toString()
-                              }
-                            ]);
-                          },
-                          child: ResturantCard(
-                            homeRestaurantsData:
-                                homeController.homeRestaurantsList[index],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                );
-              }
+
+            GetBuilder<HomeController>(builder: (_) {
+              return HandlingDataView(
+                statusRequest: homeController.statusRequestRestaurant,
+                widget: ResturantShow(),
+              );
             }),
             SizedBox(
               height: 10.h,
@@ -151,49 +87,96 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10.h,
             ),
-            Obx(() {
-              if (homeController.isLoadinghomeFodeList.value) {
-                return SizedBox(
-                  height: 100,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: mainColor,
-                    ),
-                  ),
-                );
-              } else {
-                return Container(
-                  height: 200,
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(left: 2),
-                  child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: homeController.homeFoodsList.length,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Get.toNamed(
-                              Routes.productDetailsScreen,
-                              arguments: [
-                                {
-                                  'prodectData':
-                                      homeController.homeFoodsList[index]
-                                }
-                              ],
-                            );
-                          },
-                          child: FoodsView(
-                            homeProdectData:
-                                homeController.homeFoodsList[index],
-                          ),
-                        );
-                      }),
-                );
-              }
+
+            GetBuilder<HomeController>(builder: (_) {
+              return HandlingDataView(
+                statusRequest: homeController.statusRequestFode,
+                widget: FodeShow(),
+              );
             }),
           ],
+        ),
+      ),
+    );
+  }
+
+  Align OfferShow() {
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+        height: 155.h,
+        width: 342.w,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: onBoardingHomeScreen,
+        ),
+        child: PageView.builder(
+          controller: controller.pageController,
+          onPageChanged: (value) {
+            controller.onPageChanged(value);
+          },
+          itemCount: homeController.homeOfferList.length,
+          itemBuilder: (context, i) => OnBordingItem(
+            offerListData: homeController.homeOfferList[i],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container FodeShow() {
+    return Container(
+      height: 200,
+      width: double.infinity,
+      padding: const EdgeInsets.only(left: 2),
+      child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: homeController.homeFoodsList.length,
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed(
+                  Routes.productDetailsScreen,
+                  arguments: [
+                    {'prodectData': homeController.homeFoodsList[index]}
+                  ],
+                );
+              },
+              child: FoodsView(
+                homeProdectData: homeController.homeFoodsList[index],
+              ),
+            );
+          }),
+    );
+  }
+
+  SizedBox ResturantShow() {
+    return SizedBox(
+      height: 100,
+      child: Padding(
+        padding: EdgeInsets.only(left: 12.w),
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: homeController.homeRestaurantsList.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.resturantScreen, arguments: [
+                  {
+                    "id":
+                        homeController.homeRestaurantsList[index].id.toString()
+                  }
+                ]);
+              },
+              child: ResturantCard(
+                homeRestaurantsData: homeController.homeRestaurantsList[index],
+              ),
+            );
+          },
         ),
       ),
     );

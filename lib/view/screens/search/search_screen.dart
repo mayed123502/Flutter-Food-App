@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../logic/controllers/search_controller.dart';
 import '../../../utils/theme.dart';
 import '../../widgets/search/filterContainer.dart';
 import '../../widgets/search/itemCard.dart';
@@ -15,6 +16,7 @@ import '../../widgets/search/showNotFound.dart';
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
   bool embty = true;
+  final searchController = Get.find<SearchController>();
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +69,8 @@ class SearchScreen extends StatelessWidget {
                 height: Get.height * .73,
                 child: TabBarView(
                   children: [
-                    SearchForMeal(
-                      embty: true,
-                    ),
-                    SearchForRestrant(
-                      embty: true,
-                    ),
+                    SearchForMeal(),
+                    SearchForRestrant(),
                   ],
                 ),
               ),

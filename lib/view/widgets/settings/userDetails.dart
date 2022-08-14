@@ -15,19 +15,18 @@ class UserDetails extends StatelessWidget {
   final SettingsController settingsController;
   @override
   Widget build(BuildContext context) {
-    print(settingsController.image.value);
     return Obx(
       () => Row(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(70),
             child: CachedNetworkImage(
               imageUrl: settingsController.image.value,
               placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(
-                Icons.person,
-                color: Colors.grey.shade700,
-                size: 100,
+              errorWidget: (context, url, error) => Image.asset(
+                'assets/icons/person.png',
+                width: 90.w,
+                height: 90.h,
               ),
               width: 90.w,
               height: 90.h,

@@ -2,6 +2,7 @@ import 'package:ecommerce_app/model/restauntAll/dataOfRestaurant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../model/restaurantsDetails_model.dart';
 import '../../../utils/constant/imageasset.dart';
 import '../../../utils/theme.dart';
 import '../textWithFont.dart';
@@ -11,7 +12,7 @@ class ResturantDetails extends StatelessWidget {
     Key? key,
     required this.restaurantData,
   }) : super(key: key);
-  final DataOfRestaurant restaurantData;
+  final Data restaurantData;
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -26,8 +26,6 @@ class OnBordingItem extends StatelessWidget {
               ),
             ),
           ),
-
-       
           top: -20,
           right: 5,
         ),

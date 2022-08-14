@@ -9,7 +9,22 @@ class HomeProdectData {
   int? rating;
   int? price;
 
-  HomeProdectData({this.id, this.name, this.image, this.rating, this.price});
+  int? calories;
+  String? description;
+  int? restaurantId;
+  int? numRating;
+
+  HomeProdectData({
+    this.id,
+    this.name,
+    this.image,
+    this.rating,
+    this.price,
+    this.calories,
+    this.description,
+    this.restaurantId,
+    this.numRating,
+  });
 
   HomeProdectData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -17,6 +32,10 @@ class HomeProdectData {
     image = BaseAPI.baseImage + json['image'];
     rating = json['rating'];
     price = json['price'];
+    calories = json['calories'];
+    description = json['description'];
+    numRating = json['NumRating'];
+    restaurantId = json['restaurant_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -26,6 +45,11 @@ class HomeProdectData {
     data['image'] = this.image;
     data['rating'] = this.rating;
     data['price'] = this.price;
+    data['calories'] = this.calories;
+    data['description'] = this.description;
+    data['NumRating'] = this.numRating;
+    data['restaurant_id'] = this.restaurantId;
+
     return data;
   }
 
@@ -35,6 +59,10 @@ class HomeProdectData {
         'rating': homeProdectData.rating,
         'price': homeProdectData.price,
         'name': homeProdectData.name,
+        'calories': homeProdectData.calories,
+        'description': homeProdectData.description,
+        'NumRating': homeProdectData.numRating,
+        'restaurant_id': homeProdectData.restaurantId
       };
   static String encode(List<HomeProdectData> musics) => json.encode(
         musics

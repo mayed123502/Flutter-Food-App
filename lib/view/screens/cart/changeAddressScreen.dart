@@ -1,9 +1,29 @@
+import 'dart:async';
+
 import 'package:ecommerce_app/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../logic/controllers/address_controllers.dart';
 import '../../widgets/cart/searchBar.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ChangeAddressScreen extends StatelessWidget {
+  // Completer<GoogleMapController> _controller = Completer();
+
+  // static final CameraPosition _kGooglePlex = CameraPosition(
+  //   target: LatLng(37.42796133580664, -122.085749655962),
+  //   zoom: 14.4746,
+  // );
+
+  // static final CameraPosition _kLake = CameraPosition(
+  //     bearing: 192.8334901395799,
+  //     target: LatLng(37.43296265331129, -122.08832357078792),
+  //     tilt: 59.440717697143555,
+  //     zoom: 19.151926040649414);
+
+  final addressController = Get.find<AddressController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +44,6 @@ class ChangeAddressScreen extends StatelessWidget {
                     ),
                     Text(
                       "Change Address",
-                      // style: Helper.getTheme(context).headline5,
                     )
                   ],
                 ),
@@ -35,77 +54,12 @@ class ChangeAddressScreen extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.6,
-                      child: Image.asset(
-                        'assets/maping.png',
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 30,
-                      right: 40,
-                      child: Image.asset(
-                        "assets/current_loc.png",
-                      ),
-                    ),
-                    Positioned(
-                      top: 70,
-                      right: 180,
-                      child: Image.asset(
-                        "assets/loc.png",
-                      ),
-                    ),
-                    Positioned(
-                      top: 170,
-                      left: 30,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20,
-                          horizontal: 20,
-                        ),
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        decoration: ShapeDecoration(
-                          color: mainColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Your Current Location",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "653 Nostrand Ave., Brooklyn, NY 11216",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 140,
-                      right: 205,
-                      child: ClipPath(
-                        clipper: CustomTriangleClipper(),
-                        child: Container(
-                          width: 30,
-                          height: 30,
-                          color: mainColor,
-                        ),
+                      child: GoogleMap(
+                        mapType: MapType.hybrid,
+                        initialCameraPosition: CameraPosition(
+                            target: addressController.initialcameraposition),
+                        onMapCreated: addressController.onMapCreated,
+                        myLocationEnabled: true,
                       ),
                     ),
                   ],

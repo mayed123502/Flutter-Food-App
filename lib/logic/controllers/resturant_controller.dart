@@ -4,22 +4,30 @@ import 'package:get/get.dart';
 
 import '../../enums/loading_state.dart';
 import '../../enums/loading_types.dart';
-import '../../model/restaurants/restaurantsData_modle.dart';
-import '../../services/home_services.dart';
+
 import '../../services/restaurant_services.dart';
 
 class ResturantController extends GetxController {
   var allRestaurantsList = <DataOfRestaurant>[].obs;
-  final isLoading = true.obs;
+  var allRestaurantsListWithOutPage = <DataOfRestaurant>[].obs;
+
+  var allCategoriesList = <dynamic>[].obs;
+
+  final isLoadingRestaurants = true.obs;
+  final isLoadingRestaurantsWithOutPage = true.obs;
+
+  final isLoadingCategoriesList = true.obs;
+
   final scrollController = ScrollController();
   int _pageNo = 1;
   final loadingState = LoadingState(loadingType: LoadingType.stable).obs;
+  var currentSeletected = 0.obs;
 
   @override
   void onInit() async {
     viewAllRestaurants();
-
-
+    viewAllCategories();
+    viewRestaurantsWithOutPag();
     scrollController.addListener(_scrollListener);
   }
 
@@ -52,8 +60,35 @@ class ResturantController extends GetxController {
       _pageNo,
     );
     allRestaurantsList.assignAll(listOfData);
-    isLoading.value = false;
+    isLoadingRestaurants.value = false;
   }
 
- 
+  void viewRestaurantsWithOutPag() async {
+    final listOfData = await RestaurantApi.viewRestaurantsWithOutPage();
+    allRestaurantsListWithOutPage.assignAll(listOfData);
+    isLoadingRestaurantsWithOutPage.value = false;
+  }
+
+  void viewAllCategories() async {
+    final listOfData = await RestaurantApi.viewAllCategories(
+      _pageNo,
+    );
+    allCategoriesList.assignAll(listOfData);
+    isLoadingCategoriesList.value = false;
+  }
+
+  // void filterByCategorie(String categorie) async {
+  //   if (categorie == 'All') {
+  //     viewAllRestaurants();
+  //   } else {
+  //     List<DataOfRestaurant> outputList = await allRestaurantsListWithOutPage
+  //         .where((o) => o.categories![0].title == categorie)
+  //         .toList();
+  //     for (final e in outputList) {
+  //       //
+  //       print(e.categories![0].title);
+  //     }
+  //     allRestaurantsListWithOutPage.assignAll(outputList);
+  //   }
+  // }
 }

@@ -29,7 +29,7 @@ class ItemListView extends GetView<FavoritesController> {
         child: ListTile(
           // trailing: TrailingListTile(),
           title: LeadingListTile(
-            name: homeProdectData.name!,
+            name: homeProdectData.name!, image: homeProdectData.image!,
           ),
           subtitle: Row(
             children: [

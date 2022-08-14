@@ -5,10 +5,17 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_app/services/baseAPI.dart';
 import 'package:ecommerce_app/utils/sharPreferenceUtils%20.dart';
 
+import '../logic/controllers/settings_controller.dart';
+import '../model/updateProfile/updateProfile.dart';
+
 class ServicesApi {
-  static void updateProfile({required File file, required String name}) async {
+  static Future<Data> updateProfile(
+      {required File file, required String name}) async {
+    final shaedpref = SharedPrefs.instance;
+
     String fileName = file.path.split('/').last;
-    print(fileName);
+
+    Data myData = Data();
 
     FormData data = FormData.fromMap({
       "image": await MultipartFile.fromFile(
@@ -20,14 +27,8 @@ class ServicesApi {
 
     Dio dio = new Dio();
     var url = '${BaseAPI.authPath}' + '/user/updateProfile';
-    print('**');
-    print(file.path);
-    print(name);
-    print(fileName);
-    print('**');
 
-    dio
-        .post(
+    var response = await dio.post(
       url,
       data: data,
       options: Options(
@@ -35,18 +36,23 @@ class ServicesApi {
           'Authorization': 'Bearer ${SharedPrefs.instance.getString('token')}'
         },
       ),
-    )
-        .then((response) {
-      print('done');
+    );
+
+    int? statusCode = response.statusCode;
+    if (statusCode == 200) {
       Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
+      var imageUrl = '${BaseAPI.baseImage}' + '/${data['data']['image']}';
 
-      // var jsonResponse = jsonDecode(response.toString());
+      shaedpref.setString("image", imageUrl);
+      shaedpref.setString("name", '${data['data']['name']}');
+      // Data datafromjson = Data.fromJson(response.data['data']);
 
-      print(data['data']['name']);
-      print(data['data']['image']);
+      return Data(image: imageUrl,name: '${data['data']['name']}');
+    } else {
+      throw Exception('Gagal Login');
+    }
+    //   .then((response) {
 
-      // var testData = jsonResponse['message'].cast<double>();
-      // var averageGrindSize = jsonResponse['average_particle_size'];
-    }).catchError((error) => print(error));
+    // }).catchError((error) => (print(error)));
   }
 }

@@ -6,6 +6,7 @@ import '../../enums/loading_types.dart';
 import '../../model/homeProdect/homeProdectData.dart';
 import '../../model/prodect/productDetails_modle.dart';
 import '../../services/food_services.dart';
+import '../../services/helper/statusrequest.dart';
 
 class FodeController extends GetxController {
   var allFoodsList = <HomeProdectData>[].obs;
@@ -13,6 +14,7 @@ class FodeController extends GetxController {
   final scrollController = ScrollController();
   int _pageNo = 1;
   final loadingState = LoadingState(loadingType: LoadingType.stable).obs;
+  late StatusRequest statusRequestFood;
 
   @override
   void onInit() async {
@@ -27,7 +29,6 @@ class FodeController extends GetxController {
       try {
         await Future.delayed(Duration(seconds: 5));
 
-        // final listOfData =
         final listOfData = await FoodApi.viewAllFoods(++_pageNo);
 
         if (allFoodsList.isEmpty) {
@@ -46,12 +47,15 @@ class FodeController extends GetxController {
   }
 
   void viewAllFood() async {
+
+    
     final listOfData = await FoodApi.viewAllFoods(
       _pageNo,
     );
     allFoodsList.assignAll(listOfData);
     isLoading.value = false;
   }
+
 
   
 }

@@ -46,12 +46,14 @@ class SettingsController extends GetxController {
   void save() async {
     if (file != null) {
       ServicesApi.updateProfile(
-          file: file,
-          name: nameFromTextFild.value == ''
-              ? name.value
-              : nameFromTextFild.value);
-
-      update();
+              file: file,
+              name: nameFromTextFild.value == ''
+                  ? name.value
+                  : nameFromTextFild.value)
+          .then((value) {
+        name.value = value.name!;
+        image.value = value.image!;
+      });
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../logic/bindings/address_bindings.dart';
 import '../logic/bindings/auth_bindings.dart';
 import '../logic/bindings/cart_bindings.dart';
 import '../logic/bindings/category_bindings.dart';
@@ -14,6 +15,7 @@ import '../logic/bindings/productDetails_bindings.dart';
 import '../logic/bindings/profileSettingBinding.dart';
 import '../logic/bindings/resturantPage_bindings.dart';
 import '../logic/bindings/resturant_bindings.dart';
+import '../logic/bindings/search_bindings.dart';
 import '../logic/bindings/settengs_bindings.dart';
 import '../logic/controllers/category_controller.dart';
 import '../view/screens/allFood_Screen.dart';
@@ -107,9 +109,9 @@ class AppRoutes {
       // binding:  CartBindings(),
     ),
     GetPage(
-      name: Routes.searchScreen,
-      page: () => SearchScreen(),
-    ),
+        name: Routes.searchScreen,
+        page: () => SearchScreen(),
+        binding: SearchBindings()),
     GetPage(
       name: Routes.filterScreen,
       page: () => FilterScreen(),
@@ -159,9 +161,9 @@ class AppRoutes {
       page: () => CheckoutScreen(),
     ),
     GetPage(
-      name: Routes.changeAddressScreen,
-      page: () => ChangeAddressScreen(),
-    ),
+        name: Routes.changeAddressScreen,
+        page: () => ChangeAddressScreen(),
+        binding: AddressBindings()),
     GetPage(
       name: Routes.allReviewScreen,
       page: () => AllReviewScreen(),

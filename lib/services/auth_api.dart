@@ -43,7 +43,7 @@ class AuthApi {
     }
   }
 
-  Future<UserModel> login({
+ Future <UserModel> login({
     required String email,
     required String password,
   }) async {
@@ -64,7 +64,6 @@ class AuthApi {
       UserModel user = UserModel.fromJson(response.data);
 
       var imageUrl = '${BaseAPI.baseImage}' + '/${user.user!.image}';
-
       shaedpref.setString("token", '${user.accessToken}');
       shaedpref.setString("phone_number", '${user.user!.phoneNumber}');
       shaedpref.setString("email", '${user.user!.email}');
