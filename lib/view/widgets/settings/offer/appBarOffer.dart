@@ -5,7 +5,8 @@ class AppBarOffer extends StatelessWidget with PreferredSizeWidget{
   const AppBarOffer({
     Key? key,
   }) : super(key: key);
-
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -25,10 +26,9 @@ class AppBarOffer extends StatelessWidget with PreferredSizeWidget{
         color: Get.isDarkMode ? Colors.white : Colors.black,
         size: 20,
       ),
-    ),);
+    ),
+    );
   }
   
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => throw UnimplementedError();
+
 }

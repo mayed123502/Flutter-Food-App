@@ -1,14 +1,18 @@
+import 'package:ecommerce_app/model/review/reviewProdect_model.dart';
 import 'package:ecommerce_app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../logic/controllers/reviewProduct_controllers.dart';
+import '../../../services/helper/handlingdataview.dart';
 import '../../widgets/auth/auth_button.dart';
 import '../../widgets/review/appBarRev.dart';
 import '../../widgets/review/cardRev.dart';
 import '../../widgets/review/reviewRating.dart';
 
 class AllReviewScreen extends StatelessWidget {
-  const AllReviewScreen({Key? key}) : super(key: key);
+  AllReviewScreen({Key? key}) : super(key: key);
+  final reviewController = Get.find<RreviewProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,27 +23,34 @@ class AllReviewScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Stack(
           children: [
-            SafeArea(
-              child: Column(
-                children: [
-                  ReviewRating(),
-                  SizedBox(
-                    height: 20.h,
+            Obx(() {
+              return HandlingDataView(
+                statusRequest: reviewController.statusReviewProduct,
+                widget: SafeArea(
+                  child: Column(
+                    children: [
+                      ReviewRating(),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: Get.height * .7,
+                        child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: reviewController.reviewProduct.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return CardRev(
+                              data: reviewController.reviewProduct[index],
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: Get.height * .7,
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CardRev();
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                ),
+              );
+            }),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -52,7 +63,8 @@ class AllReviewScreen extends StatelessWidget {
                   ),
                   child: AuthButton(
                     onPressed: () {
-                      Get.toNamed(Routes.writeReviewScreen);
+                      Get.toNamed(Routes.writeReviewScreen,
+                          arguments: {'prodectId': reviewController.idProdect});
                     },
                     text: 'Write Review',
                   ),

@@ -25,7 +25,6 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       body: Padding(
@@ -34,6 +33,9 @@ class SettingsScreen extends StatelessWidget {
           children: [
             UserDetails(
               settingsController: settingController,
+            ),
+            SizedBox(
+              height: 15.h,
             ),
             CsutomCard(),
             SizedBox(

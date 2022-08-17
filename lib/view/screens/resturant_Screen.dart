@@ -47,6 +47,8 @@ class ResturantScreen extends GetView<ResturantPageController> {
                     SizedBox(
                       height: 10.h,
                     ),
+                
+                
                     Expanded(
                       flex: 3,
                       child: ListView.builder(

@@ -9,12 +9,14 @@ import '../logic/bindings/fode_bindings.dart';
 import '../logic/bindings/home_bindings.dart';
 import '../logic/bindings/main_bindings.dart';
 import '../logic/bindings/myLocaleBinding.dart';
+import '../logic/bindings/offer_binding.dart';
 import '../logic/bindings/onBoarding_bindings.dart';
 import '../logic/bindings/onBoarding_home_bindings.dart';
 import '../logic/bindings/productDetails_bindings.dart';
 import '../logic/bindings/profileSettingBinding.dart';
 import '../logic/bindings/resturantPage_bindings.dart';
 import '../logic/bindings/resturant_bindings.dart';
+import '../logic/bindings/reviewProduct_bindings.dart';
 import '../logic/bindings/search_bindings.dart';
 import '../logic/bindings/settengs_bindings.dart';
 import '../logic/controllers/category_controller.dart';
@@ -35,6 +37,7 @@ import '../view/screens/main_screen.dart';
 import '../view/screens/product_details_scree.dart';
 import '../view/screens/review/allReview_screen.dart';
 import '../view/screens/review/writeReview_screen.dart';
+import '../view/screens/settings/changePassword_screen.dart';
 import '../view/screens/settings/myOrders.dart';
 import '../view/screens/notification_screen.dart';
 import '../view/screens/onboarding_screen.dart';
@@ -165,9 +168,9 @@ class AppRoutes {
         page: () => ChangeAddressScreen(),
         binding: AddressBindings()),
     GetPage(
-      name: Routes.allReviewScreen,
-      page: () => AllReviewScreen(),
-    ),
+        name: Routes.allReviewScreen,
+        page: () => AllReviewScreen(),
+        binding: RreviewProductBinding()),
 
     GetPage(
       name: Routes.writeReviewScreen,
@@ -180,6 +183,11 @@ class AppRoutes {
     GetPage(
       name: Routes.offerScreen,
       page: () => OfferScreen(),
+      binding: OfferBindings(),
+    ),
+    GetPage(
+      name: Routes.updatePassword,
+      page: () => UpdatePassword(),
     ),
   ];
 }
@@ -218,6 +226,7 @@ class Routes {
   static const writeReviewScreen = '/writeReviewScreen';
   static const allFoodScreen = '/allFoodScreen';
   static const offerScreen = '/offerScreen';
+  static const updatePassword = '/changePassword';
 
   // ForgotPasswordCodeScreen
 

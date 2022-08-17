@@ -10,25 +10,27 @@ import '../model/updateProfile/updateProfile.dart';
 
 class ServicesApi {
   static Future<Data> updateProfile(
-      {required File file, required String name}) async {
+      {required File? file, required String name}) async {
     final shaedpref = SharedPrefs.instance;
 
-    String fileName = file.path.split('/').last;
+    // String fileName = file!.path.split('/').last;
 
     Data myData = Data();
 
     FormData data = FormData.fromMap({
-      "image": await MultipartFile.fromFile(
-        file.path,
-        filename: fileName,
-      ),
+      "image": file != null
+          ? await MultipartFile.fromFile(
+              file.path,
+              filename: file.path.split('/').last,
+            )
+          : null,
       "name": name
     });
 
     Dio dio = new Dio();
     var url = '${BaseAPI.authPath}' + '/user/updateProfile';
 
-    var response = await dio.post(
+    var response = await dio.post(  
       url,
       data: data,
       options: Options(
@@ -41,18 +43,16 @@ class ServicesApi {
     int? statusCode = response.statusCode;
     if (statusCode == 200) {
       Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
+      print(data);
       var imageUrl = '${BaseAPI.baseImage}' + '/${data['data']['image']}';
 
       shaedpref.setString("image", imageUrl);
       shaedpref.setString("name", '${data['data']['name']}');
       // Data datafromjson = Data.fromJson(response.data['data']);
 
-      return Data(image: imageUrl,name: '${data['data']['name']}');
+      return Data(image: imageUrl, name: '${data['data']['name']}');
     } else {
       throw Exception('Gagal Login');
     }
-    //   .then((response) {
-
-    // }).catchError((error) => (print(error)));
   }
 }

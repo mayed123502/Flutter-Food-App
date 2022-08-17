@@ -11,18 +11,13 @@ class SeeMore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Text(
-        "See More",
-        style: TextStyle(
-          color: mainColor,
-          fontSize: 10,
-          fontWeight: FontWeight.w400,
-        ),
+    return Text(
+      "See More",
+      style: TextStyle(
+        color: mainColor,
+        fontSize: 10,
+        fontWeight: FontWeight.w400,
       ),
-      onTap: () {
-        Get.toNamed(Routes.allReviewScreen);
-      },
     );
   }
 }

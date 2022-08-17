@@ -18,19 +18,30 @@ class UserDetails extends StatelessWidget {
     return Obx(
       () => Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(70),
-            child: CachedNetworkImage(
-              imageUrl: settingsController.image.value,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Image.asset(
-                'assets/icons/person.png',
-                width: 90.w,
-                height: 90.h,
-              ),
-              width: 90.w,
-              height: 90.h,
+          CircleAvatar(
+            radius: 30,
+            child: ClipOval(
+              child: (settingsController.image.value == null)
+                  ? Image.asset(
+                      'assets/icons/person.png',
+                      fit: BoxFit.cover,
+                    )
+                  : CachedNetworkImage(
+                      imageUrl: settingsController.image.value,
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Image.asset(
+                        'assets/icons/person.png',
+                        fit: BoxFit.cover,
+                      ),
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.fill,
+                    ),
             ),
+          ),
+          SizedBox(
+            width: 10.w,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

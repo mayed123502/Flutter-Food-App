@@ -41,7 +41,7 @@ class RowWithoutSwitchPassword extends StatelessWidget {
           padding: EdgeInsets.only(left: paddingSize),
           child: GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.restPasswordScreen);
+              Get.toNamed(Routes.updatePassword);
             },
             child: const Icon(
               Icons.arrow_forward_ios_rounded,

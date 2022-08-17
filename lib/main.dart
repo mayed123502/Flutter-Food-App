@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'locale/locale_controller.dart';
+import 'logic/bindings/controller_binding.dart';
 import 'logic/controllers/auth_controllers.dart';
 import 'logic/controllers/theme_controller.dart';
 import 'utils/sharPreferenceUtils .dart';
@@ -18,9 +19,8 @@ void main() async {
   await SharedPrefs.init();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      systemNavigationBarColor:
-          Colors.white.withOpacity(.8), 
-      statusBarColor: Colors.white.withOpacity(.8), 
+      systemNavigationBarColor: Colors.white.withOpacity(.8),
+      statusBarColor: Colors.white.withOpacity(.8),
     ),
   );
   runApp(MyApp());
@@ -36,6 +36,8 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
+          initialBinding: ControllerBinding(),
+
           debugShowCheckedModeBanner: false,
           title: 'Ecommerce app',
           locale: SharedPrefs.instance.getString("curruntLang") == null

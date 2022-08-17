@@ -7,14 +7,16 @@ import 'package:dartz/dartz.dart';
 
 class Crud {
   static Future<Either<StatusRequest, Map>> postData(
-      String linkurl, Map data) async {
+      String linkurl, String data, Options options) async {
     try {
       if (await checkInternet()) {
-        var response = await Dio().post(linkurl, data: data);
-        print(response.statusCode);
+        Response response =
+            await Dio().post(linkurl, data: data, options: options);
 
         if (response.statusCode == 200 || response.statusCode == 201) {
+          print(response.data);
           Map responsebody = jsonDecode(response.data);
+          print(responsebody);
           return Right(responsebody);
         } else {
           return const Left(StatusRequest.serverfailure);
@@ -27,11 +29,16 @@ class Crud {
     }
   }
 
-  static Future<Either<StatusRequest, Map>> getData(String linkurl,
-      {Map<String, dynamic>? map}) async {
+  static Future<Either<StatusRequest, Map>> getData(
+    String linkurl, {
+    Map<String, dynamic>? map,
+  }) async {
     try {
       if (await checkInternet()) {
-        Response response = await Dio().get(linkurl, queryParameters: map);
+        Response response = await Dio().get(
+          linkurl,
+          queryParameters: map,
+        );
         if (response.statusCode == 200 || response.statusCode == 201) {
           Map<String, dynamic> data =
               new Map<String, dynamic>.from(response.data);

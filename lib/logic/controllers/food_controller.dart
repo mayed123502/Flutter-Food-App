@@ -23,8 +23,8 @@ class FodeController extends GetxController {
   }
 
   void _scrollListener() async {
-    if (scrollController.offset >= scrollController.position.maxScrollExtent &&
-        !scrollController.position.outOfRange) {
+    if (scrollController.position.maxScrollExtent == scrollController.offset) {
+      print('donw');
       loadingState.value = LoadingState(loadingType: LoadingType.loading);
       try {
         await Future.delayed(Duration(seconds: 5));

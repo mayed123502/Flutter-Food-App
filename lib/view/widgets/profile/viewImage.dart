@@ -19,34 +19,36 @@ class ViewImage extends StatelessWidget {
         builder: (_) => Align(
               alignment: Alignment.center,
               child: Stack(
+                clipBehavior: Clip.none,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(1.0),
-                    child: settingController.file.path != ''
-                        ? Image.file(settingController.file,
-                            height: 150.0.h, width: 150.w)
-                        : CachedNetworkImage(
-                            imageUrl: settingController.image.value,
-                            placeholder: (context, url) =>
-                                CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => Icon(
-                              Icons.person,
-                              color: Colors.grey.shade700,
-                              size: 100,
+                  CircleAvatar(
+                    radius: 60,
+                    child: ClipOval(
+                      child: settingController.file.path != ''
+                          ? Image.file(
+                              settingController.file,
+                              height: 150.0.h,
+                              width: 150.w,
+                              fit: BoxFit.fill,
+                            )
+                          : CachedNetworkImage(
+                              imageUrl: settingController.image.value,
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Icon(
+                                Icons.person,
+                                color: Colors.grey.shade700,
+                                size: 100,
+                              ),
+                              width: 150.w,
+                              height: 150.h,
+                              fit: BoxFit.cover,
                             ),
-                            width: 150.w,
-                            height: 150.h,
-                          ),
-
-                    //  settingController.file.path != ''
-                    //     ? Image.file(settingController.file,
-                    //         height: 150.0.h, width: 150.w)
-                    //     : Image.asset('assets/userimage.png',
-                    //         height: 150.0.h, width: 150.w),
+                    ),
                   ),
                   Positioned(
                     top: 80.h,
-                    right: 20.w,
+                    right: 0.w,
                     child: GestureDetector(
                       onTap: () {
                         settingController.choose();

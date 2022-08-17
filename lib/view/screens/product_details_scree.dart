@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../logic/controllers/cart_controllers.dart';
 import '../../logic/controllers/favorites_conntroller.dart';
 import '../../logic/controllers/productDetails.dart';
+import '../../routes/routes.dart';
 import '../widgets/productDetails/backIcon.dart';
 import '../widgets/productDetails/customTriangle.dart';
 import '../widgets/productDetails/description.dart';
@@ -113,7 +114,20 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment.end,
                                                     children: [
-                                                      SeeMore(),
+                                                      GestureDetector(
+                                                          onTap: () {
+                                                            Get.toNamed(
+                                                                Routes
+                                                                    .allReviewScreen,
+                                                                arguments: {
+                                                                  'prodectId':
+                                                                      controller
+                                                                          .prodectData
+                                                                          .value
+                                                                          .id
+                                                                });
+                                                          },
+                                                          child: SeeMore()),
                                                     ],
                                                   ),
                                                 ),

@@ -14,6 +14,7 @@ class ShowImage extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
+        fit: BoxFit.cover,
       ),
     );
   }

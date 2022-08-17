@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../logic/controllers/reviewProduct_controllers.dart';
 import '../../../utils/theme.dart';
 import '../textWithFont.dart';
 
@@ -10,12 +11,11 @@ class RatingBarReview extends StatefulWidget {
   const RatingBarReview({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _RatingBarReview createState() => _RatingBarReview();
 }
 
 class _RatingBarReview extends State<RatingBarReview> {
-  late double _rating;
+  final reviewController = Get.find<RreviewProductController>();
 
   double _initialRating = 4.0;
   bool _isVertical = false;
@@ -39,7 +39,8 @@ class _RatingBarReview extends State<RatingBarReview> {
       ),
       onRatingUpdate: (rating) {
         setState(() {
-          _rating = rating;
+          reviewController.rateing = rating ;
+          print(  reviewController.rateing);
         });
       },
       updateOnDrag: true,

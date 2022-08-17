@@ -1,11 +1,8 @@
-
-
-import 'package:ecommerce_app/model/restauntAll/categories_model.dart';
 import 'package:ecommerce_app/model/restauntAll/restaurants_model.dart';
 
 class AllResrtaurantData {
   Restaurants? restaurants;
-  List<Categories>? categories;
+  List<String>? categories;
 
   AllResrtaurantData({this.restaurants, this.categories});
 
@@ -13,12 +10,7 @@ class AllResrtaurantData {
     restaurants = json['restaurants'] != null
         ? new Restaurants.fromJson(json['restaurants'])
         : null;
-    if (json['categories'] != null) {
-      categories = <Categories>[];
-      json['categories'].forEach((v) {
-        categories!.add(new Categories.fromJson(v));
-      });
-    }
+    categories = json['categories'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -26,9 +18,7 @@ class AllResrtaurantData {
     if (this.restaurants != null) {
       data['restaurants'] = this.restaurants!.toJson();
     }
-    if (this.categories != null) {
-      data['categories'] = this.categories!.map((v) => v.toJson()).toList();
-    }
+    data['categories'] = this.categories;
     return data;
   }
 }

@@ -12,7 +12,6 @@ import '../../widgets/cart/listViewItem.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
-  List<String> _values = ['One', 'Two', 'Three', 'Four', 'Five'];
   final cartController = Get.find<CartController>();
 
   @override

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/model/review/reviewProdect_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,12 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 import '../textWithFont.dart';
 
 class CardRev extends StatelessWidget {
-  const CardRev({
+  CardRev({
     Key? key,
+    required this.data,
   }) : super(key: key);
-
+  final Data data;
   @override
   Widget build(BuildContext context) {
+
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,9 +34,9 @@ class CardRev extends StatelessWidget {
                       color: Colors.black,
                       fontSize: 18.sp,
                       fontWeight: FontWeight.normal,
-                      text: 'Alaa Mahmoud'),
+                      text:' data.user!.id.toString()'),
                   RatingBar.builder(
-                    initialRating: 5,
+                    initialRating:4,
                     minRating: 1,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -53,7 +56,7 @@ class CardRev extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              " is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+              data.feedback!,
               style: GoogleFonts.nunitoSans(
                 textStyle: TextStyle(
                   fontSize: 14.sp,
@@ -71,7 +74,7 @@ class CardRev extends StatelessWidget {
             child: TextWithFont().textWithRalewayFont(
                 color: Get.isDarkMode ? Colors.white : Colors.black,
                 fontSize: 16.sp,
-                text: 'March 22, 2022',
+                text: data.createdAt!.substring(0, 10),
                 fontWeight: FontWeight.w500),
           ),
           SizedBox(

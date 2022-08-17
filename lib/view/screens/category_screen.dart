@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../enums/loading_types.dart';
 import '../../logic/controllers/home_controllers.dart';
 import '../../logic/controllers/resturant_controller.dart';
+import '../../services/helper/handlingdataview.dart';
 import '../widgets/category/appBarCategory.dart';
 import '../widgets/category/cardCatrgory.dart';
 import '../widgets/category/choseMenu.dart';
@@ -15,12 +16,12 @@ class CategoryScreen extends GetView<ResturantController> {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.allCategoriesList.length);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarCategory(),
       body: Obx(() {
         final loadingType = controller.loadingState.value.loadingType;
+        print(controller.currentSeletected.value);
 
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -36,14 +37,11 @@ class CategoryScreen extends GetView<ResturantController> {
               SizedBox(
                 height: 15.h,
               ),
-              controller.isLoadingCategoriesList.value &&
-                      controller.isLoadingRestaurants.value &&
-                      controller.isLoadingRestaurantsWithOutPage.value
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : controller.currentSeletected.value == 0
-                      ? Expanded(
+              GetBuilder<ResturantController>(builder: (_) {
+                return controller.currentSeletected.value == 0
+                    ? HandlingDataView(
+                        statusRequest: controller.statusRequestRestaurant,
+                        widget: Expanded(
                           child: ListView.builder(
                             controller: controller.scrollController,
                             physics: const BouncingScrollPhysics(),
@@ -77,17 +75,18 @@ class CategoryScreen extends GetView<ResturantController> {
                               }
                             },
                           ),
-                        )
-                      : Expanded(
+                        ),
+                      )
+                    : HandlingDataView(
+                        statusRequest:
+                            controller.statusRequestRestaurantWithOutPage,
+                        widget: Expanded(
                           child: ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             shrinkWrap: true,
                             itemCount:
                                 controller.allRestaurantsListWithOutPage.length,
                             itemBuilder: (context, index) {
-                              print('${controller.allRestaurantsListWithOutPage[index].name}' +
-                                  '${controller.allRestaurantsListWithOutPage[index].categories![0].title}');
-
                               return controller
                                           .allRestaurantsListWithOutPage[index]
                                           .categories![0]
@@ -102,6 +101,8 @@ class CategoryScreen extends GetView<ResturantController> {
                             },
                           ),
                         ),
+                      );
+              })
             ],
           ),
         );

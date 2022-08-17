@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/routes.dart';
+import '../../screens/settings/offer_screen.dart';
 
 class CsutomCard extends StatelessWidget {
   const CsutomCard({
@@ -18,10 +19,7 @@ class CsutomCard extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        // ignore: prefer_const_literals_to_create_immutables
         children: [
-          // ignore: prefer_const_constructors
-
           GestureDetector(
             onTap: () {
               Get.toNamed(Routes.myOrdersScreen);
@@ -33,7 +31,7 @@ class CsutomCard extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.offerScreen);
+              Get.to(() => OfferScreen());
             },
             child: CostomColumn(
               text: 'Offer'.tr,

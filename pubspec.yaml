@@ -35,6 +35,8 @@ dependencies:
   location: ^4.4.0
   geolocator: ^9.0.1
   dartz: ^0.10.1
+  connectivity_plus: 
+  lottie: ^1.4.1
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +60,7 @@ flutter:
     - assets/
     - assets/onboarding/
     - assets/icons/
+    - assets/lottie/
   #   - images/a_dot_ham.jpeg
 
   

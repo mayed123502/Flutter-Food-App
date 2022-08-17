@@ -18,9 +18,6 @@ class ChoseMenu extends GetView<ResturantController> {
           return GestureDetector(
             onTap: () {
               controller.currentSeletected.value = index;
-
-              // controller
-              //     .filterByCategorie(controller.allCategoriesList[index]!);
             },
             child: Obx(
               () => Container(

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/services/baseAPI.dart';
+import 'package:ecommerce_app/services/helper/crud.dart';
 
 import '../model/user.dart';
 import '../utils/sharPreferenceUtils .dart';
@@ -43,7 +44,7 @@ class AuthApi {
     }
   }
 
- Future <UserModel> login({
+  Future<UserModel> login({
     required String email,
     required String password,
   }) async {
@@ -172,5 +173,35 @@ class AuthApi {
         .whenComplete(() {
       SharedPrefs.instance.remove('token');
     });
+  }
+
+  static Future<bool> changePassword({
+    required String old_password,
+    required String password,
+  }) async {
+    var url = '${BaseAPI.authPath}' + '/user/changePassword';
+    var body = jsonEncode({
+      'old_password': old_password,
+      'password': password,
+      'confirm_password': password
+    });
+
+    var response = await Dio().post(
+      url,
+      data: body,
+      options: Options(headers: {
+        'Authorization': 'Bearer ${SharedPrefs.instance.getString('token')}'
+      }),
+    );
+    Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
+
+    if (response.statusCode == 200 &&
+        (data['status'] == 422 ||
+            data['status'] == 200 ||
+            data['status'] == 201)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

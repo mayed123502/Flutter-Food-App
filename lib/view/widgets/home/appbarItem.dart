@@ -20,8 +20,7 @@ class AppBarItem extends StatelessWidget {
               Get.toNamed(Routes.searchScreen);
             }),
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                 horizontal: 15.w,vertical: 25.h),
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 25.h),
               child: HomeTextField(),
             ),
           ),
@@ -31,7 +30,9 @@ class AppBarItem extends StatelessWidget {
             Get.toNamed(Routes.notificatonScreen);
           }),
           child: Padding(
-            padding:  Get.locale?.languageCode == 'en'? EdgeInsets.only(right: 25.w, left: 0):EdgeInsets.only(right:0, left: 25.w),
+            padding: Get.locale?.languageCode == 'en'
+                ? EdgeInsets.only(right: 25.w, left: 0)
+                : EdgeInsets.only(right: 0, left: 25.w),
             child: const Icon(
               Icons.notifications_none_rounded,
               color: Colors.black,

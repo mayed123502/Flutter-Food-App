@@ -5,28 +5,25 @@ import 'package:get/get.dart';
 import '../../enums/loading_state.dart';
 import '../../enums/loading_types.dart';
 
+import '../../model/restauntAll/allResrtaurantData_model.dart';
+import '../../services/helper/handingdatacontroller.dart';
+import '../../services/helper/statusrequest.dart';
 import '../../services/restaurant_services.dart';
 
 class ResturantController extends GetxController {
   var allRestaurantsList = <DataOfRestaurant>[].obs;
   var allRestaurantsListWithOutPage = <DataOfRestaurant>[].obs;
-
   var allCategoriesList = <dynamic>[].obs;
-
-  final isLoadingRestaurants = true.obs;
-  final isLoadingRestaurantsWithOutPage = true.obs;
-
-  final isLoadingCategoriesList = true.obs;
-
   final scrollController = ScrollController();
   int _pageNo = 1;
   final loadingState = LoadingState(loadingType: LoadingType.stable).obs;
   var currentSeletected = 0.obs;
+  late StatusRequest statusRequestRestaurant;
+  late StatusRequest statusRequestRestaurantWithOutPage;
 
   @override
   void onInit() async {
     viewAllRestaurants();
-    viewAllCategories();
     viewRestaurantsWithOutPag();
     scrollController.addListener(_scrollListener);
   }
@@ -38,14 +35,17 @@ class ResturantController extends GetxController {
       try {
         await Future.delayed(Duration(seconds: 5));
 
-        final listOfData = await RestaurantApi.viewAllRestaurants(++_pageNo);
+        var response = await RestaurantApi.viewAllRestaurants(++_pageNo);
 
         if (allRestaurantsList.isEmpty) {
           loadingState.value = LoadingState(
               loadingType: LoadingType.completed,
               completed: "there is no data");
         } else {
-          allRestaurantsList.addAll(listOfData);
+          final dataList = (response['data']['restaurants']['data'] as List)
+              .map((e) => DataOfRestaurant.fromJson(e))
+              .toList();
+          allRestaurantsList.addAll(dataList);
           loadingState.value = LoadingState(loadingType: LoadingType.loaded);
         }
       } catch (err) {
@@ -56,39 +56,40 @@ class ResturantController extends GetxController {
   }
 
   void viewAllRestaurants() async {
-    final listOfData = await RestaurantApi.viewAllRestaurants(
+    statusRequestRestaurant = StatusRequest.loading;
+
+    var response = await RestaurantApi.viewAllRestaurants(
       _pageNo,
     );
-    allRestaurantsList.assignAll(listOfData);
-    isLoadingRestaurants.value = false;
+    statusRequestRestaurant = handlingData(response);
+    if (StatusRequest.success == statusRequestRestaurant) {
+      if (response['status'] == 200) {
+        AllResrtaurantData dataOfRestaurant =
+            AllResrtaurantData.fromJson(response['data']);
+
+        allRestaurantsList.assignAll(dataOfRestaurant.restaurants!.data!);
+        allCategoriesList.assignAll(dataOfRestaurant.categories!);
+      } else {
+        statusRequestRestaurant = StatusRequest.failure;
+      }
+    }
+    update();
   }
 
   void viewRestaurantsWithOutPag() async {
-    final listOfData = await RestaurantApi.viewRestaurantsWithOutPage();
-    allRestaurantsListWithOutPage.assignAll(listOfData);
-    isLoadingRestaurantsWithOutPage.value = false;
+    statusRequestRestaurantWithOutPage = StatusRequest.loading;
+    var response = await RestaurantApi.viewRestaurantsWithOutPage();
+    statusRequestRestaurantWithOutPage = handlingData(response);
+    if (StatusRequest.success == statusRequestRestaurantWithOutPage) {
+      if (response['status'] == 200) {
+        final dataList = (response['data']['restaurants']['data'] as List)
+            .map((e) => DataOfRestaurant.fromJson(e))
+            .toList();
+        allRestaurantsListWithOutPage.assignAll(dataList);
+      } else {
+        statusRequestRestaurantWithOutPage = StatusRequest.failure;
+      }
+    }
+    update();
   }
-
-  void viewAllCategories() async {
-    final listOfData = await RestaurantApi.viewAllCategories(
-      _pageNo,
-    );
-    allCategoriesList.assignAll(listOfData);
-    isLoadingCategoriesList.value = false;
-  }
-
-  // void filterByCategorie(String categorie) async {
-  //   if (categorie == 'All') {
-  //     viewAllRestaurants();
-  //   } else {
-  //     List<DataOfRestaurant> outputList = await allRestaurantsListWithOutPage
-  //         .where((o) => o.categories![0].title == categorie)
-  //         .toList();
-  //     for (final e in outputList) {
-  //       //
-  //       print(e.categories![0].title);
-  //     }
-  //     allRestaurantsListWithOutPage.assignAll(outputList);
-  //   }
-  // }
 }
