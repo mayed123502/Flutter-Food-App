@@ -12,7 +12,7 @@ class SeeMore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "See More",
+      "See More".tr,
       style: TextStyle(
         color: mainColor,
         fontSize: 10,

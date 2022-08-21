@@ -25,7 +25,7 @@ class FilterContainer extends StatelessWidget {
         },
       ),
       decoration: BoxDecoration(
-        color: Color.fromRGBO(244, 244, 244, 1),
+        color:Get.isDarkMode? Theme.of(context).textTheme.headline4!.color:Color(0xFFF4F4F4),
         borderRadius: BorderRadius.circular(8),
       ),
     );

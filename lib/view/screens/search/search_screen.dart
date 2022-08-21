@@ -23,7 +23,6 @@ class SearchScreen extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: SearchAppBar(),
         body: SingleChildScrollView(
           child: Column(

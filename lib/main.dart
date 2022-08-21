@@ -17,12 +17,14 @@ import 'utils/sharPreferenceUtils .dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefs.init();
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white.withOpacity(.8),
-      statusBarColor: Colors.white.withOpacity(.8),
-    ),
-  );
+  // SystemChrome.setSystemUIOverlayStyle(
+  //   SystemUiOverlayStyle(
+  //     systemNavigationBarColor: Colors.white.withOpacity(.8),
+  //     statusBarColor: Colors.white.withOpacity(.8),
+  //   ),
+  // );
+  // SharedPrefs.instance.clear();
+
   runApp(MyApp());
 }
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // SharedPrefs.instance.clear();
+
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,

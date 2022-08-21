@@ -8,6 +8,7 @@ import '../../logic/controllers/cart_controllers.dart';
 import '../../logic/controllers/favorites_conntroller.dart';
 import '../../logic/controllers/productDetails.dart';
 import '../../routes/routes.dart';
+import '../../utils/sharPreferenceUtils .dart';
 import '../widgets/productDetails/backIcon.dart';
 import '../widgets/productDetails/customTriangle.dart';
 import '../widgets/productDetails/description.dart';
@@ -26,6 +27,22 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
   ProductDetailsScreen({Key? key}) : super(key: key);
   final favoriteController = Get.find<FavoritesController>();
   final cartController = Get.find<CartController>();
+
+  chicke() {
+    print('done1');
+
+    String name = controller.prodectData.value.name!;
+    String image = controller.prodectData.value.image!;
+
+    cartController.addProductToCart(
+      quantity: controller.counter.value,
+      product_id: controller.prodectData.value.id!,
+      nameProduct: name,
+      imageProduct: image,
+    );
+
+    print('done2');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +68,9 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                       SafeArea(
                         child: Column(
                           children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
                             BackIcon(),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.35,
@@ -67,8 +87,8 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                       width: double.infinity,
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 30),
-                                      decoration: const ShapeDecoration(
-                                        color: Colors.white,
+                                      decoration: ShapeDecoration(
+                                        color: Theme.of(context).cardColor,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(40),
@@ -87,6 +107,12 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                           SupTitle(
                                             supTitle: controller
                                                 .prodectData.value.name!,
+                                            cal: controller
+                                                .prodectData.value.calories
+                                                .toString(),
+                                            price: controller
+                                                .prodectData.value.price
+                                                .toString(),
                                           ),
                                           SizedBox(
                                             height: 10.h,
@@ -99,16 +125,21 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                                 horizontal: 20),
                                             child: Row(
                                               children: [
-                                                RatingBarRev(),
-                                                TextWithFont()
-                                                    .textWithRalewayFont(
-                                                        color: Get.isDarkMode
-                                                            ? Colors.white
-                                                            : Colors.black,
-                                                        fontSize: 12.sp,
-                                                        text: '(4.5) 5 Review',
-                                                        fontWeight:
-                                                            FontWeight.w500),
+                                                RatingBarRev(
+                                                  rating: controller
+                                                      .prodectData.value.rating!
+                                                      .toDouble(),
+                                                ),
+                                                TextWithFont().textWithRalewayFont(
+                                                    color: Theme.of(context)
+                                                        .textTheme
+                                                        .headline1!
+                                                        .color!,
+                                                    fontSize: 12.sp,
+                                                    text:
+                                                        '(${controller.prodectData.value.rating}) ${controller.prodectData.value.numRating} Review',
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                                 Expanded(
                                                   child: Column(
                                                     crossAxisAlignment:
@@ -144,7 +175,10 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                           const SizedBox(
                                             height: 10,
                                           ),
-                                          DescriptionText(),
+                                          DescriptionText(
+                                            decoration: controller
+                                                .prodectData.value.description!,
+                                          ),
 
                                           const SizedBox(
                                             height: 10,
@@ -172,22 +206,12 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 20),
                                               child: AuthButton(
-                                                onPressed: () {
-                                                  String name = controller
-                                                      .prodectData.value.name!;
-                                                  String image = controller
-                                                      .prodectData.value.image!;
-
-                                                  cartController
-                                                      .addProductToCart(
-                                                    quantity: controller
-                                                        .counter.value,
-                                                    product_id: controller
-                                                        .prodectData.value.id!,
-                                                    nameProduct: name,
-                                                    imageProduct: image,
-                                                  );
-                                                },
+                                                press: SharedPrefs.instance
+                                                            .getString(
+                                                                'token') ==
+                                                        null
+                                                    ? null
+                                                    : () => chicke(),
                                                 text: 'Add to Cart',
                                               ),
                                             ),
@@ -209,19 +233,13 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                       child: Align(
                                         alignment: Alignment.topRight,
                                         child: Container(
-                                          decoration: BoxDecoration(boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.grey.shade200,
-                                              offset: Offset(0, 2),
-                                              blurRadius: 2,
-                                            )
-                                          ]),
                                           child: ClipPath(
                                             clipper: CustomTriangle(),
                                             child: Container(
                                                 width: 60,
                                                 height: 60,
-                                                color: Colors.white,
+                                                color:
+                                                    Theme.of(context).cardColor,
                                                 child: favoriteController
                                                         .isFavourites(
                                                             controller

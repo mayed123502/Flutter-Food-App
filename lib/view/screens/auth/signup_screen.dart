@@ -27,7 +27,6 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: context.theme.backgroundColor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -153,7 +152,7 @@ class SignUpScreen extends StatelessWidget {
                               ? CircularProgressIndicator()
                               : AuthButton(
                                   text: 'Register'.tr,
-                                  onPressed: () {
+                                  press: () {
                                     if (fromKey.currentState!.validate()) {
                                       String name = nameController.text.trim();
                                       String email =

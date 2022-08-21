@@ -20,8 +20,9 @@ class UserDetails extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 30,
+            backgroundColor: Get.isDarkMode ? Colors.white : Colors.blue,
             child: ClipOval(
-              child: (settingsController.image.value == null)
+              child: settingsController.image.value == 'null'
                   ? Image.asset(
                       'assets/icons/person.png',
                       fit: BoxFit.cover,
@@ -47,15 +48,19 @@ class UserDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextWithFont().textWithRobotoFont(
-                  color: Colors.black,
+                  color: Theme.of(context).textTheme.headline1!.color,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.normal,
-                  text: settingsController.name.value),
+                  text: SharedPrefs.instance.getString('token') == null
+                      ? 'unknown'
+                      : settingsController.name.value),
               TextWithFont().textWithRobotoFont(
-                  color: Colors.black,
+                  color: Theme.of(context).textTheme.headline1!.color,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.normal,
-                  text: settingsController.email.value),
+                  text: SharedPrefs.instance.getString('token') == null
+                      ? 'unknown'
+                      : settingsController.email.value),
             ],
           )
         ],

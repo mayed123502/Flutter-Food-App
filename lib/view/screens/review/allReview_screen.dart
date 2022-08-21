@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../logic/controllers/reviewProduct_controllers.dart';
 import '../../../services/helper/handlingdataview.dart';
+import '../../../utils/sharPreferenceUtils .dart';
 import '../../widgets/auth/auth_button.dart';
 import '../../widgets/review/appBarRev.dart';
 import '../../widgets/review/cardRev.dart';
@@ -17,7 +18,6 @@ class AllReviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBarRev(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -62,10 +62,13 @@ class AllReviewScreen extends StatelessWidget {
                     color: Colors.grey.withOpacity(.2),
                   ),
                   child: AuthButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.writeReviewScreen,
-                          arguments: {'prodectId': reviewController.idProdect});
-                    },
+                    press: SharedPrefs.instance.getString('token') == null
+                        ? null
+                        : () {
+                            Get.toNamed(Routes.writeReviewScreen, arguments: {
+                              'prodectId': reviewController.idProdect
+                            });
+                          },
                     text: 'Write Review',
                   ),
                 ),

@@ -67,7 +67,7 @@ class HomeController extends GetxController {
     statusRequestOffer = StatusRequest.loading;
     var response = await HomeServices.viewHomeOffers();
     statusRequestOffer = handlingData(response);
-      // print("=============================== Controller $response ");
+    // print("=============================== Controller $response ");
 
     if (StatusRequest.success == statusRequestOffer) {
       if (response['status'] == 200) {
@@ -80,6 +80,5 @@ class HomeController extends GetxController {
       }
     }
     update();
-   
   }
 }

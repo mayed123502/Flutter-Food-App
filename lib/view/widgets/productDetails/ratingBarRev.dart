@@ -6,22 +6,20 @@ import '../../../utils/theme.dart';
 class RatingBarRev extends StatelessWidget {
   const RatingBarRev({
     Key? key,
+    required this.rating,
   }) : super(key: key);
-
+  final double rating;
   @override
   Widget build(BuildContext context) {
-    return RatingBar.builder(
-      initialRating: 5,
-      minRating: 1,
-      direction: Axis.horizontal,
-      allowHalfRating: true,
+    return RatingBarIndicator(
+      rating:rating,
       itemCount: 5,
       itemSize: 20.0,
+      physics: BouncingScrollPhysics(),
       itemBuilder: (context, _) => Icon(
         Icons.star,
         color: mainColor,
       ),
-      onRatingUpdate: (rating) {},
     );
   }
 }

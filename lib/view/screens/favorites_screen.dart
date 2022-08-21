@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../logic/controllers/favorites_conntroller.dart';
+import '../../utils/sharPreferenceUtils .dart';
 import '../widgets/favorite/appBarFavorites.dart';
 import '../widgets/favorite/itemListView.dart';
 
@@ -16,19 +17,36 @@ class FavoritesScreen extends GetView<FavoritesController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBarFavorites(),
-        body: Obx(
-          () => Padding(
-            padding: EdgeInsets.only(bottom: 10.h),
-            child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemCount: controller.favouritesList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ItemListView(
-                  homeProdectData: controller.favouritesList[index],
-                );
-              },
-            ),
-          ),
-        ));
+        body: SharedPrefs.instance.getString('token') == null
+            ? Center(
+                child: Text(
+                  "You must open an account".tr,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                ),
+              )
+            : Obx(
+                () => controller.favouritesList.isNotEmpty
+                    ? Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: controller.favouritesList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ItemListView(
+                              homeProdectData: controller.favouritesList[index],
+                            );
+                          },
+                        ),
+                      )
+                    : Center(
+                        child: Text(
+                        "No Favorite Foods".tr,
+                        style: TextStyle(
+                            fontSize: 20, color: Colors.black.withOpacity(.5)),
+                      )),
+              ));
   }
 }

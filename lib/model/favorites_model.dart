@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:ecommerce_app/services/baseAPI.dart';
 
-class HomeProdectData {
+class FavoritesData {
   int? id;
   String? name;
   String? image;
@@ -14,7 +14,7 @@ class HomeProdectData {
   int? restaurantId;
   int? numRating;
 
-  HomeProdectData({
+  FavoritesData({
     this.id,
     this.name,
     this.image,
@@ -26,10 +26,10 @@ class HomeProdectData {
     this.numRating,
   });
 
-  HomeProdectData.fromJson(Map<String, dynamic> json) {
+  FavoritesData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    image = BaseAPI.baseImage + json['image'];
+    image =  json['image'];
     rating = json['rating'];
     price = json['price'];
     calories = json['calories'];
@@ -53,9 +53,9 @@ class HomeProdectData {
     return data;
   }
 
-  static Map<String, dynamic> toMap(HomeProdectData homeProdectData) => {
+  static Map<String, dynamic> toMap(FavoritesData homeProdectData) => {
         'id': homeProdectData.id,
-        'image': homeProdectData.image!.substring(30),
+        'image': homeProdectData.image,
         'rating': homeProdectData.rating,
         'price': homeProdectData.price,
         'name': homeProdectData.name,
@@ -64,14 +64,14 @@ class HomeProdectData {
         'NumRating': homeProdectData.numRating,
         'restaurant_id': homeProdectData.restaurantId
       };
-  static String encode(List<HomeProdectData> musics) => json.encode(
+  static String encode(List<FavoritesData> musics) => json.encode(
         musics
-            .map<Map<String, dynamic>>((music) => HomeProdectData.toMap(music))
+            .map<Map<String, dynamic>>((music) => FavoritesData.toMap(music))
             .toList(),
       );
 
-  static List<HomeProdectData> decode(String musics) =>
+  static List<FavoritesData> decode(String musics) =>
       (json.decode(musics) as List<dynamic>)
-          .map<HomeProdectData>((item) => HomeProdectData.fromJson(item))
+          .map<FavoritesData>((item) => FavoritesData.fromJson(item))
           .toList();
 }

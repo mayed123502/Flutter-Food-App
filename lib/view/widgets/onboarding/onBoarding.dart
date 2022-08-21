@@ -44,7 +44,7 @@ class PageViewOnBoarding extends StatelessWidget {
             fontSize: 18.sp,
             textAlign: TextAlign.center,
             fontWeight: FontWeight.w400,
-            color: ThemesApp.light.textTheme.headline2?.color?.withOpacity(.8)),
+            color:Theme.of(context).textTheme.headline5!.color,)
       ],
     );
   }

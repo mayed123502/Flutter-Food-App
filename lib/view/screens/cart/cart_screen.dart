@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/cart_controllers.dart';
+import '../../../utils/sharPreferenceUtils .dart';
 import '../../widgets/auth/auth_button.dart';
 import '../../widgets/cart/appBarCart.dart';
 import '../../widgets/cart/customCard.dart';
@@ -18,55 +19,74 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarCart(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Obx(() => SizedBox(
-                    height: Get.height * .48,
-                    child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      itemCount: cartController.cartDataList.length,
-                      itemBuilder: (BuildContext context, int index) =>
-                          ListViewItem(
-                        cartData: cartController.cartDataList[index],
-                      ),
-                    ),
-                  )),
-              Obx(() {
-                // print('${cartController.cartTotalPrice()} llll');
-                return SizedBox(
-                  height: Get.height * .4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      // color: Colors.black,
-                      children: [
-                        SizedBox(
-                          height: 15.h,
+      body: SharedPrefs.instance.getString('token') == null
+          ? Center(
+              child: Text(
+                "You must open an account".tr,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black.withOpacity(.5),
+                ),
+              ),
+            )
+          : SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Obx(() => cartController.cartDataList.isNotEmpty
+                        ? SizedBox(
+                            height: Get.height * .48,
+                            child: ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: cartController.cartDataList.length,
+                              itemBuilder: (BuildContext context, int index) =>
+                                  ListViewItem(
+                                cartData: cartController.cartDataList[index],
+                              ),
+                            ),
+                          )
+                        : SizedBox(
+                            height: Get.height * .48,
+                            child: Center(
+                                child: Text(
+                              "No Foods In Cart".tr,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black.withOpacity(.5)),
+                            )),
+                          )),
+                    Obx(() {
+                      return SizedBox(
+                        height: Get.height * .4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              CustomCard(
+                                total: cartController.cartTotalPrice(),
+                              ),
+                              SizedBox(
+                                height: 30.h,
+                              ),
+                              AuthButton(
+                                text: 'Checkout'.tr,
+                                press: () {
+                                  Get.toNamed(Routes.checkoutScreen);
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                        CustomCard(
-                          total: cartController.cartTotalPrice(),
-                        ),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        AuthButton(
-                          text: 'Checkout',
-                          onPressed: () {
-                            Get.toNamed(Routes.checkoutScreen);
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-            ],
-          ),
-        ),
-      ),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }

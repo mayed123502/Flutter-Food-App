@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/model/restauntAll/dataOfRestaurant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../model/restaurantsDetails_model.dart';
@@ -20,7 +21,7 @@ class ResturantDetails extends StatelessWidget {
         Row(
           children: [
             TextWithFont().textWithRalewayFont(
-                color: filterTitlesColor,
+                color: Theme.of(context).textTheme.headline1!.color!,
                 fontSize: 20.sp,
                 text: restaurantData.name!,
                 fontWeight: FontWeight.bold),
@@ -30,7 +31,8 @@ class ResturantDetails extends StatelessWidget {
             TextWithFont().textWithRobotoFont(
                 color: dateColor,
                 fontSize: 14.sp,
-                text: 'Open(9:00am to 12pm)',
+                text:
+                    'Open(${restaurantData.startAt} to ${restaurantData.endAt})',
                 fontWeight: FontWeight.w500),
           ],
         ),
@@ -45,9 +47,9 @@ class ResturantDetails extends StatelessWidget {
               height: 20.h,
             ),
             TextWithFont().textWithRalewayFont(
-                color: Colors.black.withOpacity(.5),
+                color:  Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
                 fontSize: 16.sp,
-                text: restaurantData.name!,
+                text: restaurantData.address!,
                 fontWeight: FontWeight.w500),
           ],
         ),
@@ -60,21 +62,27 @@ class ResturantDetails extends StatelessWidget {
               width: 5.w,
             ),
             TextWithFont().textWithRalewayFont(
-                color: Colors.black.withOpacity(.5),
+                color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
                 fontSize: 16.sp,
                 text: restaurantData.rating.toString(),
                 fontWeight: FontWeight.w500),
-            Icon(
-              Icons.star,
-              color: mainColor,
+            RatingBarIndicator(
+              rating: restaurantData.rating!.toDouble(),
+              itemCount: 1,
+              itemSize: 20.0,
+              physics: BouncingScrollPhysics(),
+              itemBuilder: (context, _) => Icon(
+                Icons.star,
+                color: mainColor,
+              ),
             ),
             SizedBox(
               width: 16.w,
             ),
             TextWithFont().textWithRalewayFont(
-                color: Colors.black.withOpacity(.5),
+                color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
                 fontSize: 16.sp,
-                text: '${restaurantData.name}+Rating',
+                text: '${restaurantData.numRating}+Rating',
                 fontWeight: FontWeight.w500),
             SizedBox(
               width: 16.w,

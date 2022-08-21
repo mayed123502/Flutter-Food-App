@@ -164,9 +164,5 @@ class AuthController extends GetxController {
     }
   }
 
-  void logout() {
-    AuthApi().logout();
-    Get.toNamed(Routes.loginScreen);
-    update();
-  }
+
 }

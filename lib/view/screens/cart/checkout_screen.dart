@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../logic/controllers/checkout_controller.dart';
 import '../../../routes/routes.dart';
-import '../../../utils/constant/imageasset.dart';
 import '../../widgets/cart/checkout/addCardButton.dart';
 import '../../widgets/cart/checkout/addres.dart';
 import '../../widgets/cart/checkout/deliveryAddress.dart';
@@ -17,12 +17,12 @@ import '../../widgets/cart/checkout/orderDetails.dart';
 import '../../widgets/cart/checkout/paymentCard.dart';
 import '../../widgets/cart/checkout/showModalBottomSheetCardbay.dart';
 import '../../widgets/cart/checkout/showOrderDit.dart';
-import '../../widgets/cart/counter.dart';
-import '../../widgets/cart/customTextInput.dart';
+
 import '../../widgets/textWithFont.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({Key? key}) : super(key: key);
+  CheckoutScreen({Key? key}) : super(key: key);
+  final controller = Get.find<CheckoutController>();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,11 @@ class CheckoutScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Addres(),
+                          GetBuilder<CheckoutController>(builder: (_) {
+                            return Addres(
+                              addres: controller.addres ?? 'Unknown',
+                            );
+                          }),
                           TextButton(
                             onPressed: () {
                               Get.toNamed(Routes.changeAddressScreen);
@@ -196,7 +200,6 @@ class CheckoutScreen extends StatelessWidget {
                       height: 20,
                     ),
                     ShowOrderDit(),
-                    
                     SizedBox(
                       height: 60.h,
                     ),
@@ -217,7 +220,7 @@ class CheckoutScreen extends StatelessWidget {
                 color: Colors.grey.withOpacity(.2),
               ),
               child: AuthButton(
-                onPressed: () {
+                press: () {
                   ShowModalBottomSheetDone(context);
                 },
                 text: 'Send Order',
@@ -228,15 +231,4 @@ class CheckoutScreen extends StatelessWidget {
       ]),
     );
   }
-
 }
-
-
-
-
-
-
-
-
-
-

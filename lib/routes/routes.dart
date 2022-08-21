@@ -4,6 +4,7 @@ import '../logic/bindings/address_bindings.dart';
 import '../logic/bindings/auth_bindings.dart';
 import '../logic/bindings/cart_bindings.dart';
 import '../logic/bindings/category_bindings.dart';
+import '../logic/bindings/checkout_binding.dart';
 import '../logic/bindings/favorites_bindings.dart';
 import '../logic/bindings/fode_bindings.dart';
 import '../logic/bindings/home_bindings.dart';
@@ -162,6 +163,7 @@ class AppRoutes {
     GetPage(
       name: Routes.checkoutScreen,
       page: () => CheckoutScreen(),
+      binding: CheckoutBindings()
     ),
     GetPage(
         name: Routes.changeAddressScreen,

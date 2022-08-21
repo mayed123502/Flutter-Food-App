@@ -80,7 +80,7 @@ Future<dynamic> ShowModalBottomSheetDone(BuildContext context) {
                                   width: double.infinity,
                                   child: AuthButton(
                                     text: "Track My Order",
-                                    onPressed: () {},
+                                    press: () {},
                                   )),
                             ),
                             Padding(

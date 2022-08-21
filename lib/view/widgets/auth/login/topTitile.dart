@@ -19,7 +19,7 @@ class TopTitile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextWithFont().textWithRalewayFont(
-              color: Get.isDarkMode ? Colors.white : Colors.black,
+              color:  Theme.of(context).textTheme.headline1!.color!,
               fontSize: 28.sp,
               text: 'Login'.tr,
               fontWeight: FontWeight.bold),
@@ -32,6 +32,7 @@ class TopTitile extends StatelessWidget {
               textStyle: TextStyle(
                 fontSize: 19.sp,
                 fontWeight: FontWeight.w300,
+                color: Theme.of(context).textTheme.headline1!.color!,
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import '../services/baseAPI.dart';
+import 'homeProdect/homeProdectData.dart';
 
 class RestaurantData {
   String? message;
@@ -38,7 +39,7 @@ class Data {
   String? address;
   String? startAt;
   String? endAt;
-  List<Product>? product;
+  List<HomeProdectData>? product;
 
   Data(
       {this.id,
@@ -61,9 +62,9 @@ class Data {
     startAt = json['start_at'];
     endAt = json['end_at'];
     if (json['product'] != null) {
-      product = <Product>[];
+      product = <HomeProdectData>[];
       json['product'].forEach((v) {
-        product!.add(new Product.fromJson(v));
+        product!.add(new HomeProdectData.fromJson(v));
       });
     }
   }

@@ -64,11 +64,10 @@ class AuthApi {
     if (statusCode == 200) {
       UserModel user = UserModel.fromJson(response.data);
 
-      var imageUrl = '${BaseAPI.baseImage}' + '/${user.user!.image}';
       shaedpref.setString("token", '${user.accessToken}');
       shaedpref.setString("phone_number", '${user.user!.phoneNumber}');
       shaedpref.setString("email", '${user.user!.email}');
-      shaedpref.setString("image", imageUrl);
+      shaedpref.setString("image", '${user.user!.image}');
       shaedpref.setString("name", '${user.user!.name}');
 
       return user;
@@ -95,7 +94,7 @@ class AuthApi {
             return status! < 500;
           }),
     );
-
+    print(response.data);
     Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
 
     if (response.statusCode == 200 && data['message'] != null) {

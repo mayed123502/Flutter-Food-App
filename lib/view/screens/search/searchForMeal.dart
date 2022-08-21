@@ -70,6 +70,7 @@ class SearchForMeal extends StatelessWidget {
                                     '${searchController.searchProductsList[index].calories}',
                                     style: TextStyle(
                                       fontSize: 12,
+                                    color:  Theme.of(context).textTheme.headline1!.color!.withOpacity(.5)
                                     ),
                                   ),
                                 ],

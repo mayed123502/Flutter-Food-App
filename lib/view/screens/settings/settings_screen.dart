@@ -20,13 +20,11 @@ import 'dart:math' as math;
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
-  final controller = Get.find<AuthController>();
   final settingController = Get.find<SettingsController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
       body: Padding(
         padding: const EdgeInsets.all(30).r,
         child: Column(
@@ -42,6 +40,7 @@ class SettingsScreen extends StatelessWidget {
               height: 15.h,
             ),
             Card(
+              color: Theme.of(context).cardColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),
@@ -64,7 +63,6 @@ class SettingsScreen extends StatelessWidget {
                       paddingSize: 0,
                       sizedBoxWidth:
                           Get.locale!.languageCode == 'en' ? 100.w : 124.w,
-                      // Get.toNamed(Routes.restPasswordScreen);
                     ),
                     SizedBox(
                       height: 40.h,
@@ -92,7 +90,7 @@ class SettingsScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         print('logout');
-                        controller.logout();
+                        settingController.logout();
                       },
                       child: Row(
                         children: [
@@ -108,7 +106,7 @@ class SettingsScreen extends StatelessWidget {
                             text: 'Logout'.tr,
                             fontSize: 14.sp,
                             fontWeight: FontWeight.normal,
-                            color: Colors.black,
+                            color: Theme.of(context).textTheme.headline1!.color,
                           ),
                         ],
                       ),

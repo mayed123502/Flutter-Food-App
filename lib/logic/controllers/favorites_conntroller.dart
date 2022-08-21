@@ -33,6 +33,7 @@ class FavoritesController extends GetxController {
     } else {
       favouritesList.addIf(
           !favouritesList.contains(homeProdectData), homeProdectData);
+          
       final String encodedData = HomeProdectData.encode(favouritesList);
       await storge.setString('favouritesList', encodedData);
     }

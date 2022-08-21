@@ -18,22 +18,24 @@ class OnBoardingColumn extends StatelessWidget {
     return Column(
       children: [
         AuthButton(
-          onPressed: () {
+          press: () {
             Get.toNamed(Routes.mainScreen);
           },
           text: 'Get Start'.tr,
         ),
-        SizedBox(height:15.h,),
+        SizedBox(
+          height: 15.h,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-             'I already have an account. '.tr,
+              'I already have an account. '.tr,
               style: GoogleFonts.nunitoSans(
                 textStyle: TextStyle(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w300,
-                ),
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w300,
+                    color: Theme.of(context).textTheme.headline1!.color),
               ),
             ),
             InkWell(
@@ -44,7 +46,7 @@ class OnBoardingColumn extends StatelessWidget {
                 text: "Log in".tr,
                 fontSize: 15.sp,
                 fontWeight: FontWeight.w300,
-                color: ThemesApp.light.textTheme.headline1?.color,
+                color: headline1Color,
               ),
             ),
           ],

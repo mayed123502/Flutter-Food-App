@@ -110,7 +110,7 @@ class NewPwScreen extends StatelessWidget {
                       ? CircularProgressIndicator()
                       : AuthButton(
                           text: 'Update Password',
-                          onPressed: () {
+                          press: () {
                             if (_form.currentState!.validate()) {
                               String password = passwordController.text;
 

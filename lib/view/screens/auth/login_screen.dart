@@ -28,7 +28,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: context.theme.backgroundColor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -115,7 +114,7 @@ class LoginScreen extends StatelessWidget {
                               ? CircularProgressIndicator()
                               : AuthButton(
                                   text: 'Login'.tr,
-                                  onPressed: () {
+                                  press: () {
                                     if (fromKey.currentState!.validate()) {
                                       String email =
                                           emailController.text.trim();

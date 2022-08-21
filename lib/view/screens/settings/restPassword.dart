@@ -102,7 +102,7 @@ class RestPasswordScreen extends StatelessWidget {
             ),
             AuthButton(
               text: 'Update Password',
-              onPressed: () {
+              press: () {
                 _form.currentState?.validate();
 
                 // Get.toNamed(Routes.forgotPasswordCodeScreen);

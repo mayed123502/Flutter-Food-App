@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,7 +20,7 @@ class FoodsView extends StatelessWidget {
         width: 160,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
+            color: Theme.of(context).textTheme.headline4!.color,
             boxShadow: const [
               BoxShadow(
                 offset: Offset(0, 2),
@@ -27,10 +28,9 @@ class FoodsView extends StatelessWidget {
                 color: Color.fromARGB(76, 0, 0, 0),
               )
             ]),
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(
-            child: CachedNetworkImage(
+            child:CachedNetworkImage(
               imageUrl: homeProdectData.image!,
               imageBuilder: (context, imageProvider) => Container(
                 margin: const EdgeInsets.all(3),
@@ -49,8 +49,7 @@ class FoodsView extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -58,8 +57,8 @@ class FoodsView extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.roboto(
-                      textStyle: const TextStyle(
-                        color: Colors.black,
+                      textStyle:  TextStyle(
+                        color: Theme.of(context).textTheme.headline1!.color,
                         fontSize: 16,
                         fontWeight: FontWeight.w800,
                       ),
@@ -83,9 +82,15 @@ class FoodsView extends StatelessWidget {
                     Row(
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
-                          Icons.star,
-                          color: mainColor,
+                        RatingBarIndicator(
+                          rating: homeProdectData.rating!.toDouble(),
+                          itemCount: 1,
+                          itemSize: 25.0,
+                          physics: BouncingScrollPhysics(),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: mainColor,
+                          ),
                         ),
                         Text(
                           '${homeProdectData.rating}',

@@ -26,7 +26,7 @@ class RowWithSwitchNotification extends StatelessWidget {
           text: text,
           fontSize: 14.sp,
           fontWeight: FontWeight.normal,
-          color: Colors.black,
+          color: Theme.of(context).textTheme.headline1!.color,
         ),
         SizedBox(
           width: paddingSize,

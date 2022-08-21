@@ -33,10 +33,10 @@ class AppBarItem extends StatelessWidget {
             padding: Get.locale?.languageCode == 'en'
                 ? EdgeInsets.only(right: 25.w, left: 0)
                 : EdgeInsets.only(right: 0, left: 25.w),
-            child: const Icon(
+            child:  Icon(
               Icons.notifications_none_rounded,
-              color: Colors.black,
               size: 30,
+              // color: Get.isDarkMode?Colors.white:Colors.black,
             ),
           ),
         ),

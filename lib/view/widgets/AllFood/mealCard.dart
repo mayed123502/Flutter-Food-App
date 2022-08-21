@@ -18,7 +18,7 @@ class MealCard extends StatelessWidget {
       width: 160,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
+          color: Theme.of(context).textTheme.headline4!.color,
           boxShadow: const [
             BoxShadow(
               offset: Offset(0, 2),
@@ -51,7 +51,7 @@ class MealCard extends StatelessWidget {
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
                   text: '${prodectDetails.name}',
-                  color: Colors.black,
+                  color: Theme.of(context).textTheme.headline1!.color!,
                 ),
                 const SizedBox(
                   height: 5,
@@ -60,9 +60,9 @@ class MealCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     TextWithFont().textWithRalewayFont(
-                        color: Colors.black.withOpacity(.5),
+                        color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
                         fontSize: 16.sp,
-                        text: '${prodectDetails.description} ',
+                        text: '${prodectDetails.description} '.substring(0, 20),
                         fontWeight: FontWeight.w500)
                   ],
                 ),

@@ -11,25 +11,17 @@ class OfferSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: ((value) {
-        // searchController.textFormFild.value=value;
-        // if (value == '') {
-        //   searchController.searchProductsList.clear();
-        //   searchController.searchProductsList.clear();
-        // } else {
-        //   searchController.viewSearchProducts(value);
-        //   searchController.viewSearchRestaurants(value);
-        // }
-      }),
+      enabled: false,
+      onChanged: ((value) {}),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
         prefixIcon: Icon(Icons.search),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
         hintText: 'Search',
         filled: true,
-        fillColor: Color.fromRGBO(244, 244, 244, 1),
+        // fillColor: Color.fromRGBO(244, 244, 244, 1),
         hintStyle: TextStyle(
-          color: authTextFromFieldHintTextColor,
+          // color: authTextFromFieldHintTextColor,
           fontSize: 17.sp,
           fontWeight: FontWeight.w500,
         ),

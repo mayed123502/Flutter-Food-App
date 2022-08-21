@@ -21,7 +21,7 @@ class ButtomRow extends StatelessWidget {
           style: GoogleFonts.nunitoSans(
             textStyle: TextStyle(
               fontSize: 15.sp,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w300,color:Theme.of(context).textTheme.headline1!.color!, 
             ),
           ),
         ),
@@ -35,7 +35,7 @@ class ButtomRow extends StatelessWidget {
               textStyle: TextStyle(
                 fontSize: 15.sp,
                 fontWeight: FontWeight.w300,
-                color: ThemesApp.light.textTheme.headline1?.color,
+                color:headline1Color,
               ),
             ),
           ),

@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
                 width: double.infinity,
               ),
               TextWithFont().textWithRalewayFont(
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                  color:Theme.of(context).textTheme.headline1!.color!,
                   fontSize: 35.sp,
                   text: "Foodi",
                   fontWeight: FontWeight.bold),
@@ -48,7 +48,7 @@ class SplashScreen extends StatelessWidget {
                 'Beautiful eCommerce app for \n resturant'.tr,
                 style: GoogleFonts.nunitoSans(
                   textStyle:
-                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300),
+                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300,color: Theme.of(context).textTheme.headline1!.color!,),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -57,7 +57,7 @@ class SplashScreen extends StatelessWidget {
                 width: double.infinity,
               ),
               AuthButton(
-                onPressed: () {
+                press: () {
                   Get.toNamed(Routes.onBoardingScreen);
                 },
                 text: 'Let\'s get Started'.tr,

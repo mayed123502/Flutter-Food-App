@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/model/offer/offerProdet_model.dart';
 
+import '../homeProdect/homeProdectData.dart';
+
 class OfferListData {
   int? id;
   String? title;
@@ -7,7 +9,7 @@ class OfferListData {
   int? discountPercent;
   double? priceAfterDiscount;
   String? deadline;
-  OfferProduct? product;
+  HomeProdectData? product;
 
   OfferListData(
       {this.id,
@@ -25,8 +27,9 @@ class OfferListData {
     discountPercent = json['discount_percent'];
     priceAfterDiscount = json['price_after_Discount'];
     deadline = json['deadline'];
-    product =
-        json['product'] != null ? new OfferProduct.fromJson(json['product']) : null;
+    product = json['product'] != null
+        ? new HomeProdectData.fromJson(json['product'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {

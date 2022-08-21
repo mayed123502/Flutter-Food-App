@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../textWithFont.dart';
 
 class TitelText extends StatelessWidget {
-  const TitelText({
+   TitelText({
     Key? key, required this.title,
   }) : super(key: key);
 final String title;
@@ -14,7 +14,7 @@ final String title;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextWithFont().textWithRalewayFont(
-          color: Get.isDarkMode ? Colors.white : Colors.black,
+          color: Theme.of(context).textTheme.headline1!.color!,
           fontSize: 20.sp,
           text: title,
           fontWeight: FontWeight.bold),

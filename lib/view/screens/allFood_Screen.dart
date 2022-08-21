@@ -14,7 +14,6 @@ class AllFoodScreen extends GetView<FodeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBarMeal(),
         body: Obx(() {
           final loadingType = controller.loadingState.value.loadingType;

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../../logic/controllers/auth_controllers.dart';
 import '../../../../utils/theme.dart';
@@ -23,7 +24,7 @@ class TextFieldForget extends StatelessWidget {
         // validator:
         validator: (value) => validator(value),
         decoration: InputDecoration(
-          fillColor: authTextFromFieldFillColor.withOpacity(.5),
+          fillColor:Get.isDarkMode?Theme.of(context).cardColor: authTextFromFieldFillColor.withOpacity(.5),
           filled: true,
           contentPadding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
           border: OutlineInputBorder(

@@ -22,13 +22,12 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         centerTitle: true,
         title: TextWithFont().textWithRobotoFont(
           text: 'Reset Password',
           fontSize: 22.sp,
           fontWeight: FontWeight.w500,
-          color: Colors.black.withOpacity(.6),
+          color: Theme.of(context).textTheme.headline1!.color
         ),
         elevation: 0,
       ),
@@ -54,7 +53,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                           "Please enter your email to recieve a link to create a new password via email",
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Colors.black.withOpacity(.4),
+                      color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.4),
                       textAlign: TextAlign.center),
 
                   SizedBox(
@@ -87,7 +86,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         ? CircularProgressIndicator()
                         : AuthButton(
                             text: 'Send',
-                            onPressed: () {
+                            press: () {
                               if (fromKey.currentState!.validate()) {
                                 String email = emailController.text.trim();
                                 controller.resetPasswordStep1(email: email);

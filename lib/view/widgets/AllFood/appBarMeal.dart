@@ -17,7 +17,7 @@ class AppBarMeal extends StatelessWidget with PreferredSizeWidget{
         text: 'All Meals',
         fontSize: 20.sp,
         fontWeight: FontWeight.bold,
-        color: Colors.black,
+        color:Theme.of(context).textTheme.headline1!.color
       ),
       elevation: 0,
       centerTitle: true,
@@ -25,7 +25,6 @@ class AppBarMeal extends StatelessWidget with PreferredSizeWidget{
         onPressed: () => Get.back(),
         icon: Icon(
           Icons.arrow_back_ios,
-          color: Get.isDarkMode ? Colors.white : Colors.black,
           size: 20,
         ),
       ),

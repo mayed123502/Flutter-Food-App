@@ -26,10 +26,10 @@ class UpdatePassword extends StatelessWidget {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: TextWithFont().textWithRobotoFont(
-          text: 'Change Password',
+          text: 'Change Password'.tr,
           fontSize: 22.sp,
           fontWeight: FontWeight.w500,
-          color: Colors.black.withOpacity(.6),
+          color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6),
         ),
         elevation: 0,
       ),
@@ -49,10 +49,15 @@ class UpdatePassword extends StatelessWidget {
                 ),
                 TextWithFont().textWithRobotoFont(
                     text:
-                        "Please enter your email to recieve a link to create a new password via email",
+                        "Please enter your old and new password to change your password"
+                            .tr,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black.withOpacity(.4),
+                    color: Theme.of(context)
+                        .textTheme
+                        .headline1!
+                        .color!
+                        .withOpacity(.4),
                     textAlign: TextAlign.center),
                 SizedBox(
                   height: 30,
@@ -64,7 +69,7 @@ class UpdatePassword extends StatelessWidget {
                       controller: oldPassController,
                       obscureText: false,
                       validator: (val) {
-                        if (val.isEmpty) return 'Empty';
+                        if (val.isEmpty) return 'Empty'.tr;
                         return null;
                       },
                       prefixIcon: const Icon(
@@ -72,7 +77,7 @@ class UpdatePassword extends StatelessWidget {
                         size: 24,
                         color: authTextFromFieldHintTextColor,
                       ),
-                      hintText: 'Old Password',
+                      hintText: 'Old Password'.tr,
                       suffixIcon: const Text(""),
                     ),
                     SizedBox(
@@ -82,7 +87,7 @@ class UpdatePassword extends StatelessWidget {
                       controller: passwordController,
                       obscureText: false,
                       validator: (val) {
-                        if (val.isEmpty) return 'Empty';
+                        if (val.isEmpty) return 'Empty'.tr;
                         return null;
                       },
                       prefixIcon: const Icon(
@@ -90,7 +95,7 @@ class UpdatePassword extends StatelessWidget {
                         size: 24,
                         color: authTextFromFieldHintTextColor,
                       ),
-                      hintText: 'Password',
+                      hintText: 'Password'.tr,
                       suffixIcon: const Text(""),
                     ),
                     SizedBox(
@@ -100,9 +105,10 @@ class UpdatePassword extends StatelessWidget {
                       controller: confirmController,
                       obscureText: false,
                       validator: (val) {
-                        if (val.isEmpty) return 'Empty';
+                        if (val.isEmpty) return 'Empty'.tr;
 
-                        if (val != passwordController.text) return 'Not Match';
+                        if (val != passwordController.text)
+                          return 'Not Match'.tr;
 
                         return null;
                       },
@@ -111,7 +117,7 @@ class UpdatePassword extends StatelessWidget {
                         size: 24,
                         color: authTextFromFieldHintTextColor,
                       ),
-                      hintText: 'Confirm Password',
+                      hintText: 'Confirm Password'.tr,
                       suffixIcon: const Text(""),
                     ),
                   ]),
@@ -120,13 +126,13 @@ class UpdatePassword extends StatelessWidget {
                   height: 20,
                 ),
                 GetBuilder<SettingsController>(builder: (_) {
-                  return settingController.loding 
+                  return settingController.loding
                       ? Center(
                           child: CircularProgressIndicator(color: mainColor),
                         )
                       : AuthButton(
-                          text: 'Update Password',
-                          onPressed: () {
+                          text: 'Update Password'.tr,
+                          press: () {
                             if (_form.currentState!.validate()) {
                               String oldpassword =
                                   oldPassController.text.trim();

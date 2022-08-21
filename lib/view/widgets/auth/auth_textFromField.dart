@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/theme.dart';
@@ -26,15 +27,15 @@ class AuthTextFromField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
-      cursorColor: Colors.black,
+      cursorColor: Get.isDarkMode?Theme.of(context).cardColor: authTextFromFieldFillColor.withOpacity(.3),
       keyboardType: TextInputType.text,
       validator: (value) => validator(value),
-      style: const TextStyle(
-        color: Colors.black,
+      style:  TextStyle(
+        color:Theme.of(context).textTheme.headline1!.color,
       ),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-        fillColor: authTextFromFieldFillColor.withOpacity(.3),
+        fillColor:Get.isDarkMode?Theme.of(context).cardColor: authTextFromFieldFillColor.withOpacity(.3),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         hintText: hintText,

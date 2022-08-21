@@ -61,8 +61,8 @@ class _ReviewRating extends State<ReviewRating> {
                     style: TextStyle(
                         color: Get.isDarkMode
                             ? currentSeletected == index
-                                ? Colors.black
-                                : Colors.black
+                                ? Theme.of(context).textTheme.headline1!.color
+                                : Theme.of(context).textTheme.headline1!.color
                             : currentSeletected == index
                                 ? Colors.white
                                 : Colors.black.withOpacity(.3),

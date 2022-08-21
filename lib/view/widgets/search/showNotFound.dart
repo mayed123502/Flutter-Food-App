@@ -48,7 +48,7 @@ class ShowNotFound extends StatelessWidget {
             ),
             AuthButton(
               text: 'Back to Home',
-              onPressed: () {
+              press: () {
                 Get.toNamed(Routes.mainScreen);
               },
             )

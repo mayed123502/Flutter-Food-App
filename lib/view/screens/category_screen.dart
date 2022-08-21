@@ -17,7 +17,6 @@ class CategoryScreen extends GetView<ResturantController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBarCategory(),
       body: Obx(() {
         final loadingType = controller.loadingState.value.loadingType;
@@ -29,9 +28,9 @@ class CategoryScreen extends GetView<ResturantController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextWithFont().textWithRalewayFont(
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                  color: Theme.of(context).textTheme.headline1!.color!,
                   fontSize: 20.sp,
-                  text: 'Category',
+                  text: 'Category'.tr,
                   fontWeight: FontWeight.w600),
               ChoseMenu(),
               SizedBox(

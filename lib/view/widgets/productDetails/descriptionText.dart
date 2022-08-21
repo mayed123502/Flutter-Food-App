@@ -7,22 +7,21 @@ import '../../../utils/theme.dart';
 
 class DescriptionText extends StatelessWidget {
   const DescriptionText({
-    Key? key,
+    Key? key, required this.decoration,
   }) : super(key: key);
-
+final String decoration;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: ReadMoreText(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare leo non mollis id cursus. Eu euismod faucibus in leo malesuada",
+      decoration,
         trimLines: 2,
-        // colorClickableText:mainColor,
         style: GoogleFonts.raleway(
           textStyle: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w500,
-            color: Colors.black.withOpacity(.5),
+            color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
           ),
         ),
         trimMode: TrimMode.Line,

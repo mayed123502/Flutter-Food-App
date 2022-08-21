@@ -19,11 +19,7 @@ class CostomColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      // padding: EdgeInsets.only(left: 70.w, top: 20.h, bottom: 10.h,right: 0),
-//  left: Get.locale?.languageCode == 'en' ? left : right,
-//         top: 20.h,
-//         bottom: 10.h,
-//         right: Get.locale?.languageCode == 'en' ? right : left,
+      
       padding: EdgeInsets.symmetric(
        horizontal: 20.w
        ,
@@ -41,7 +37,7 @@ class CostomColumn extends StatelessWidget {
             height: 15.h,
           ),
           TextWithFont().textWithRobotoFont(
-              color: Colors.black,
+              color:  Theme.of(context).textTheme.headline1!.color,
               fontSize: 12.sp,
               fontWeight: FontWeight.normal,
               text: text),

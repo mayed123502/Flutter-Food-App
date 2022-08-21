@@ -31,12 +31,13 @@ dependencies:
   flutter_native_splash: ^2.2.6
   cached_network_image: ^3.2.1
   image_picker: ^0.8.5+3
-  google_maps_flutter: ^2.1.10
-  location: ^4.4.0
-  geolocator: ^9.0.1
   dartz: ^0.10.1
   connectivity_plus: 
   lottie: ^1.4.1
+  permission_handler:
+  google_maps_flutter:
+  geolocator: 
+  geocoding: ^2.0.4
 
 dev_dependencies:
   flutter_test:

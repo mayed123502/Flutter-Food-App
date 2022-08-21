@@ -14,9 +14,9 @@ class Description extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextWithFont().textWithRobotoFont(
-          color: Get.isDarkMode ? Colors.white : Colors.black,
+          color: Theme.of(context).textTheme.headline1!.color,
           fontSize: 15.sp,
-          text: 'Description',
+          text: 'Description'.tr,
           fontWeight: FontWeight.bold),
     );
   }

@@ -27,7 +27,6 @@ class OfferScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 60.h,
-              // margin: EdgeInsets.symmetric(horizontal: 15.w),
               child: Row(
                 children: [
                   Expanded(
@@ -65,7 +64,8 @@ class OfferScreen extends StatelessWidget {
                         final isLastItem =
                             index == offerController.offerList.length;
                         if (isLastItem && loadingType == LoadingType.loading) {
-                          return Center(child: CircularProgressIndicator.adaptive());
+                          return Center(
+                              child: CircularProgressIndicator.adaptive());
                         } else if (isLastItem &&
                             loadingType == LoadingType.error) {
                           return Container();
@@ -78,7 +78,7 @@ class OfferScreen extends StatelessWidget {
                         } else {
                           return Card(
                             elevation: 4,
-                            shadowColor: Colors.black45,
+                            // shadowColor: Colors.black45,
                             child: Stack(
                               children: [
                                 Padding(
@@ -109,18 +109,20 @@ class OfferScreen extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           TextWithFont().textWithRobotoFont(
-                                              text: offerController
-                                                  .offerList[index].title!,
-                                              fontSize: 16.sp,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black),
+                                            text: offerController
+                                                .offerList[index].title!,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context).textTheme.headline1!.color
+                                          ),
                                           TextWithFont().textWithRobotoFont(
-                                              text: offerController
-                                                  .offerList[index].deadline!
-                                                  .substring(0, 10),
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.black38),
+                                            text: offerController
+                                                .offerList[index].deadline!
+                                                .substring(0, 10),
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w400,
+                                         color:   Theme.of(context).textTheme.headline1!.color!.withOpacity(.5)
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -132,14 +134,13 @@ class OfferScreen extends StatelessWidget {
                                           color: mainColor,
                                         ),
                                         TextWithFont().textWithRobotoFont(
-                                            text: offerController
-                                                .offerList[index]
-                                                .product!
-                                                .rating!
-                                                .toString(),
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.black54),
+                                          text: offerController
+                                              .offerList[index].product!.rating!
+                                              .toString(),
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5)
+                                        ),
                                       ],
                                     ),
                                   ),

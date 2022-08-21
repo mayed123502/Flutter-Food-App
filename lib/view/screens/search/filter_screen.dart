@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../logic/controllers/resturant_controller.dart';
 import '../../../utils/theme.dart';
 import '../../widgets/auth/auth_button.dart';
 import '../../widgets/category/choseMenu.dart';
@@ -8,19 +9,16 @@ import '../../widgets/category/choseMenuRating.dart';
 import '../../widgets/search/filter/filterAppBar.dart';
 import '../../widgets/search/filter/rangeSlider.dart';
 import '../../widgets/textWithFont.dart';
+import 'package:get/get.dart';
 
 class FilterScreen extends StatelessWidget {
   FilterScreen({Key? key}) : super(key: key);
-  final List<String> sizeList = [
-    'Pasta',
-    'Burger',
-    'Shawrema',
-    'Salad',
-  ];
 
   var currentSeletected = 0;
   @override
   Widget build(BuildContext context) {
+    Get.put(ResturantController());
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: FilterAppBar(),
@@ -62,7 +60,7 @@ class FilterScreen extends StatelessWidget {
             ),
             AuthButton(
               text: 'Apply Filter',
-              onPressed: () {},
+              press: () {},
             )
           ],
         ),

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../logic/controllers/favorites_conntroller.dart';
 import '../../../model/homeProdect/homeProdectData.dart';
+import '../../../routes/routes.dart';
 import '../../../utils/theme.dart';
 
 class ItemListView extends GetView<FavoritesController> {
@@ -29,23 +30,33 @@ class ItemListView extends GetView<FavoritesController> {
         child: ListTile(
           // trailing: TrailingListTile(),
           title: LeadingListTile(
-            name: homeProdectData.name!, image: homeProdectData.image!,
+            name: homeProdectData.name!,
+            image: homeProdectData.image!,
           ),
           subtitle: Row(
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(
+                    Routes.productDetailsScreen,
+                    arguments: [
+                      {'prodectData': homeProdectData}
+                    ],
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   elevation: 0.0,
-                  primary: context.theme.buttonColor,
                   minimumSize: Size(120.w, 30.h),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8), // <-- Radius
                   ),
                 ),
                 child: Text(
-                  'Order',
-                  style: TextStyle(fontSize: 14),
+                  'Order'.tr,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               SizedBox(width: 70.w),
@@ -59,17 +70,17 @@ class ItemListView extends GetView<FavoritesController> {
                     width: 2.0,
                     color: mainColor,
                   ),
-                  primary: Colors.white,
+                  primary: Get.isDarkMode ? Color(0xFF18172B) : Colors.white,
                   minimumSize: Size(120.w, 30.h),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8), // <-- Radius
                   ),
                 ),
                 child: Text(
-                  'Delete',
+                  'Delete'.tr,
                   style: TextStyle(
                       fontSize: 14,
-                      color: Colors.black,
+                      color: Theme.of(context).textTheme.headline1!.color,
                       fontWeight: FontWeight.w300),
                 ),
               ),

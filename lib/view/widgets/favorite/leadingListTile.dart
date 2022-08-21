@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,10 +8,11 @@ import '../../../utils/theme.dart';
 class LeadingListTile extends StatelessWidget {
   const LeadingListTile({
     Key? key,
-    required this.name, required this.image,
+    required this.name,
+    required this.image,
   }) : super(key: key);
   final String name;
-    final String image;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +23,26 @@ class LeadingListTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(image,
-                    height: 90.0.h, width: 90.w),
-              ),
+              CircleAvatar(
+                  radius: 35,
+                  child: ClipOval(
+                    // borderRadius: BorderRadius.circular(8.0),
+                    child: CachedNetworkImage(
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.photo_rounded,
+                        color: Colors.grey.shade700,
+                        size: 100,
+                      ),
+                      height: 90.0.h,
+                      width: 90.w,
+                      fit: BoxFit.cover,
+                      imageUrl: image,
+                    ),
+                  )),
               Padding(
-                padding: EdgeInsets.only(left: 10.w),
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -42,6 +57,8 @@ class LeadingListTile extends StatelessWidget {
                             name,
                             style: TextStyle(
                               fontSize: 20,
+                              color:
+                                  Theme.of(context).textTheme.headline1!.color,
                             ),
                           ),
                         ),
@@ -68,6 +85,8 @@ class LeadingListTile extends StatelessWidget {
                             'Burger King',
                             style: TextStyle(
                               fontSize: 12,
+                              color:
+                                  Theme.of(context).textTheme.headline1!.color,
                             ),
                           ),
                         ),
@@ -96,6 +115,8 @@ class LeadingListTile extends StatelessWidget {
                         Text('500Cal',
                             style: TextStyle(
                               fontSize: 12,
+                              color:
+                                  Theme.of(context).textTheme.headline1!.color,
                             )),
                       ],
                     ),

@@ -15,12 +15,11 @@ class MyOrdersScreen extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: const Text(
+          backgroundColor:Get.isDarkMode? Theme.of(context).appBarTheme.backgroundColor:Colors.white,
+          title:  Text(
             'Order',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Theme.of(context).textTheme.headline1!.color),
           ),
           elevation: 1,
           centerTitle: true,
@@ -28,7 +27,7 @@ class MyOrdersScreen extends StatelessWidget {
             onPressed: () => Get.back(),
             icon: Icon(
               Icons.arrow_back_ios,
-              color: Get.isDarkMode ? Colors.white : Colors.black,
+              size: 20,
             ),
           ),
           actions: [
@@ -40,7 +39,6 @@ class MyOrdersScreen extends StatelessWidget {
                 padding: EdgeInsets.only(right: 25.w, left: 0),
                 child: const Icon(
                   Icons.notifications_none_rounded,
-                  color: Colors.black,
                   size: 30,
                 ),
               ),

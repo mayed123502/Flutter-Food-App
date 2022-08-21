@@ -7,9 +7,11 @@ import '../textWithFont.dart';
 
 class SupTitle extends StatelessWidget {
   const SupTitle({
-    Key? key, required this.supTitle,
+    Key? key, required this.supTitle, required this.price, required this.cal,
   }) : super(key: key);
 final String supTitle;
+final String price;
+final String cal;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,7 +20,7 @@ final String supTitle;
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextWithFont().textWithRalewayFont(
-              color: Get.isDarkMode ? Colors.white : Colors.black,
+              color: Theme.of(context).textTheme.headline1!.color!,
               fontSize: 12.sp,
               text: supTitle,
               fontWeight: FontWeight.w500),
@@ -30,7 +32,7 @@ final String supTitle;
                   height: 2,
                 ),
                 Text(
-                  "Rs. 750",
+                  "Rs. $price",
                   style: TextStyle(
                     color: mainColor,
                     fontSize: 30,
@@ -42,9 +44,9 @@ final String supTitle;
                   children: [
                     Image.asset('assets/fir.png'),
                     TextWithFont().textWithRalewayFont(
-                        color: Get.isDarkMode ? Colors.white : Colors.black,
+                        color: Theme.of(context).textTheme.headline1!.color!,
                         fontSize: 14.sp,
-                        text: '150 Kcal',
+                        text: '$cal Kcal',
                         fontWeight: FontWeight.w600),
                     SizedBox(
                       width: 15.w,

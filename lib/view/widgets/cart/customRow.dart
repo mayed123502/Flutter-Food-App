@@ -5,13 +5,14 @@ class CustomRow extends StatelessWidget {
   final String name;
   final String price;
   FontWeight fontWeight;
+  final Color color;
   Color priceColor;
   CustomRow(
     this.fontWeight,
     this.priceColor, {
     super.key,
     required this.name,
-    required this.price,
+    required this.price, required this.color,
   });
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,14 @@ class CustomRow extends StatelessWidget {
         children: [
           Text(
             name,
-            style: TextStyle(fontSize: 18, fontWeight: fontWeight),
+            style: TextStyle(fontSize: 18, fontWeight: fontWeight,color:  Theme.of(context).textTheme.headline1!.color!,),
           ),
           Text(
             price,
             style: TextStyle(
-                fontSize: 18, color: priceColor, fontWeight: fontWeight),
+                fontSize: 18,
+                color:color,
+                fontWeight: fontWeight),
           ),
         ],
       ),

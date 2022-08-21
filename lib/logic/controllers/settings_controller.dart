@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../services/auth_api.dart';
+import '../../services/baseAPI.dart';
 import '../../services/helper/handingdatacontroller.dart';
 import '../../services/helper/statusrequest.dart';
 import '../../services/settings_services.dart';
@@ -21,7 +22,6 @@ class SettingsController extends GetxController {
   var image = ''.obs;
   var email = ''.obs;
   var phone = ''.obs;
-  // late File file;
   var nameFromTextFild = ''.obs;
   final shaedpref = SharedPrefs.instance;
 
@@ -44,11 +44,15 @@ class SettingsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    // print(shared.getString('image'));
+    var x = shared.getString('image') == 'null';
 
     name.value = shared.getString('name') ?? 'null';
     email.value = shared.getString('email') ?? 'null';
     phone.value = shared.getString('phone_number') ?? 'null';
-    image.value = shared.getString('image') ?? 'null';
+    image.value =
+        x ? 'null' : '${BaseAPI.baseImage}/${shared.getString('image')}';
+    print(x);
     swithchThemwValue.value = Get.isDarkMode ? true : false;
   }
 
@@ -96,15 +100,20 @@ class SettingsController extends GetxController {
     bool result = await AuthApi.changePassword(
         old_password: old_password, password: password);
     if (result == true) {
-            GetSnackbar(supTitle: '', title: "Done.");
+      GetSnackbar(supTitle: '', title: "Done.");
 
       stopLoding();
-
     } else {
       stopLoding();
 
       GetSnackbar(supTitle: '', title: "Oops! Something went wrong.");
     }
+    update();
+  }
+
+  void logout() {
+    AuthApi().logout();
+    Get.toNamed(Routes.loginScreen);
     update();
   }
 }

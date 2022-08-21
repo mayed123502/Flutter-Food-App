@@ -19,16 +19,16 @@ class ListTileCard extends StatelessWidget {
             elevation: 5,
             shadowColor: Colors.grey.withOpacity(.3),
             child: ListTile(
-              tileColor: Color.fromRGBO(252, 252, 252, 1),
+              // tileColor: Color.fromRGBO(252, 252, 252, 1),
               title: Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset('assets/gridview.png',
-                          height: 70.0.h, width: 70.w),
-                    ),
+                    // ClipRRect(
+                    //   borderRadius: BorderRadius.circular(8.0),
+                    //   child: Image.asset('assets/gridview.png',
+                    //       height: 70.0.h, width: 70.w),
+                    // ),
                     SizedBox(
                       width: 8.w,
                     ),

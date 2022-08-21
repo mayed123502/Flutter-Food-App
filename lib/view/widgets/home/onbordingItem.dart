@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/utils/theme.dart';
 import 'package:ecommerce_app/view/widgets/home/onboardingtime.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,12 +18,16 @@ class OnBordingItem extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          child: ClipOval(
-            child: SizedBox.fromSize(
-              size: Size.fromRadius(65), // Image radius
-              child: CachedNetworkImage(
-                imageUrl: offerListData.product!.image!,
-                fit: BoxFit.cover,
+          child: CircleAvatar(
+            backgroundColor: mainColor,
+            radius: 60,
+            child: ClipOval(
+              child: SizedBox.fromSize(
+                size: Size.fromRadius(65), // Image radius
+                child: CachedNetworkImage(
+                  imageUrl: offerListData.product!.image!,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -33,13 +38,16 @@ class OnBordingItem extends StatelessWidget {
           top: 25.h,
           left: 40.w,
           child: TextWithFont().textWithRobotoFont(
-              text: '${offerListData.title} \n 50% off',
+              text:
+                  '${offerListData.title} \n ${offerListData.discountPercent}% off',
               fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
               textAlign: TextAlign.center),
         ),
-        OnboardingTime(),
+        OnboardingTime(
+          deadline: offerListData.deadline!,
+        ),
       ],
     );
   }

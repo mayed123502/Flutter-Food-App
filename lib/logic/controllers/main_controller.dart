@@ -25,8 +25,8 @@ class MainController extends GetxController {
         icon: const Icon(Icons.home_outlined),
         title: ("Home".tr),
         activeColorPrimary: mainColor,
-        inactiveColorPrimary: Get.isDarkMode ? Colors.black : Colors.black,
-        inactiveColorSecondary: Get.isDarkMode ? Colors.black : Colors.black,
+        inactiveColorPrimary: Get.isDarkMode ? Colors.white : Colors.black,
+        inactiveColorSecondary: Get.isDarkMode ? Colors.white : Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(
@@ -34,8 +34,8 @@ class MainController extends GetxController {
         ),
         title: ("Cart".tr),
         activeColorPrimary: mainColor,
-        inactiveColorPrimary: Get.isDarkMode ? Colors.black : Colors.black,
-        inactiveColorSecondary: Get.isDarkMode ? Colors.black : Colors.black,
+        inactiveColorPrimary: Get.isDarkMode ? Colors.white : Colors.black,
+        inactiveColorSecondary: Get.isDarkMode ? Colors.white : Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(
@@ -43,8 +43,8 @@ class MainController extends GetxController {
         ),
         title: ("Favorites".tr),
         activeColorPrimary: mainColor,
-        inactiveColorPrimary: Get.isDarkMode ? Colors.black : Colors.black,
-        inactiveColorSecondary: Get.isDarkMode ? Colors.black : Colors.black,
+        inactiveColorPrimary: Get.isDarkMode ? Colors.white : Colors.black,
+        inactiveColorSecondary: Get.isDarkMode ? Colors.white : Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(
@@ -52,8 +52,8 @@ class MainController extends GetxController {
         ),
         title: ("Setting".tr),
         activeColorPrimary: mainColor,
-        inactiveColorPrimary: Get.isDarkMode ? Colors.black : Colors.black,
-        inactiveColorSecondary: Get.isDarkMode ? Colors.black : Colors.black,
+        inactiveColorPrimary: Get.isDarkMode ? Colors.white : Colors.black,
+        inactiveColorSecondary: Get.isDarkMode ? Colors.white : Colors.black,
       ),
     ];
   }

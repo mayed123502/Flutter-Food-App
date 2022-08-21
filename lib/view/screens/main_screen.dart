@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/logic/controllers/auth_controllers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -27,28 +28,36 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // HomeServices.viewHomeRestaurants;
 // context.theme.appBarTheme
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          systemNavigationBarColor:
+              Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
+          statusBarColor: Theme.of(context).textTheme.headline2!.color),
+    );
     return SafeArea(
       child: Obx(
         () {
           return _controller.connectionType.value == 1
               ? Scaffold(
-                  backgroundColor: Get.isDarkMode
-                      ? ThemesApp.dark.backgroundColor
-                      : ThemesApp.dark.backgroundColor,
                   body: PersistentTabView(
                     context,
                     controller: mainController.controller.value,
                     screens: mainController.tabs,
+                    backgroundColor: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .backgroundColor!,
                     items: mainController.navBarsItems(),
                     confineInSafeArea: true,
-                    backgroundColor: Colors.white,
                     handleAndroidBackButtonPress: true,
                     resizeToAvoidBottomInset: true,
                     stateManagement: true,
                     hideNavigationBarWhenKeyboardShows: true,
                     decoration: NavBarDecoration(
                       borderRadius: BorderRadius.circular(20.0),
-                      colorBehindNavBar: Colors.white,
+                      colorBehindNavBar: Theme.of(context)
+                          .bottomNavigationBarTheme
+                          .backgroundColor!,
                     ),
                     popAllScreensOnTapOfSelectedTab: true,
                     popActionScreens: PopActionScreensType.all,

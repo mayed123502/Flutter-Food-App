@@ -13,19 +13,17 @@ class AppBarCategory extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: TextWithFont().textWithRobotoFont(
-        text: 'Resturant',
+        text: 'Resturants'.tr,
         fontSize: 20.sp,
         fontWeight: FontWeight.bold,
-        color: Colors.black,
+        color:Theme.of(context).textTheme.headline1!.color,
       ),
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
         onPressed: () => Get.back(),
         icon: Icon(
-          Icons.arrow_back_ios,
-          color: Get.isDarkMode ? Colors.white : Colors.black,
-          size: 20,
+          Icons.arrow_back_ios,        size: 20,
         ),
       ),
     );

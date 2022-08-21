@@ -1,9 +1,11 @@
+import 'package:ecommerce_app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../logic/controllers/restaurantPage_controller.dart';
 
+import '../../routes/routes.dart';
 import '../widgets/resturant/appBarRes.dart';
 import '../widgets/resturant/cardRes.dart';
 import '../widgets/resturant/imageRes.dart';
@@ -15,12 +17,13 @@ class ResturantScreen extends GetView<ResturantPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBarRes(),
       body: Obx(() {
         return controller.loading.value
             ? Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: mainColor,
+                ),
               )
             : Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -47,8 +50,7 @@ class ResturantScreen extends GetView<ResturantPageController> {
                     SizedBox(
                       height: 10.h,
                     ),
-                
-                
+
                     Expanded(
                       flex: 3,
                       child: ListView.builder(
@@ -56,13 +58,23 @@ class ResturantScreen extends GetView<ResturantPageController> {
                         itemCount:
                             controller.restaurantData.value.product?.length,
                         itemBuilder: (BuildContext context, int index) =>
-                            ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: CardRes(
-                            restaurantMeal:
-                                controller.restaurantData.value.product![index],
-                          ),
-                        ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed(
+                                  Routes.productDetailsScreen,
+                                  arguments: [
+                                    {
+                                      'prodectData': controller
+                                          .restaurantData.value.product![index]
+                                    }
+                                  ],
+                                );
+                              },
+                              child: CardRes(
+                                restaurantMeal: controller
+                                    .restaurantData.value.product![index],
+                              ),
+                            ),
                       ),
                     ),
                   ],

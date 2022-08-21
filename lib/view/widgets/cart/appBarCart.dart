@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../auth/preferredSizeInAppBar.dart';
 
-class AppBarCart  extends StatelessWidget with PreferredSizeWidget{
+class AppBarCart extends StatelessWidget with PreferredSizeWidget {
   const AppBarCart({
     Key? key,
   }) : super(key: key);
@@ -13,22 +13,13 @@ class AppBarCart  extends StatelessWidget with PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
       centerTitle: true,
       bottom: const PreferredSizeInAppBar(),
-      // leading: GestureDetector(
-      //   onTap: () => Get.back(),
-      //   child: Icon(
-      //     Icons.arrow_back_ios,
-      //     color: Get.isDarkMode ? Colors.white : Colors.black,
-      //     size: 20,
-      //   ),
-      // ),
       title: Text(
-        'Your Carts',
+        'Your Carts'.tr,
         style: TextStyle(
             fontSize: 20.sp,
-            color: Colors.black,
+            color: Theme.of(context).textTheme.headline1!.color,
             fontWeight: FontWeight.bold),
       ),
       elevation: 0,

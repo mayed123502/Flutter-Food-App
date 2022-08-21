@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingTime extends StatelessWidget {
-  const OnboardingTime({
+  OnboardingTime({
     Key? key,
+    required this.deadline,
   }) : super(key: key);
-
+  final String deadline;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -15,19 +16,19 @@ class OnboardingTime extends StatelessWidget {
       child: Row(
         children: [
           TimeOnBoarding(
-            text: '08',
+            text: DateTime.parse(deadline).day.toString(),
           ),
           SizedBox(
             width: 20.w,
           ),
           TimeOnBoarding(
-            text: '34',
+            text: DateTime.parse(deadline).hour.toString(),
           ),
           SizedBox(
             width: 20.w,
           ),
           TimeOnBoarding(
-            text: '25',
+            text: DateTime.parse(deadline).minute.toString(),
           ),
         ],
       ),

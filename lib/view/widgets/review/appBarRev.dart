@@ -17,7 +17,7 @@ class AppBarRev extends StatelessWidget with PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: TextWithFont().textWithRobotoFont(
-          color: Get.isDarkMode ? Colors.white : Colors.black,
+          color: Theme.of(context).textTheme.headline1!.color,
           fontSize: 20.sp,
           text: 'Review',
           fontWeight: FontWeight.bold),
@@ -25,7 +25,6 @@ class AppBarRev extends StatelessWidget with PreferredSizeWidget {
         onPressed: () => Get.back(),
         icon: Icon(
           Icons.arrow_back_ios,
-          color: Get.isDarkMode ? Colors.white : Colors.black,
           size: 20,
         ),
       ),

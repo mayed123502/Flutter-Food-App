@@ -29,7 +29,7 @@ class HaveAccountText extends StatelessWidget {
               fontSize: 15.sp,
               fontWeight: FontWeight.w300,
               text: 'Login'.tr,
-              color: ThemesApp.light.textTheme.headline1?.color),
+              color: headline1Color),
         ),
       ],
     );

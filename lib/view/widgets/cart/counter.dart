@@ -22,7 +22,7 @@ class Counter extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: 14),
+            style: TextStyle(color:  Theme.of(context).textTheme.headline3!.color, fontSize: 14,),
           ),
         ),
       ),

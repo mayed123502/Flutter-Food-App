@@ -16,7 +16,7 @@ class TopTitile extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: TextWithFont().textWithRobotoFont(
-          color: Get.isDarkMode ? Colors.white : Colors.black,
+          color:Theme.of(context).textTheme.headline1!.color,
           fontSize: 20.sp,
           text: 'Creat a new account'.tr,
           fontWeight: FontWeight.bold),

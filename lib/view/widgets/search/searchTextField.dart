@@ -30,7 +30,7 @@ class SearchTextField extends StatelessWidget {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
         hintText: 'Search',
         filled: true,
-        fillColor: Color.fromRGBO(244, 244, 244, 1),
+        // fillColor: Color.fromRGBO(244, 244, 244, 1),
         hintStyle: TextStyle(
           color: authTextFromFieldHintTextColor,
           fontSize: 17.sp,

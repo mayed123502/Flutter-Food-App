@@ -29,8 +29,7 @@ class NoAccountText extends StatelessWidget {
               fontSize: 15.sp,
               fontWeight: FontWeight.w300,
               text: 'Sign up'.tr,
-              color: ThemesApp
-                  .light.textTheme.headline1?.color),
+              color: headline1Color),
         ),
       ],
     );

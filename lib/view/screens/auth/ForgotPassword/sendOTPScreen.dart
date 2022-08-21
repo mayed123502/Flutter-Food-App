@@ -88,7 +88,7 @@ class SendOTPScreen extends StatelessWidget {
                       ? CircularProgressIndicator()
                       : AuthButton(
                           text: 'Next',
-                          onPressed: () {
+                          press: () {
                             if (formKey.currentState!.validate()) {
                               String codeRes = code.text.trim();
                               controller.resetPasswordStep2(code: codeRes);

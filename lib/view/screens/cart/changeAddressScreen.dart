@@ -2,72 +2,91 @@ import 'dart:async';
 
 import 'package:ecommerce_app/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/address_controllers.dart';
+import '../../../logic/controllers/checkout_controller.dart';
+import '../../../utils/sharPreferenceUtils .dart';
 import '../../widgets/cart/searchBar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../widgets/textWithFont.dart';
+
 class ChangeAddressScreen extends StatelessWidget {
-  // Completer<GoogleMapController> _controller = Completer();
-
-  // static final CameraPosition _kGooglePlex = CameraPosition(
-  //   target: LatLng(37.42796133580664, -122.085749655962),
-  //   zoom: 14.4746,
-  // );
-
-  // static final CameraPosition _kLake = CameraPosition(
-  //     bearing: 192.8334901395799,
-  //     target: LatLng(37.43296265331129, -122.08832357078792),
-  //     tilt: 59.440717697143555,
-  //     zoom: 19.151926040649414);
-
   final addressController = Get.find<AddressController>();
+  final checkoutController = Get.find<CheckoutController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          GetBuilder<AddressController>(builder: (_) {
+            return TextButton(
+              onPressed: () async {
+                await addressController.saveAddres();
+                await checkoutController.updateaddress();
+
+                print('*********');
+
+                print(await SharedPrefs.instance.getString("currentAddress"));
+              },
+              child: TextWithFont().textWithRobotoFont(
+                  color: mainColor,
+                  fontSize: 18.sp,
+                  text: 'Save',
+                  fontWeight: FontWeight.normal),
+            );
+          }),
+        ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+        ),
+        title: Text(
+          "Change Address",
+        ),
+      ),
       body: Stack(
         children: [
           SafeArea(
             child: Column(
               children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios_rounded,
-                      ),
-                    ),
-                    Text(
-                      "Change Address",
-                    )
-                  ],
-                ),
                 SizedBox(
                   height: 30,
                 ),
-                Stack(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.6,
-                      child: GoogleMap(
-                        mapType: MapType.hybrid,
-                        initialCameraPosition: CameraPosition(
-                            target: addressController.initialcameraposition),
-                        onMapCreated: addressController.onMapCreated,
-                        myLocationEnabled: true,
+                GetBuilder<AddressController>(builder: (_) {
+                  return Stack(
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.6,
+                        child: addressController.latlong == null
+                            ? CircularProgressIndicator()
+                            : GoogleMap(
+                                mapType: MapType.normal,
+                                initialCameraPosition:
+                                    addressController.cameraPosition!,
+                                onMapCreated: (GoogleMapController controller) {
+                                  addressController.controller = (controller);
+                                  addressController.controller?.animateCamera(
+                                      CameraUpdate.newCameraPosition(
+                                          addressController.cameraPosition!));
+                                },
+                                markers: addressController.markers,
+                              ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                }),
                 SizedBox(
                   height: 20,
                 ),
-                SearchBar(title: "Search Address"),
+                // SearchBar(title: "Search Address"),
                 SizedBox(
                   height: 10,
                 ),

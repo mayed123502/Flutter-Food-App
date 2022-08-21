@@ -26,7 +26,7 @@ class CustomRowHomePage extends StatelessWidget {
         children: [
           TextWithFont().textWithRobotoFont(
             text: firstText,
-            color: Colors.black,
+            color: Theme.of(context).textTheme.headline1!.color,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),

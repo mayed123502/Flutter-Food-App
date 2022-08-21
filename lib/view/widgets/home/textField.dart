@@ -19,9 +19,9 @@ class HomeTextField extends StatelessWidget {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
         hintText: 'Search for a food or resurant'.tr,
         filled: true,
-        fillColor: authTextFromFieldFillColor.withOpacity(.5),
+        // fillColor: authTextFromFieldFillColor.withOpacity(.5),
         hintStyle: TextStyle(
-          color: authTextFromFieldHintTextColor,
+          // color: authTextFromFieldHintTextColor,
           fontSize: 17.sp,
           fontWeight: FontWeight.w500,
         ),

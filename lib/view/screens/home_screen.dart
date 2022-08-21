@@ -3,13 +3,13 @@ import 'dart:math' as math;
 import 'package:ecommerce_app/routes/routes.dart';
 import 'package:ecommerce_app/services/helper/handlingdataview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../logic/controllers/home_controllers.dart';
 import '../../logic/controllers/onboarding_home_controller.dart';
 
-import '../../services/helper/statusrequest.dart';
 import '../../utils/sharPreferenceUtils .dart';
 import '../../utils/theme.dart';
 import '../widgets/home/appbarItem.dart';
@@ -32,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // SharedPrefs.instance.clear();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -116,8 +115,18 @@ class _HomeScreenState extends State<HomeScreen> {
             controller.onPageChanged(value);
           },
           itemCount: homeController.homeOfferList.length,
-          itemBuilder: (context, i) => OnBordingItem(
-            offerListData: homeController.homeOfferList[i],
+          itemBuilder: (context, i) => GestureDetector(
+            onTap: () {
+              Get.toNamed(
+                Routes.productDetailsScreen,
+                arguments: [
+                  {'prodectData': homeController.homeOfferList[i].product}
+                ],
+              );
+            },
+            child: OnBordingItem(
+              offerListData: homeController.homeOfferList[i],
+            ),
           ),
         ),
       ),
