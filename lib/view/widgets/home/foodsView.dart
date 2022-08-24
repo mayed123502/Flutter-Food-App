@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -30,15 +31,14 @@ class FoodsView extends StatelessWidget {
             ]),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(
-            child:CachedNetworkImage(
-              imageUrl: homeProdectData.image!,
-              imageBuilder: (context, imageProvider) => Container(
+            child: 
+            Container(
                 margin: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: Colors.grey.shade300,
                   image: DecorationImage(
-                    image: NetworkImage(
+                    image: CachedNetworkImageProvider(
                       homeProdectData.image!,
                     ),
                     fit: BoxFit.cover,
@@ -47,7 +47,6 @@ class FoodsView extends StatelessWidget {
                 // ),
               ),
             ),
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             child: Column(
@@ -57,7 +56,7 @@ class FoodsView extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.roboto(
-                      textStyle:  TextStyle(
+                      textStyle: TextStyle(
                         color: Theme.of(context).textTheme.headline1!.color,
                         fontSize: 16,
                         fontWeight: FontWeight.w800,

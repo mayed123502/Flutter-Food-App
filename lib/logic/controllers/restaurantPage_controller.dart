@@ -14,8 +14,10 @@ class ResturantPageController extends GetxController {
   }
 
   void viewRestaurantById(String id) async {
+
     final data = await RestaurantApi.viewRestaurantById(id: id);
     restaurantData.value = data;
+
     loading.value = false;
   }
 }

@@ -29,6 +29,7 @@ class ThemesApp {
   static final light = ThemeData.light().copyWith(
     scaffoldBackgroundColor: Colors.white,
     primaryColor: mainColor,
+    secondaryHeaderColor: Colors.grey.shade100,
     textTheme: TextTheme(
       headline1: TextStyle(
         color: Colors.black,
@@ -65,6 +66,8 @@ class ThemesApp {
   static final dark = ThemeData.dark().copyWith(
     scaffoldBackgroundColor: Color(0xFF18172B),
     primaryColor: darkGreyClr,
+        secondaryHeaderColor:Color(0xFF27273c),
+
     textTheme: TextTheme(
       headline1: TextStyle(
         color: Colors.white,
@@ -89,7 +92,6 @@ class ThemesApp {
       centerTitle: true,
       iconTheme: IconThemeData(color: Colors.white),
     ),
-    // cardColor: Color(0xFF1F1F30),
 
     cardColor: Color(0xFF27273c),
     elevatedButtonTheme: ElevatedButtonThemeData(

@@ -16,22 +16,20 @@ class RowWithSwitchNotification extends StatelessWidget {
   final double paddingSize;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon),
-        SizedBox(
-          width: 20.w,
-        ),
-        TextWithFont().textWithRobotoFont(
-          text: text,
-          fontSize: 14.sp,
-          fontWeight: FontWeight.normal,
-          color: Theme.of(context).textTheme.headline1!.color,
-        ),
-        SizedBox(
-          width: paddingSize,
-        ),
-        FlutterSwitch(
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: Theme.of(context).iconTheme.color,
+      ),
+      title: TextWithFont().textWithRobotoFont(
+        text: text,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context).textTheme.headline1!.color,
+      ),
+      trailing: SizedBox(
+        width: 50,
+        child: FlutterSwitch(
           height: 22.0,
           width: 55.0,
           padding: 1.5,
@@ -41,7 +39,7 @@ class RowWithSwitchNotification extends StatelessWidget {
           value: false,
           onToggle: (value) {},
         ),
-      ],
+      ),
     );
   }
 }

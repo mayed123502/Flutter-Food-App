@@ -17,26 +17,18 @@ class DropdownMenuItemLanguage extends StatelessWidget {
   // final controller = Get.find<SettingsController>();
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(Icons.language),
-        SizedBox(
-          width: 20.w,
-        ),
-        TextWithFont().textWithRobotoFont(
+    return ListTile(
+     leading:   Icon(Icons.language,                color:Theme.of(context).textTheme.headline1!.color,
+),
+      
+      title:  TextWithFont().textWithRobotoFont(
           text: 'Language'.tr,
           fontSize: 14.sp,
           fontWeight: FontWeight.normal,
           color: Theme.of(context).textTheme.headline1!.color,
         ),
-        Get.locale!.languageCode == 'en'
-            ? SizedBox(
-                width: 80.w,
-              )
-            : SizedBox(
-                width: 100.w,
-              ),
-        Container(
+
+      trailing:   Container(
           width: 90,
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
@@ -79,7 +71,7 @@ class DropdownMenuItemLanguage extends StatelessWidget {
             ),
           ),
         ),
-      ],
+      
     );
   }
 }

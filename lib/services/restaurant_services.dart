@@ -47,7 +47,7 @@ class RestaurantApi {
   }
 
   static Future<Data> viewRestaurantById({required String id}) async {
-    var url = '${BaseAPI.authPath}' + '/restaurants/' + '1';
+    var url = '${BaseAPI.authPath}' + '/restaurants/' + '$id';
     var response = await Dio().get(
       url,
     );

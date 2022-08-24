@@ -1,3 +1,6 @@
+import '../../services/baseAPI.dart';
+
+
 class UpdateProfile {
   String? message;
   Data? data;
@@ -48,7 +51,7 @@ class Data {
     id = json['id'];
     name = json['name'];
     phoneNumber = json['phone_number'];
-    image = json['image'];
+    image = BaseAPI.baseImage + json['image'];
     email = json['email'];
     emailVerifiedAt = json['email_verified_at'];
     createdAt = json['created_at'];

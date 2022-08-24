@@ -46,13 +46,11 @@ class SettingsController extends GetxController {
     super.onInit();
     // print(shared.getString('image'));
     var x = shared.getString('image') == 'null';
-
     name.value = shared.getString('name') ?? 'null';
     email.value = shared.getString('email') ?? 'null';
     phone.value = shared.getString('phone_number') ?? 'null';
-    image.value =
-        x ? 'null' : '${BaseAPI.baseImage}/${shared.getString('image')}';
-    print(x);
+    image.value = x ? 'null' : '${shared.getString('image')}';
+    // print(x);
     swithchThemwValue.value = Get.isDarkMode ? true : false;
   }
 
@@ -73,6 +71,7 @@ class SettingsController extends GetxController {
                   ? name.value
                   : nameFromTextFild.value)
           .then((value) {
+        print(value);
         name.value = value.name!;
         image.value = value.image!;
         nameFromTextFild.value = value.name!;

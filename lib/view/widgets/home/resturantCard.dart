@@ -13,6 +13,7 @@ class ResturantCard extends StatelessWidget {
   final HomeRestaurantsData homeRestaurantsData;
   @override
   Widget build(BuildContext context) {
+    
     return CachedNetworkImage(
         imageUrl: homeRestaurantsData.logo!,
         imageBuilder: (context, imageProvider) => Container(

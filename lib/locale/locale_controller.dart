@@ -81,6 +81,7 @@ class MyLocale implements Translations {
           'Resturants': 'مطاعم',
           "No Foods In Cart": "لا توجد أغذية في عربة التسوق",
           'You must open an account': 'يجب أن تقوم بفتح حساب',
+          "There are no reviews yet":"لا يوجد تقيمات بعد"
         },
         "en": {
           "Log in": "Log in",
@@ -159,6 +160,7 @@ class MyLocale implements Translations {
           'Resturants': 'Resturants',
           "No Foods In Cart": "No Foods In Cart",
           'You must open an account': 'You must open an account',
+          "There are no reviews yet":"There are no reviews yet",
         },
       };
 }

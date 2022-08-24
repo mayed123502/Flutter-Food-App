@@ -17,7 +17,6 @@ class AllFoodScreen extends GetView<FodeController> {
         appBar: AppBarMeal(),
         body: Obx(() {
           final loadingType = controller.loadingState.value.loadingType;
-
           return controller.isLoading.value
               ? Center(
                   child: CircularProgressIndicator.adaptive(),

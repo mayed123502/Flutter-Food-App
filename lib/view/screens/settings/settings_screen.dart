@@ -40,12 +40,12 @@ class SettingsScreen extends StatelessWidget {
               height: 15.h,
             ),
             Card(
-              color: Theme.of(context).cardColor,
+              color: Theme.of(context).secondaryHeaderColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 25.h),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 25.h),
                 child: Column(
                   children: [
                     RowWithoutSwitchProfile(
@@ -55,7 +55,7 @@ class SettingsScreen extends StatelessWidget {
                       sizedBoxWidth: 120.w,
                     ),
                     SizedBox(
-                      height: 40.h,
+                      height: 5.h,
                     ),
                     RowWithoutSwitchPassword(
                       text: 'Change Password'.tr,
@@ -65,7 +65,7 @@ class SettingsScreen extends StatelessWidget {
                           Get.locale!.languageCode == 'en' ? 100.w : 124.w,
                     ),
                     SizedBox(
-                      height: 40.h,
+                      height: 5.h,
                     ),
                     RowWithSwitchNotification(
                       text: 'Notification'.tr,
@@ -73,11 +73,11 @@ class SettingsScreen extends StatelessWidget {
                       paddingSize: 110.w,
                     ),
                     SizedBox(
-                      height: 40.h,
+                      height: 5.h,
                     ),
                     DropdownMenuItemLanguage(),
                     SizedBox(
-                      height: 40.h,
+                      height: 5.h,
                     ),
                     RowWithSwitchTheme(
                       text: 'Theme Mode'.tr,
@@ -85,30 +85,27 @@ class SettingsScreen extends StatelessWidget {
                       paddingSize: 100.w,
                     ),
                     SizedBox(
-                      height: 40.h,
+                      height: 5.h,
                     ),
                     GestureDetector(
                       onTap: () {
                         print('logout');
                         settingController.logout();
                       },
-                      child: Row(
-                        children: [
-                          Transform.rotate(
-                              angle: 180 * math.pi / 180,
-                              child: Icon(
-                                Icons.logout_outlined,
-                              )),
-                          SizedBox(
-                            width: 20.w,
-                          ),
-                          TextWithFont().textWithRobotoFont(
-                            text: 'Logout'.tr,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.normal,
-                            color: Theme.of(context).textTheme.headline1!.color,
-                          ),
-                        ],
+                      child: ListTile(
+                        leading: Transform.rotate(
+                            angle: 180 * math.pi / 180,
+                            child: Icon(
+                              Icons.logout_outlined,
+                              color:
+                                  Theme.of(context).textTheme.headline1!.color,
+                            )),
+                        title: TextWithFont().textWithRobotoFont(
+                          text: 'Logout'.tr,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.normal,
+                          color: Theme.of(context).textTheme.headline1!.color,
+                        ),
                       ),
                     ),
                   ],

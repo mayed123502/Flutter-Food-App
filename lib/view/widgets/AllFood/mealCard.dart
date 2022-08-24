@@ -62,7 +62,7 @@ class MealCard extends StatelessWidget {
                     TextWithFont().textWithRalewayFont(
                         color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
                         fontSize: 16.sp,
-                        text: '${prodectDetails.description} '.substring(0, 20),
+                        text: '${prodectDetails.description} '.substring(0, 15),
                         fontWeight: FontWeight.w500)
                   ],
                 ),

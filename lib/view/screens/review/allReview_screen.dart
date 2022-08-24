@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/model/review/reviewProdect_model.dart';
 import 'package:ecommerce_app/routes/routes.dart';
+import 'package:ecommerce_app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -45,11 +46,23 @@ class AllReviewScreen extends StatelessWidget {
                             );
                           },
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
               );
+              // : Center(
+              //     child: Text(
+              //     "There are no reviews yet".tr,
+              //     style: TextStyle(
+              //       fontSize: 20,
+              //       color: Theme.of(context)
+              //           .textTheme
+              //           .headline1!
+              //           .color!
+              //           .withOpacity(.5),
+              //     ),
+              //   ));
             }),
             Align(
               alignment: Alignment.bottomCenter,
@@ -65,9 +78,10 @@ class AllReviewScreen extends StatelessWidget {
                     press: SharedPrefs.instance.getString('token') == null
                         ? null
                         : () {
-                            Get.toNamed(Routes.writeReviewScreen, arguments: {
-                              'prodectId': reviewController.idProdect
-                            });
+                            Get.offAndToNamed(Routes.writeReviewScreen,
+                                arguments: {
+                                  'prodectId': reviewController.idProdect
+                                });
                           },
                     text: 'Write Review',
                   ),

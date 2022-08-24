@@ -25,7 +25,7 @@ class HandlingDataView extends StatelessWidget {
                 child: Center(
                     child: Text(
                   "Offline Failure",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),),
                 )),
               )
             : statusRequest == StatusRequest.serverfailure
@@ -34,7 +34,7 @@ class HandlingDataView extends StatelessWidget {
                     child: Center(
                         child: Text(
                       "Server Failure",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),),
                     )),
                   )
                 : statusRequest == StatusRequest.failure
@@ -43,7 +43,7 @@ class HandlingDataView extends StatelessWidget {
                         child: Center(
                             child: Text(
                           "No Data",
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(color:Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),),
                         )),
                       )
                     : widget;

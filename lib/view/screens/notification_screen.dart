@@ -8,18 +8,17 @@ class NotificatonScreen extends StatelessWidget {
   const NotificatonScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
+  Widget build(BuildContext context) { 
+    return Scaffold( 
       appBar: AppBar(
         elevation: 0,
-        leading: IconButton(
+        leading: IconButton( 
           onPressed: () => Get.back(),
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
+        title: Text('Notificaton',style: TextStyle(color: Theme.of(context).textTheme.headline1!.color),),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -35,7 +34,7 @@ class NotificatonScreen extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset('assets/gridview.png',
+                      child: Image.asset('assets/profile.png',
                           height: 70.0.h, width: 70.w),
                     ),
                     SizedBox(
@@ -46,7 +45,7 @@ class NotificatonScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextWithFont().textWithRalewayFont(
-                            color: Get.isDarkMode ? Colors.white : Colors.black,
+                            color: Theme.of(context).textTheme.headline1!.color!,
                             fontSize: 16.sp,
                             text: 'Lorem Ipsum',
                             fontWeight: FontWeight.bold),
@@ -54,7 +53,7 @@ class NotificatonScreen extends StatelessWidget {
                           height: 5.h,
                         ),
                         TextWithFont().textWithRalewayFont(
-                            color: Get.isDarkMode ? Colors.white : Colors.black,
+                            color: Theme.of(context).textTheme.headline1!.color!,
                             fontSize: 14.sp,
                             text: 'simply dummy text of the printing',
                             fontWeight: FontWeight.w500),
@@ -64,9 +63,7 @@ class NotificatonScreen extends StatelessWidget {
                         Row(
                           children: [
                             TextWithFont().textWithRalewayFont(
-                                color: Get.isDarkMode
-                                    ? Colors.white
-                                    : Colors.black.withOpacity(.6),
+                                color:  Theme.of(context).textTheme.headline1!.color!.withOpacity(.6),
                                 fontSize: 14.sp,
                                 text: 'Today',
                                 fontWeight: FontWeight.w400),
@@ -74,9 +71,7 @@ class NotificatonScreen extends StatelessWidget {
                               width: 100.h,
                             ),
                             TextWithFont().textWithRalewayFont(
-                                color: Get.isDarkMode
-                                    ? Colors.white
-                                    : Colors.black.withOpacity(.6),
+                                color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6),
                                 fontSize: 14.sp,
                                 text: '12:00Pm',
                                 fontWeight: FontWeight.w400),

@@ -20,36 +20,34 @@ class RowWithoutSwitchPassword extends StatelessWidget {
   final double sizedBoxWidth;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // Icons.person_outline
-        Icon(icon),
-        SizedBox(
-          width: 20.w,
+    return ListTile(
+      // children: [
+      // Icons.person_outline
+      leading: Icon(
+        icon,
+        color: Theme.of(context).iconTheme.color,
+      ),
+
+      title: TextWithFont().textWithRobotoFont(
+        text: text,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context).textTheme.headline1!.color,
+      ),
+
+      //  Icons.arrow_forward_ios_rounded
+      trailing: GestureDetector(
+        onTap: () {
+          Get.toNamed(Routes.updatePassword);
+        },
+        child: Icon(
+          Icons.arrow_forward_ios_rounded,
+          size: 20,
+          color: Theme.of(context).iconTheme.color,
         ),
-        TextWithFont().textWithRobotoFont(
-          text: text,
-          fontSize: 14.sp,
-          fontWeight: FontWeight.normal,
-          color:Theme.of(context).textTheme.headline1!.color,
-        ),
-        SizedBox(
-          width: sizedBoxWidth,
-        ),
-        //  Icons.arrow_forward_ios_rounded
-        Padding(
-          padding: EdgeInsets.only(left: paddingSize),
-          child: GestureDetector(
-            onTap: () {
-              Get.toNamed(Routes.updatePassword);
-            },
-            child: const Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
-            ),
-          ),
-        )
-      ],
+      ),
+
+      // ],
     );
   }
 }

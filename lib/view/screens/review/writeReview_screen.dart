@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/reviewProduct_controllers.dart';
+import '../../../routes/routes.dart';
 import '../../../utils/theme.dart';
 import '../../widgets/review/ratingBar.dart';
 import '../../widgets/textWithFont.dart';
@@ -18,10 +21,9 @@ class WriteReviewScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.transparent,
         elevation: 0,
         title: TextWithFont().textWithRobotoFont(
-            color: Get.isDarkMode ? Colors.white : Colors.black,
+            color: Theme.of(context).textTheme.headline1!.color,
             fontSize: 20.sp,
             text: 'Write Review',
             fontWeight: FontWeight.bold),
@@ -29,7 +31,6 @@ class WriteReviewScreen extends StatelessWidget {
           onPressed: () => Get.back(),
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
       ),
@@ -43,9 +44,11 @@ class WriteReviewScreen extends StatelessWidget {
                 height: 40.h,
               ),
               TextWithFont().textWithRobotoFont(
-                  color: Get.isDarkMode
-                      ? Colors.white
-                      : Colors.black.withOpacity(.6),
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline1!
+                      .color!
+                      .withOpacity(.6),
                   fontSize: 14.sp,
                   text:
                       'Please write overall level of satisfaction with your shipping / Delivery Service',
@@ -58,7 +61,7 @@ class WriteReviewScreen extends StatelessWidget {
                 height: 40.h,
               ),
               TextWithFont().textWithRobotoFont(
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                  color: Theme.of(context).textTheme.headline1!.color!,
                   fontSize: 14.sp,
                   text: 'Write Your Review',
                   fontWeight: FontWeight.w600),
@@ -81,7 +84,9 @@ class WriteReviewScreen extends StatelessWidget {
                   decoration: InputDecoration(
                     contentPadding:
                         const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                    fillColor: Colors.grey.shade100.withOpacity(1),
+                    fillColor: Get.isDarkMode
+                        ? Theme.of(context).cardColor
+                        : authTextFromFieldFillColor.withOpacity(.3),
                     hintText: 'Write your review here',
                     hintStyle: TextStyle(
                       color: authTextFromFieldHintTextColor,
@@ -109,21 +114,25 @@ class WriteReviewScreen extends StatelessWidget {
                 return Align(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           String feedback = myController.text.trim();
-
-                        
-                          reviewController.addReviewProduct(
+                          await reviewController.addReviewProduct(
                               feedback,
                               reviewController.rateing.toInt(),
                               reviewController.idProdect.toString());
+                          // reviewController.showProductReviews(
+                          //     reviewController.idProdect.toString());
+
+                          Get.toNamed(Routes.allReviewScreen, arguments: {
+                            'prodectId': reviewController.idProdect!.toInt()
+                          });
                         }
                       },
                       style: ElevatedButton.styleFrom(
                         shadowColor: Colors.white,
                         side: BorderSide.none,
-                        primary: context.theme.buttonColor,
+                        // primary:,
                         minimumSize: Size(120.w, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),

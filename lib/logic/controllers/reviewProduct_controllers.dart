@@ -9,16 +9,20 @@ class RreviewProductController extends GetxController {
   var reviewProduct = <Data>[].obs;
   late StatusRequest statusReviewProduct;
   late StatusRequest statusAddReview;
+  var isLoading = true.obs;
   double rateing = 4.0;
   int? idProdect;
   @override
   void onInit() {
     var prodectId = Get.arguments['prodectId'];
-    idProdect = prodectId;
-    print(prodectId);
+    print('prodectId $prodectId');
+    idProdect = prodectId as int;
     showProductReviews(prodectId.toString());
+    isLoading.value = false;
     super.onInit();
   }
+
+
 
   showProductReviews(String productId) async {
     statusReviewProduct = StatusRequest.loading;

@@ -20,7 +20,6 @@ class CategoryScreen extends GetView<ResturantController> {
       appBar: AppBarCategory(),
       body: Obx(() {
         final loadingType = controller.loadingState.value.loadingType;
-        print(controller.currentSeletected.value);
 
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -32,7 +31,9 @@ class CategoryScreen extends GetView<ResturantController> {
                   fontSize: 20.sp,
                   text: 'Category'.tr,
                   fontWeight: FontWeight.w600),
-              ChoseMenu(),
+              GetBuilder<ResturantController>(builder: (_) {
+                return ChoseMenu();
+              }),
               SizedBox(
                 height: 15.h,
               ),

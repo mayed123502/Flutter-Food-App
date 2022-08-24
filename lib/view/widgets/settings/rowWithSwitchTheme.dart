@@ -23,36 +23,33 @@ class RowWithSwitchTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Row(
-        children: [
-          Icon(icon),
-          SizedBox(
-            width: 20.w,
-          ),
-          TextWithFont().textWithRobotoFont(
+      () => ListTile(
+        leading:  Icon(icon,  color:Theme.of(context).textTheme.headline1!.color,),
+         
+        title:  TextWithFont().textWithRobotoFont(
             text: text,
             fontSize: 14.sp,
             fontWeight: FontWeight.normal,
             color: Theme.of(context).textTheme.headline1!.color,
           ),
-          SizedBox(
-            width: paddingSize,
-          ),
-          FlutterSwitch(
-            height: 22.0,
-            width: 55.0,
-            padding: 1.5,
-            toggleSize: 20.0,
-            borderRadius: 13.0,
-            activeColor: Color.fromRGBO(39, 174, 96, 1),
-            value: controller.swithchThemwValue.value,
-            onToggle: (value) {
-              ThemeController().changesTheme();
-              controller.swithchThemwValue.value = value;
-              print(value);
-            },
-          ),
-        ],
+     
+       trailing:   SizedBox(
+        width: 50.w,
+         child: FlutterSwitch(
+              height: 22.0,
+              width: 55.0,
+              padding: 1.5,
+              toggleSize: 20.0,
+              borderRadius: 13.0,
+              activeColor: Color.fromRGBO(39, 174, 96, 1),
+              value: controller.swithchThemwValue.value,
+              onToggle: (value) {
+                ThemeController().changesTheme();
+                controller.swithchThemwValue.value = value;
+                print(value);
+              },
+            ),
+       ),
       ),
     );
   }

@@ -66,9 +66,9 @@ class ResturantController extends GetxController {
       if (response['status'] == 200) {
         AllResrtaurantData dataOfRestaurant =
             AllResrtaurantData.fromJson(response['data']);
+        allCategoriesList.assignAll(dataOfRestaurant.categories!);
 
         allRestaurantsList.assignAll(dataOfRestaurant.restaurants!.data!);
-        allCategoriesList.assignAll(dataOfRestaurant.categories!);
       } else {
         statusRequestRestaurant = StatusRequest.failure;
       }

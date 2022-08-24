@@ -25,7 +25,11 @@ class CartScreen extends StatelessWidget {
                 "You must open an account".tr,
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.black.withOpacity(.5),
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline1!
+                      .color!
+                      .withOpacity(.5),
                 ),
               ),
             )
@@ -52,8 +56,13 @@ class CartScreen extends StatelessWidget {
                                 child: Text(
                               "No Foods In Cart".tr,
                               style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black.withOpacity(.5)),
+                                fontSize: 20,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headline1!
+                                    .color!
+                                    .withOpacity(.5),
+                              ),
                             )),
                           )),
                     Obx(() {

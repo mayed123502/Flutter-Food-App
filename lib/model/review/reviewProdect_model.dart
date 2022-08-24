@@ -1,3 +1,5 @@
+import '../../services/baseAPI.dart';
+
 class RreviewProduct {
   String? message;
   List<Data>? data;
@@ -37,7 +39,7 @@ class Data {
   String? ipAddress;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  String? deletedAt;
   User? user;
 
   Data(
@@ -88,19 +90,23 @@ class Data {
 
 class User {
   int? id;
-  Null? image;
+  String? name;
+  String? image;
 
-  User({this.id, this.image});
+  User({this.id, this.name, this.image});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    image = json['image'];
+    name = json['name'];
+    image = BaseAPI.baseImage + json['image'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['name'] = this.name;
     data['image'] = this.image;
     return data;
   }
+
 }

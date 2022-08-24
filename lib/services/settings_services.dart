@@ -30,7 +30,7 @@ class ServicesApi {
     Dio dio = new Dio();
     var url = '${BaseAPI.authPath}' + '/user/updateProfile';
 
-    var response = await dio.post(  
+    var response = await dio.post(
       url,
       data: data,
       options: Options(

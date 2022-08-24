@@ -42,10 +42,9 @@ class RowWithText extends StatelessWidget {
               // validator: (value) {},
               style: GoogleFonts.raleway(
                 textStyle: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).textTheme.headline1!.color
-                ),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).textTheme.headline1!.color),
               ),
               onChanged: (value) {
                 settingController.nameFromTextFild.value = value;
@@ -54,7 +53,7 @@ class RowWithText extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding:
                     const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                fillColor:Get.isDarkMode?Colors.transparent: Colors.white,
+                fillColor:Theme.of(context).secondaryHeaderColor,
                 hintStyle: TextStyle(
                   fontSize: 17.sp,
                   fontWeight: FontWeight.w500,

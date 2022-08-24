@@ -45,6 +45,7 @@ class ProfileSetting extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.w),
                     child: Card(
+                      color: Theme.of(context).secondaryHeaderColor,
                       elevation: 5,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),

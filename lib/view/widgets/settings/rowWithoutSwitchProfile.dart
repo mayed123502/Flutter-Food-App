@@ -22,36 +22,28 @@ class RowWithoutSwitchProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // Icons.person_outline
-        Icon(icon),
-        SizedBox(
-          width: 20.w,
+    return ListTile(
+        leading: Icon(
+          icon,
+          color: Theme.of(context).iconTheme.color,
         ),
-        TextWithFont().textWithRobotoFont(
+        title: TextWithFont().textWithRobotoFont(
           text: text,
           fontSize: 14.sp,
           fontWeight: FontWeight.normal,
-          color:Theme.of(context).textTheme.headline1!.color,
+          color: Theme.of(context).textTheme.headline1!.color,
         ),
-        SizedBox(
-          width: sizedBoxWidth,
-        ),
-        //  Icons.arrow_forward_ios_rounded
-        Padding(
-          padding: EdgeInsets.only(left: paddingSize),
-          child: GestureDetector(
-            onTap: () {
-              Get.toNamed(Routes.profileSetting);
-            },
-            child: const Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
-            ),
+        trailing: GestureDetector(
+          onTap: () {
+            Get.toNamed(Routes.profileSetting);
+          },
+          child: Icon(
+            Icons.arrow_forward_ios_rounded,
+            size: 20,
+            color: Theme.of(context).iconTheme.color,
           ),
         )
-      ],
-    );
+        // ],
+        );
   }
 }
