@@ -24,12 +24,17 @@ class SearchTextField extends StatelessWidget {
           searchController.viewSearchRestaurants(value);
         }
       }),
+          cursorColor: Theme.of(context).textTheme.headline1!.color,
+   style: TextStyle(
+        color: Theme.of(context).textTheme.headline1!.color,
+      ),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
         prefixIcon: Icon(Icons.search),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
         hintText: 'Search',
         filled: true,
+        
         // fillColor: Color.fromRGBO(244, 244, 244, 1),
         hintStyle: TextStyle(
           color: authTextFromFieldHintTextColor,

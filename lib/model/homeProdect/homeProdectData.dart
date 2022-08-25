@@ -8,7 +8,6 @@ class HomeProdectData {
   String? image;
   int? rating;
   int? price;
-
   int? calories;
   String? description;
   int? restaurantId;

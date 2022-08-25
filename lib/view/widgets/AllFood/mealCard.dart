@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../model/homeProdect/homeProdectData.dart';
-import '../../../model/prodect/productDetails_modle.dart';
 import '../textWithFont.dart';
 
 class MealCard extends StatelessWidget {
-  const MealCard({
-    Key? key,
-    required this.prodectDetails,
-  }) : super(key: key);
-  final HomeProdectData prodectDetails;
+  MealCard(this.homeProdectData);
+  final HomeProdectData homeProdectData;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +33,7 @@ class MealCard extends StatelessWidget {
                   color: Colors.grey.shade300,
                   image: DecorationImage(
                       image: NetworkImage(
-                        prodectDetails.image ?? '',
+                        homeProdectData.image ?? '',
                       ),
                       fit: BoxFit.cover)),
             ),
@@ -50,7 +46,7 @@ class MealCard extends StatelessWidget {
                 TextWithFont().textWithRalewayFont(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
-                  text: '${prodectDetails.name}',
+                  text: '${homeProdectData.name}',
                   color: Theme.of(context).textTheme.headline1!.color!,
                 ),
                 const SizedBox(
@@ -60,9 +56,15 @@ class MealCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     TextWithFont().textWithRalewayFont(
-                        color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
+                        color: Theme.of(context)
+                            .textTheme
+                            .headline1!
+                            .color!
+                            .withOpacity(.5),
                         fontSize: 16.sp,
-                        text: '${prodectDetails.description} '.substring(0, 15),
+                        text: homeProdectData.description!.length <= 15
+                            ? '${homeProdectData.description} '
+                            : '${homeProdectData.description} '.substring(15),
                         fontWeight: FontWeight.w500)
                   ],
                 ),

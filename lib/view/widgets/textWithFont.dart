@@ -6,7 +6,7 @@ class TextWithFont {
       {required String text,
       required double fontSize,
       required FontWeight fontWeight,
-       Color ?color,
+      Color? color,
       TextAlign? textAlign}) {
     return Text(
       text,
@@ -30,8 +30,11 @@ class TextWithFont {
     return Text(
       text,
       style: GoogleFonts.raleway(
-        textStyle:
-            TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color),
+        textStyle: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: color,
+        ),
       ),
       textAlign: textAlign,
     );
@@ -41,7 +44,7 @@ class TextWithFont {
       {required String text,
       required double fontSize,
       required FontWeight fontWeight,
-       Color? color,
+      Color? color,
       TextAlign? textAlign}) {
     return Text(
       text,

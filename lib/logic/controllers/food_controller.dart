@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../enums/loading_state.dart';
 import '../../enums/loading_types.dart';
+import '../../model/allCategories.dart';
 import '../../model/homeProdect/homeProdectData.dart';
 import '../../model/prodect/productDetails_modle.dart';
 import '../../services/food_services.dart';
@@ -10,15 +11,24 @@ import '../../services/helper/statusrequest.dart';
 
 class FodeController extends GetxController {
   var allFoodsList = <HomeProdectData>[].obs;
+  var allCategoriesList = <Data>[].obs;
+
   final isLoading = true.obs;
   final scrollController = ScrollController();
   int _pageNo = 1;
   final loadingState = LoadingState(loadingType: LoadingType.stable).obs;
   late StatusRequest statusRequestFood;
-
+  var currentSeletected = 0.obs;
+  var currentSeletectedRating = 0.obs;
+  var currentSeletectedSlider = 0.obs;
+  Rx<RangeValues> values = RangeValues(0, 100.00).obs;
+  RxString startLabel = 0.toString().obs;
+  RxString endLabel = 100.00.toString().obs;
   @override
   void onInit() async {
-    viewAllFood();
+    await viewAllFood();
+    await viewCategories();
+    print(allFoodsList[1].name);
     scrollController.addListener(_scrollListener);
   }
 
@@ -46,9 +56,7 @@ class FodeController extends GetxController {
     }
   }
 
-  void viewAllFood() async {
-
-    
+  Future<void> viewAllFood() async {
     final listOfData = await FoodApi.viewAllFoods(
       _pageNo,
     );
@@ -56,6 +64,16 @@ class FodeController extends GetxController {
     isLoading.value = false;
   }
 
+  viewCategories() async {
+    var response = await FoodApi.viewAllCategories();
 
-  
+    if (response['status'] == 200) {
+      final dataList =
+          (response['data'] as List).map((e) => Data.fromJson(e)).toList();
+      print(dataList);
+      allCategoriesList.addAll(dataList);
+    }
+
+    update();
+  }
 }

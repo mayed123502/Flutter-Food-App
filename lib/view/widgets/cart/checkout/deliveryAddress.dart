@@ -13,7 +13,8 @@ class DeliveryAddress extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextWithFont().textWithRalewayFont(
-          color: Get.isDarkMode ? Colors.white : Colors.black.withOpacity(.5),
+          color:                                  Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
+
           fontSize: 16.sp,
           text: "Delivery Address",
           fontWeight: FontWeight.w500),

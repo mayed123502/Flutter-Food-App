@@ -15,10 +15,10 @@ class ShowOrderDit extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text("Sub Total"),
+            children:  [
+              Text("Sub Total",style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6))),
               Text(
-                "\$68",
+                "\$68",style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!)
               )
             ],
           ),
@@ -27,10 +27,10 @@ class ShowOrderDit extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text("Delivery Cost"),
+            children:  [
+              Text("Delivery Cost",style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6))),
               Text(
-                "\$2",
+                "\$2",style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!)
               )
             ],
           ),
@@ -41,10 +41,10 @@ class ShowOrderDit extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text("Total"),
+            children:  [
+              Text("Total",style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6))),
               Text(
-                "\$66",
+                "\$66",style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!)
               )
             ],
           ),

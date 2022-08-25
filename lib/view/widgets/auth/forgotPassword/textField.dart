@@ -23,7 +23,12 @@ class TextFieldForget extends StatelessWidget {
         controller: emailController,
         // validator:
         validator: (value) => validator(value),
+              cursorColor: Theme.of(context).textTheme.headline1!.color,
+   style: TextStyle(
+        color: Theme.of(context).textTheme.headline1!.color,
+      ),
         decoration: InputDecoration(
+          
           fillColor:Get.isDarkMode?Theme.of(context).cardColor: authTextFromFieldFillColor.withOpacity(.5),
           filled: true,
           contentPadding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),

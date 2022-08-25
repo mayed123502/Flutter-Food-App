@@ -18,7 +18,7 @@ class OrderDetails extends StatelessWidget {
         children: [
           TextWithFont().textWithRalewayFont(
               color:
-                  Get.isDarkMode ? Colors.white : Colors.black.withOpacity(.5),
+                 Theme.of(context).textTheme.headline1!.color!.withOpacity(.8),
               fontSize: 16.sp,
               text: "Order Details ",
               fontWeight: FontWeight.w500),

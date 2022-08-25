@@ -15,7 +15,8 @@ final String addres;
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.4,
       child: TextWithFont().textWithRalewayFont(
-          color: Get.isDarkMode ? Colors.white : Colors.black.withOpacity(.8),
+          color:                                   Theme.of(context).textTheme.headline1!.color!.withOpacity(.8),
+
           fontSize: 16.sp,
           text:addres,
           fontWeight: FontWeight.bold),

@@ -5,6 +5,7 @@ import 'package:ecommerce_app/services/baseAPI.dart';
 import 'package:ecommerce_app/services/helper/crud.dart';
 
 import '../model/cart/Cart_model.dart';
+import '../model/cart/checkOut_model.dart';
 import '../utils/sharPreferenceUtils .dart';
 
 class CartServices {
@@ -33,14 +34,37 @@ class CartServices {
     var url = '${BaseAPI.authPath}' + '/user/addToCart';
   }
 
+  checkOutCart({required List<CartData> cartData}) async {
+    var url = '${BaseAPI.authPath}' + '/user/checkout';
 
-  // checkOutCart ()async{
-  //       var url = '${BaseAPI.authPath}' + '/user/addToCart';
+    List jsonList = [];
+    cartData.map((item) {
+      Order order =
+          Order(quantity: item.quantity.toString(), id: item.id.toString());
+      jsonList.add(order.toJson());
+    }).toList();
 
-  //   var response = await Crud.getData(url, map: {
-  //     "pagesize": 6,
-  //     "page": pageIndex,
-  //   });
-  //   return response.fold((l) => l, (r) => r);
-  // }
+    var response = await Crud.postData(
+      url,
+      json.encode({"array": jsonList}),
+      Options(headers: {
+        'Authorization': 'Bearer ${SharedPrefs.instance.getString('token')}',
+        'Content-Type': 'application/json',
+      }),
+    );
+
+    return response.fold((l) => l, (r) => r);
+  }
+
+  deleteFromCart({required int order_id}) async {
+    var url = '${BaseAPI.authPath}' + '/user/deleteFromCart/$order_id';
+    var response = await Crud.deleteData(
+      url,
+      Options(headers: {
+        'Authorization': 'Bearer ${SharedPrefs.instance.getString('token')}',
+      }),
+    );
+
+    return response.fold((l) => l, (r) => r);
+  }
 }

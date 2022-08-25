@@ -16,19 +16,22 @@ class FilterContainer extends StatelessWidget {
       width: 47.w,
       height: 56.h,
       child: IconButton(
-        icon: Icon(
-          Icons.filter_list_alt,
-          color: mainColor,
-        ),
-        onPressed: () {
-          Get.toNamed(Routes.filterScreen);
-        },
-      ),
+          icon: Icon(
+            Icons.filter_list_alt,
+            color: mainColor,
+          ),
+          onPressed: null
+
+          //  () {
+          //   Get.toNamed(Routes.filterScreen);
+          // },
+          ),
       decoration: BoxDecoration(
-        color:Get.isDarkMode? Theme.of(context).textTheme.headline4!.color:Color(0xFFF4F4F4),
+        color: Get.isDarkMode
+            ? Theme.of(context).textTheme.headline4!.color
+            : Color(0xFFF4F4F4),
         borderRadius: BorderRadius.circular(8),
       ),
     );
   }
 }
-

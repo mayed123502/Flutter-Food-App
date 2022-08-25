@@ -27,15 +27,17 @@ class AuthTextFromField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
-      cursorColor: Get.isDarkMode?Theme.of(context).cardColor: authTextFromFieldFillColor.withOpacity(.3),
+      cursorColor: Theme.of(context).textTheme.headline1!.color,
       keyboardType: TextInputType.text,
       validator: (value) => validator(value),
-      style:  TextStyle(
-        color:Theme.of(context).textTheme.headline1!.color,
+      style: TextStyle(
+        color: Theme.of(context).textTheme.headline1!.color,
       ),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-        fillColor:Get.isDarkMode?Theme.of(context).cardColor: authTextFromFieldFillColor.withOpacity(.3),
+        fillColor: Get.isDarkMode
+            ? Theme.of(context).cardColor
+            : authTextFromFieldFillColor.withOpacity(.3),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         hintText: hintText,
@@ -46,16 +48,21 @@ class AuthTextFromField extends StatelessWidget {
         ),
         filled: true,
         enabledBorder: OutlineInputBorder(
-          borderSide:  BorderSide(color: authTextFromFieldPorderColor.withOpacity(.5),),
+          borderSide: BorderSide(
+            color: authTextFromFieldPorderColor.withOpacity(.5),
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide:  BorderSide(color: authTextFromFieldPorderColor.withOpacity(.5),),
+          borderSide: BorderSide(
+            color: authTextFromFieldPorderColor.withOpacity(.5),
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide:
-               BorderSide(color: authTextFromFieldErrorBorderColor.withOpacity(.5),),
+          borderSide: BorderSide(
+            color: authTextFromFieldErrorBorderColor.withOpacity(.5),
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedErrorBorder: OutlineInputBorder(

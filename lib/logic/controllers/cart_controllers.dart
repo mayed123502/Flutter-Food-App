@@ -101,8 +101,21 @@ class CartController extends GetxController {
     return total;
   }
 
-  void removeProductToCart(CartData cartData) {}
+  void checkOutCart({required List<CartData> cartData}) async {
+    await CartServices().checkOutCart(cartData: cartData);
+  }
 
+  void deleteFromCart({required int idOrder}) async {
+    await CartServices().deleteFromCart(order_id: idOrder);
+
+    cartDataList
+        .removeAt(cartDataList.indexWhere((element) => element.id == idOrder));
+    final String encodedData = CartData.encode(cartDataList);
+    storge.setString('cartDataList', encodedData);
+    print('de Done');
+    update();
+  }
+}
 //   double totalPriceSum(int order_id) {
 //   return ItemsPrice.where((item) => item.todoListId == todoListId)
 //                    .fold(0.0, (sum, item) => sum + item['price']);
@@ -170,4 +183,4 @@ class CartController extends GetxController {
   //         .reduce((value, element) => value + element);
   //   }
   // }
-}
+

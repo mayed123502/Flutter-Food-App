@@ -22,23 +22,11 @@ class ListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key('item ${cartData.id}'),
+      direction: DismissDirection.endToStart,
+      onDismissed: (direction) {
+        cartController.deleteFromCart(idOrder: cartData.id!);
+      },
       background: Container(
-        color: Colors.blue,
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Row(
-            children: [
-              Icon(
-                Icons.favorite,
-              ),
-              Text('Move to favorites',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.headline1!.color)),
-            ],
-          ),
-        ),
-      ),
-      secondaryBackground: Container(
         decoration: BoxDecoration(
           color: mainColor,
           borderRadius: const BorderRadius.only(
@@ -96,8 +84,10 @@ class ListViewItem extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           color: Theme.of(context).textTheme.headline1!.color),
                     ),
-                    SizedBox(height: 10.h,)
-,                    Text(
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
                       '\$ ${cartData.unitPrice! * cartData.quantity!}',
                       style: TextStyle(
                           fontSize: 15.sp,

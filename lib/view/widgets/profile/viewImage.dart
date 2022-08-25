@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/settings_controller.dart';
+import '../../../services/baseAPI.dart';
 import '../../../utils/theme.dart';
 
 class ViewImage extends StatelessWidget {
@@ -16,6 +17,7 @@ class ViewImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SettingsController>(
         // no need to initialize Controller ever again, just mention the type
+
         builder: (_) => Align(
               alignment: Alignment.center,
               child: Stack(
@@ -32,7 +34,10 @@ class ViewImage extends StatelessWidget {
                               fit: BoxFit.fill,
                             )
                           : CachedNetworkImage(
-                              imageUrl: settingController.image.value,
+                              imageUrl: settingController.image.value
+                                      .contains('http')
+                                  ? settingController.image.value
+                                  : '${BaseAPI.baseImage}${settingController.image.value}',
                               placeholder: (context, url) =>
                                   CircularProgressIndicator(),
                               errorWidget: (context, url, error) => Icon(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../enums/loading_types.dart';
@@ -14,7 +13,7 @@ class AllFoodScreen extends GetView<FodeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBarMeal(),
+        appBar:  AppBarMeal(),
         body: Obx(() {
           final loadingType = controller.loadingState.value.loadingType;
           return controller.isLoading.value
@@ -65,9 +64,7 @@ class AllFoodScreen extends GetView<FodeController> {
                                 ],
                               );
                             },
-                            child: MealCard(
-                              prodectDetails: controller.allFoodsList[index],
-                            ),
+                            child: MealCard(controller.allFoodsList[index]),
                           );
                         }
                       }),
@@ -75,3 +72,5 @@ class AllFoodScreen extends GetView<FodeController> {
         }));
   }
 }
+
+// MealCard(controller.allFoodsList[index])

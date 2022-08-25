@@ -10,13 +10,14 @@ class Crud {
       String linkurl, String data, Options options) async {
     try {
       if (await checkInternet()) {
-        Response response =
-            await Dio().post(linkurl, data: data, options: options);
+        Response response = await Dio().post(
+          linkurl,
+          data: data,
+          options: options,
+        );
 
         if (response.statusCode == 200 || response.statusCode == 201) {
-          print(response.data);
           Map responsebody = jsonDecode(response.data);
-          print(responsebody);
           return Right(responsebody);
         } else {
           return const Left(StatusRequest.serverfailure);
@@ -24,7 +25,8 @@ class Crud {
       } else {
         return const Left(StatusRequest.offlinefailure);
       }
-    } catch (_) {
+    } catch (e) {
+      print(e);
       return const Left(StatusRequest.serverfailure);
     }
   }
@@ -42,6 +44,33 @@ class Crud {
         if (response.statusCode == 200 || response.statusCode == 201) {
           Map<String, dynamic> data =
               new Map<String, dynamic>.from(response.data);
+
+          return Right(data);
+        } else {
+          return const Left(StatusRequest.serverfailure);
+        }
+      } else {
+        return const Left(StatusRequest.offlinefailure);
+      }
+    } catch (_) {
+      return const Left(StatusRequest.serverfailure);
+    }
+  }
+
+  static Future<Either<StatusRequest, Map>> deleteData(
+      String linkurl, Options options) async {
+    try {
+      if (await checkInternet()) {
+        Response response = await Dio().delete(
+          linkurl,
+          options: options,
+        );
+        print(response.statusCode);
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          Map<String, dynamic> data =
+              new Map<String, dynamic>.from(response.data);
+
+          print(data);
 
           return Right(data);
         } else {

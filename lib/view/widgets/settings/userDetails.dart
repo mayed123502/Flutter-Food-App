@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/settings_controller.dart';
+import '../../../services/baseAPI.dart';
 import '../../../utils/sharPreferenceUtils .dart';
 
 class UserDetails extends StatelessWidget {
@@ -28,7 +29,9 @@ class UserDetails extends StatelessWidget {
                       fit: BoxFit.cover,
                     )
                   : CachedNetworkImage(
-                      imageUrl: settingsController.image.value,
+                      imageUrl: settingsController.image.value.contains('http')
+                          ? settingsController.image.value
+                          : '${BaseAPI.baseImage}${settingsController.image.value}',
                       placeholder: (context, url) =>
                           CircularProgressIndicator(),
                       errorWidget: (context, url, error) => Image.asset(

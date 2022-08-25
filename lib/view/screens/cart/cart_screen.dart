@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/cart_controllers.dart';
+import '../../../services/cart_services.dart';
 import '../../../utils/sharPreferenceUtils .dart';
 import '../../widgets/auth/auth_button.dart';
 import '../../widgets/cart/appBarCart.dart';
@@ -84,6 +85,8 @@ class CartScreen extends StatelessWidget {
                               AuthButton(
                                 text: 'Checkout'.tr,
                                 press: () {
+                                  cartController.checkOutCart(
+                                      cartData: cartController.cartDataList);
                                   Get.toNamed(Routes.checkoutScreen);
                                 },
                               ),

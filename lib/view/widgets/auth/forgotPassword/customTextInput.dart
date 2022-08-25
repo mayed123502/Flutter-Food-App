@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../utils/theme.dart';
 
@@ -19,7 +20,7 @@ class CustomTextInput extends StatelessWidget {
       width: double.infinity,
       height: 50,
       decoration: ShapeDecoration(
-        color:  authTextFromFieldFillColor.withOpacity(.8),
+        color: Get.isDarkMode?Theme.of(context).cardColor: authTextFromFieldFillColor.withOpacity(.5),
         shape: StadiumBorder(),
       ),
       child: TextField(

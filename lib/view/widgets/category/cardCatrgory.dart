@@ -6,12 +6,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-
-
 class CardCatrgory extends StatelessWidget {
   const CardCatrgory(
     this.dataRestaurants,
-  ) ;
+  );
 
   final DataOfRestaurant dataRestaurants;
   @override
@@ -36,7 +34,7 @@ class CardCatrgory extends StatelessWidget {
                 color: Colors.grey.shade300,
                 image: DecorationImage(
                   image: NetworkImage(
-                   '${dataRestaurants.logo}',
+                    '${dataRestaurants.logo}',
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -48,12 +46,17 @@ class CardCatrgory extends StatelessWidget {
             width: 30.w,
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextWithFont().textWithRalewayFont(
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
-                  fontSize: 20.sp,
-                  text: dataRestaurants.name!,
-                  fontWeight: FontWeight.bold),
+              SizedBox(
+                width: 100,
+                height: 20,
+                child: TextWithFont().textWithRalewayFont(
+                    color: Get.isDarkMode ? Colors.white : Colors.black,
+                    fontSize: 20.sp,
+                    text: dataRestaurants.name!,
+                    fontWeight: FontWeight.bold),
+              ),
               SizedBox(
                 height: 10.h,
               ),

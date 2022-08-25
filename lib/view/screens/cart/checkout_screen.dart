@@ -48,7 +48,7 @@ class CheckoutScreen extends StatelessWidget {
                         Expanded(
                           child: TextWithFont().textWithRalewayFont(
                               color:
-                                  Get.isDarkMode ? Colors.white : Colors.black,
+                                  Theme.of(context).textTheme.headline1!.color!,
                               fontSize: 20.sp,
                               text: 'Checkout',
                               fontWeight: FontWeight.bold),
@@ -123,9 +123,7 @@ class CheckoutScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextWithFont().textWithRalewayFont(
-                              color: Get.isDarkMode
-                                  ? Colors.white
-                                  : Colors.black.withOpacity(.5),
+                              color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.8),
                               fontSize: 16.sp,
                               text: "Payment method",
                               fontWeight: FontWeight.w500),
@@ -142,7 +140,7 @@ class CheckoutScreen extends StatelessWidget {
                       widget: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Cash on delivery"),
+                          Text("Cash on delivery",style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6)),),
                           Container(
                             width: 15,
                             height: 15,
@@ -173,7 +171,7 @@ class CheckoutScreen extends StatelessWidget {
                               SizedBox(
                                 width: 10,
                               ),
-                              Text("**** **** **** 2187"),
+                              Text("**** **** **** 2187",style: TextStyle(color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6))),
                             ],
                           ),
                           Container(
