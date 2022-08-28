@@ -28,4 +28,21 @@ class FoodApi {
     );
     return response.fold((l) => l, (r) => r);
   }
+
+  static filterProdect({
+    required String category,
+    required String subcategory,
+    required int price,
+    required int rating,
+  }) async {
+    var url = '${BaseAPI.authPath}' + '/filter';
+    Map<String, dynamic> map = {
+      'category': category,
+      'subcategory': subcategory,
+      'price': price,
+      'rating': rating
+    };
+    var response = await Crud.getData(url, map: map);
+    return response.fold((l) => l, (r) => r);
+  }
 }

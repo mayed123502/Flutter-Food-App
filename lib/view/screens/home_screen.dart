@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppBarItem(),
             SizedBox(

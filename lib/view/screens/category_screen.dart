@@ -20,7 +20,7 @@ class CategoryScreen extends GetView<ResturantController> {
       appBar: AppBarCategory(),
       body: Obx(() {
         final loadingType = controller.loadingState.value.loadingType;
-
+        print(controller.currentSeletected.value);
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           child: Column(

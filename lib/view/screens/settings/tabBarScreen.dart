@@ -40,7 +40,7 @@ class TapBarScreen extends StatelessWidget {
                       ClipRRect(
                         child: SizedBox.fromSize(
                           size: Size.fromRadius(30), // Image radius
-                          child: Image.asset('assets/hamburger.jpg',
+                          child: Image.asset('assets/hamburger.jpeg',
                               fit: BoxFit.cover),
                         ),
                         borderRadius: BorderRadius.circular(50),

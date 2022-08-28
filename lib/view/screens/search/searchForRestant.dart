@@ -7,6 +7,7 @@ import '../../../enums/loading_types.dart';
 import '../../../logic/controllers/search_controller.dart';
 import '../../../model/search/search_Model.dart';
 
+import '../../../routes/routes.dart';
 import '../../widgets/search/showNotFound.dart';
 import '../../widgets/textWithFont.dart';
 
@@ -60,18 +61,30 @@ class SearchForRestrant extends StatelessWidget {
                                   .toString(),
                             );
                           } else {
-                            return ListTileCard(
-                              subtitleWidget: TextWithFont().textWithRalewayFont(
-                                  color: Colors.black.withOpacity(.5),
-                                  fontSize: 16.sp,
-                                  text:
-                                      '${searchController.searchRestaurantList[index].address}',
-                                  fontWeight: FontWeight.w500),
-                              dataProducts: DataProducts(),
-                              dataRestaurant:
-                                  searchController.searchRestaurantList[index],
-                              isProduct: false,
-                            );
+                            return GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(Routes.resturantScreen,
+                                      arguments: [
+                                        {
+                                          "id": searchController
+                                              .searchRestaurantList[index].id
+                                              .toString(),
+                                        }
+                                      ]);
+                                },
+                                child: ListTileCard(
+                                  subtitleWidget: TextWithFont()
+                                      .textWithRalewayFont(
+                                          color: Colors.black.withOpacity(.5),
+                                          fontSize: 16.sp,
+                                          text:
+                                              '${searchController.searchRestaurantList[index].address}',
+                                          fontWeight: FontWeight.w500),
+                                  dataProducts: DataProducts(),
+                                  dataRestaurant: searchController
+                                      .searchRestaurantList[index],
+                                  isProduct: false,
+                                ));
                           }
                         }))
                 : ShowNotFound(),

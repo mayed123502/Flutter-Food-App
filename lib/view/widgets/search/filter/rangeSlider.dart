@@ -56,6 +56,8 @@ class RangeSliderFiltter extends StatelessWidget {
             ),
             onChanged: (RangeValues values) {
               fodeController.values.value = values;
+              fodeController.currentSeletectedSlider.value =
+                  values.end - values.start;
               fodeController.startLabel.value = values.start.toString();
               fodeController.endLabel.value = values.end.toString();
             })),

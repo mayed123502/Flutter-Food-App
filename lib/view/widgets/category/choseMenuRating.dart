@@ -6,14 +6,6 @@ import '../../../logic/controllers/food_controller.dart';
 import '../../../utils/theme.dart';
 
 class ChoseMenuRating extends StatelessWidget {
-  final List<String> sizeList = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-  ];
-
   final fodeController = Get.find<FodeController>();
 
   @override
@@ -46,7 +38,7 @@ class ChoseMenuRating extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        sizeList[index],
+                        fodeController.sizeList[index].toString(),
                         style: TextStyle(
                             color:
                                 fodeController.currentSeletectedRating.value ==
@@ -76,7 +68,7 @@ class ChoseMenuRating extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(
           width: 10,
         ),
-        itemCount: sizeList.length,
+        itemCount: fodeController.sizeList.length,
       ),
     );
   }

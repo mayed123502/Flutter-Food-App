@@ -10,6 +10,8 @@ import '../category/choseMenuRating.dart';
 import '../search/filter/rangeSlider.dart';
 import '../textWithFont.dart';
 
+final controller = Get.find<FodeController>();
+
 class AppBarMeal extends StatelessWidget with PreferredSizeWidget {
   AppBarMeal({
     Key? key,
@@ -72,7 +74,17 @@ void appModalBottomSheet(BuildContext context) {
               Align(
                 alignment: Alignment.topRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.filterProdect(
+                      category: controller
+                          .allCategoriesList[controller.currentSeletected.value]
+                          .title!,
+                      price: controller.currentSeletectedSlider.value.toInt(),
+                      rating: controller
+                          .sizeList[controller.currentSeletectedRating.value],
+                      subcategory: 'subcategory1',
+                    );
+                  },
                   child: Text(
                     'Apply',
                     style: TextStyle(color: mainColor),
@@ -107,7 +119,6 @@ void appModalBottomSheet(BuildContext context) {
                 height: 20.h,
               ),
               RangeSliderFiltter(),
-              
               SizedBox(
                 height: 70.h,
               ),

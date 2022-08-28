@@ -22,7 +22,6 @@ class ListTileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        
         title: Text(
           isProduct ? '${dataProducts.name}' : '${dataRestaurant.name}',
           style: TextStyle(
@@ -47,10 +46,16 @@ class ListTileCard extends StatelessWidget {
                 size: 20,
               ),
               Text(
-                isProduct ? '${dataProducts.rating}' : '${dataRestaurant.rating}',
+                isProduct
+                    ? '${dataProducts.rating}'
+                    : '${dataRestaurant.rating}',
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.5),
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline1!
+                      .color!
+                      .withOpacity(.5),
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
