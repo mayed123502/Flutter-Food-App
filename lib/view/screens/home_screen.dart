@@ -30,7 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
   final controller = Get.find<OnBoardingHomeController>();
   final homeController = Get.find<HomeController>();
   Future<Null> _refreshLocalGallery() async {
-    print('refreshing stocks...');
+    homeController.homeFoodsList.value = [];
+    homeController.homeOfferList.value = [];
+    homeController.homeRestaurantsList.value = [];
+
+    homeController.viewHomeRestaurants();
+    homeController.viewHomeFoods();
+    homeController.viewHomeOffer();
   }
 
   @override

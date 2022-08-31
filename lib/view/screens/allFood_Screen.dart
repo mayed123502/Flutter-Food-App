@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,12 +14,14 @@ class AllFoodScreen extends GetView<FodeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:  AppBarMeal(),
+        appBar: AppBarMeal(),
         body: Obx(() {
           final loadingType = controller.loadingState.value.loadingType;
           return controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator.adaptive(),
+                  child: CircularProgressIndicator(
+                    color: mainColor,
+                  ),
                 )
               : Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),

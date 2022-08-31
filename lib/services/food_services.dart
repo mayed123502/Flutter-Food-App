@@ -45,4 +45,18 @@ class FoodApi {
     var response = await Crud.getData(url, map: map);
     return response.fold((l) => l, (r) => r);
   }
+
+  static Future<HomeProdectData> viewProdectById({required int id}) async {
+    var url = '${BaseAPI.authPath}' + '/products/' + '$id';
+    var response = await Dio().get(
+      url,
+    );
+    Map<String, dynamic> data = new Map<String, dynamic>.from(response.data);
+    // print(data['message']);
+    // print(data['data']);
+
+    final prodectData = HomeProdectData.fromJson(data['data']);
+
+    return prodectData;
+  }
 }

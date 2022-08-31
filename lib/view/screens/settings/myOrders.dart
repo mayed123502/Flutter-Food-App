@@ -16,7 +16,7 @@ class MyOrdersScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor:Get.isDarkMode? Theme.of(context).appBarTheme.backgroundColor:Colors.white,
+          backgroundColor:Get.isDarkMode? Theme.of(context).scaffoldBackgroundColor:Colors.white,
           title:  Text(
             'Order',
             style: TextStyle(color: Theme.of(context).textTheme.headline1!.color),

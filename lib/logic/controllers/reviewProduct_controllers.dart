@@ -11,20 +11,30 @@ class RreviewProductController extends GetxController {
   late StatusRequest statusAddReview;
   var isLoading = true.obs;
   double rateing = 4.0;
+
   int? idProdect;
+  var currentSeletected = 0.obs;
+
+  final List sizeList = [
+    5,
+    4,
+    3,
+    2,
+    1,
+  ].obs;
   @override
   void onInit() {
     var prodectId = Get.arguments['prodectId'];
     print('prodectId $prodectId');
     idProdect = prodectId as int;
-    showProductReviews(prodectId.toString());
+    showProductReviews(prodectId.toString(), 5);
     isLoading.value = false;
     super.onInit();
   }
 
+  showProductReviews(String productId, int numReviews) async {
+    reviewProduct.value = [];
 
-
-  showProductReviews(String productId) async {
     statusReviewProduct = StatusRequest.loading;
     var response = await ReviewProduct.showProductReviews(productId);
     statusReviewProduct = handlingData(response);
@@ -32,12 +42,13 @@ class RreviewProductController extends GetxController {
       if (response['status'] == 200) {
         final dataList =
             (response['data'] as List).map((e) => Data.fromJson(e)).toList();
-        reviewProduct.addAll(dataList);
+        for (int i = 0; i < dataList.length; i++) {
+          reviewProduct.addIf(dataList[i].rate == numReviews, dataList[i]);
+        }
       } else {
         statusReviewProduct = StatusRequest.failure;
       }
     }
-
     update();
   }
 
@@ -55,4 +66,26 @@ class RreviewProductController extends GetxController {
 
     update();
   }
+
+  // showFilterReviews(String productId, int numReviews) async {
+  //   reviewProduct.value = [];
+  //   statusReviewProduct = StatusRequest.loading;
+  //   var response = await ReviewProduct.showProductReviews(productId);
+  //   statusReviewProduct = handlingData(response);
+  //   if (StatusRequest.success == statusReviewProduct) {
+  //     if (response['status'] == 200) {
+  //       final dataList = await (response['data'] as List)
+  //           .map((e) => Data.fromJson(e))
+  //           .toList();
+  //       for (int i = 0; i < dataList.length; i++) {
+  //         print(dataList[i].rate == numReviews);
+  //         reviewProduct.addIf(dataList[i].rate == numReviews, dataList[i]);
+  //       }
+  //     } else {
+  //       statusReviewProduct = StatusRequest.failure;
+  //     }
+  //   }
+
+  //   update();
+  // }
 }

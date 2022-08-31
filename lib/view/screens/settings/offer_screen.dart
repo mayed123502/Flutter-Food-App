@@ -49,7 +49,8 @@ class OfferScreen extends StatelessWidget {
                 final loadingType =
                     offerController.loadingState.value.loadingType;
 
-                return HandlingDataView(
+                return   GetBuilder<OfferController>(builder: (_) {
+              return  HandlingDataView(
                   statusRequest: offerController.statusOffer,
                   widget: ListView.builder(
                       physics: const BouncingScrollPhysics(),
@@ -172,6 +173,7 @@ class OfferScreen extends StatelessWidget {
                         }
                       }),
                 );
+                });
               }),
             ),
           ],

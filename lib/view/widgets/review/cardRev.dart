@@ -60,17 +60,17 @@ class CardRev extends StatelessWidget {
                   children: [
                     data.user != null
                         ? TextWithFont().textWithRobotoFont(
-                            color: Colors.black,
+                            color: Theme.of(context).textTheme.headline1!.color,
                             fontSize: 18.sp,
                             fontWeight: FontWeight.normal,
                             text: data.user!.name!)
                         : TextWithFont().textWithRobotoFont(
-                            color: Colors.black,
+                            color: Theme.of(context).textTheme.headline1!.color,
                             fontSize: 18.sp,
                             fontWeight: FontWeight.normal,
                             text: 'unknown'),
                     RatingBar.builder(
-                      initialRating: 4,
+                      initialRating: data.rate!.toDouble(),
                       minRating: 1,
                       direction: Axis.horizontal,
                       allowHalfRating: true,

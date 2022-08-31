@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../model/homeProdect/homeProdectData.dart';
+import '../../services/food_services.dart';
 import '../../utils/sharPreferenceUtils .dart';
 
 class ProductDetailsController extends GetxController {
@@ -27,5 +28,12 @@ class ProductDetailsController extends GetxController {
     counter.value = 1;
 
     super.onInit();
+  }
+
+  void viewProdectById(int id) async {
+    final data = await FoodApi.viewProdectById(id: id);
+    prodectData.value = data;
+
+    // loading.value = false;
   }
 }

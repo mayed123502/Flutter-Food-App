@@ -124,7 +124,7 @@ class WriteReviewScreen extends StatelessWidget {
                           // reviewController.showProductReviews(
                           //     reviewController.idProdect.toString());
 
-                          Get.toNamed(Routes.allReviewScreen, arguments: {
+                          Get.offNamed(Routes.allReviewScreen, arguments: {
                             'prodectId': reviewController.idProdect!.toInt()
                           });
                         }

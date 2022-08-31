@@ -66,7 +66,10 @@ class ChangeAddressScreen extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.6,
                         child: addressController.latlong == null
-                            ? CircularProgressIndicator()
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                color: mainColor,
+                              ))
                             : GoogleMap(
                                 mapType: MapType.normal,
                                 initialCameraPosition:

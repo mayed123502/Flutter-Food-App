@@ -74,6 +74,7 @@ class MainScreen extends StatelessWidget {
                   ),
                 )
               : Scaffold(
+                
                   body: Center(
                     child: Lottie.asset('assets/lottie/no_connection.json',
                         width: 250.w, height: 250.h),

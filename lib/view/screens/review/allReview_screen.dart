@@ -24,46 +24,33 @@ class AllReviewScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Stack(
           children: [
-            Obx(() {
-              return HandlingDataView(
-                statusRequest: reviewController.statusReviewProduct,
-                widget: SafeArea(
-                  child: Column(
-                    children: [
-                      ReviewRating(),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: Get.height * .7,
-                        child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: reviewController.reviewProduct.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return CardRev(
-                              data: reviewController.reviewProduct[index],
-                            );
-                          },
-                        ),
-                      )
-                    ],
+            SafeArea(
+              child: Column(
+                children: [
+                  ReviewRating(),
+                  SizedBox(
+                    height: 20.h,
                   ),
-                ),
-              );
-              // : Center(
-              //     child: Text(
-              //     "There are no reviews yet".tr,
-              //     style: TextStyle(
-              //       fontSize: 20,
-              //       color: Theme.of(context)
-              //           .textTheme
-              //           .headline1!
-              //           .color!
-              //           .withOpacity(.5),
-              //     ),
-              //   ));
-            }),
+                  GetBuilder<RreviewProductController>(builder: (_) {
+                    return HandlingDataView(
+                        statusRequest: reviewController.statusReviewProduct,
+                        widget: Container(
+                          width: double.infinity,
+                          height: Get.height * .7,
+                          child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: reviewController.reviewProduct.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return CardRev(
+                                data: reviewController.reviewProduct[index],
+                              );
+                            },
+                          ),
+                        ));
+                  }),
+                ],
+              ),
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(

@@ -10,7 +10,7 @@ import '../../utils/sharPreferenceUtils .dart';
 class AddressController extends GetxController {
   LatLng? latlong;
   CameraPosition? cameraPosition;
-  GoogleMapController? controller;
+  GoogleMapController ? controller;
   Set<Marker> markers = {};
   var addres;
 

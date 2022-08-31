@@ -44,235 +44,252 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
     print('done2');
   }
 
+  Future<Null> _refreshLocalGallery() async {
+    controller.viewProdectById(controller.prodectData.value.id!);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: [
-      SingleChildScrollView(
-        child: Obx(
-          () => controller.isLoading.value
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Column(children: [
-                  Stack(
-                    children: [
+      RefreshIndicator(
+          onRefresh: _refreshLocalGallery,
+          child: SingleChildScrollView(
+            child: Obx(
+              () => controller.isLoading.value
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Column(children: [
                       Stack(
                         children: [
-                          ShowImage(
-                            imageUrl: controller.prodectData.value.image!,
+                          Stack(
+                            children: [
+                              ShowImage(
+                                imageUrl: controller.prodectData.value.image!,
+                              ),
+                              ImageShadow(),
+                            ],
                           ),
-                          ImageShadow(),
-                        ],
-                      ),
-                      SafeArea(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            BackIcon(),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.35,
-                            ),
-                            SizedBox(
-                              height: Get.height * .64,
-                              width: double.infinity,
-                              child: Stack(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 30.0),
-                                    child: Container(
-                                      height: 700,
-                                      width: double.infinity,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 30),
-                                      decoration: ShapeDecoration(
-                                        color: Theme.of(context).cardColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(40),
-                                            topRight: Radius.circular(40),
+                          SafeArea(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                BackIcon(),
+                                SizedBox(
+                                  height:
+                                       ScreenUtil().screenHeight  * 0.35,
+                                ),
+                                SizedBox(
+                                  height: ScreenUtil().screenHeight * .64,
+                                  width: double.infinity,
+                                  child: Stack(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 30.0),
+                                        child: Container(
+                                          height: 700,
+                                          width: double.infinity,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 30),
+                                          decoration: ShapeDecoration(
+                                            color: Theme.of(context).cardColor,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(40),
+                                                topRight: Radius.circular(40),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TitelText(
-                                            title: controller
-                                                .prodectData.value.name!,
-                                          ),
-                                          SupTitle(
-                                            supTitle: controller
-                                                .prodectData.value.name!,
-                                            cal: controller
-                                                .prodectData.value.calories
-                                                .toString(),
-                                            price: controller
-                                                .prodectData.value.price
-                                                .toString(),
-                                          ),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              TitelText(
+                                                title: controller
+                                                    .prodectData.value.name!,
+                                              ),
+                                              SupTitle(
+                                                supTitle: controller
+                                                    .prodectData.value.name!,
+                                                cal: controller
+                                                    .prodectData.value.calories
+                                                    .toString(),
+                                                price: controller
+                                                    .prodectData.value.price
+                                                    .toString(),
+                                              ),
+                                              SizedBox(
+                                                height: 10.h,
+                                              ),
 
-                                          ReviewProduct(),
+                                              ReviewProduct(),
 
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 20),
-                                            child: Row(
-                                              children: [
-                                                RatingBarRev(
-                                                  rating: controller
-                                                      .prodectData.value.rating!
-                                                      .toDouble(),
-                                                ),
-                                                TextWithFont().textWithRalewayFont(
-                                                    color: Theme.of(context)
-                                                        .textTheme
-                                                        .headline1!
-                                                        .color!,
-                                                    fontSize: 12.sp,
-                                                    text:
-                                                        '(${controller.prodectData.value.rating}) ${controller.prodectData.value.numRating} Review',
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      GestureDetector(
-                                                          onTap: () {
-                                                            Get.toNamed(
-                                                                Routes
-                                                                    .allReviewScreen,
-                                                                arguments: {
-                                                                  'prodectId':
-                                                                      controller
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 20),
+                                                child: Row(
+                                                  children: [
+                                                    RatingBarRev(
+                                                      rating: controller
+                                                          .prodectData
+                                                          .value
+                                                          .rating!
+                                                          .toDouble(),
+                                                    ),
+                                                    TextWithFont()
+                                                        .textWithRalewayFont(
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline1!
+                                                                .color!,
+                                                            fontSize: 12.sp,
+                                                            text:
+                                                                '(${controller.prodectData.value.rating}) ${controller.prodectData.value.numRating} Review',
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          GestureDetector(
+                                                              onTap: () {
+                                                                Get.toNamed(
+                                                                    Routes
+                                                                        .allReviewScreen,
+                                                                    arguments: {
+                                                                      'prodectId': controller
                                                                           .prodectData
                                                                           .value
                                                                           .id
-                                                                });
-                                                          },
-                                                          child: SeeMore()),
-                                                    ],
+                                                                    });
+                                                              },
+                                                              child: SeeMore()),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+
+                                              // "Description",
+                                              SizedBox(
+                                                height: 20.h,
+                                              ),
+
+                                              Description(),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              DescriptionText(
+                                                decoration: controller
+                                                    .prodectData
+                                                    .value
+                                                    .description!,
+                                              ),
+
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                child: Divider(
+                                                  color: Colors.grey.shade400,
+                                                  thickness: 1.5,
+                                                ),
+                                              ),
+
+                                              ItemCounter(
+                                                productDetailsController:
+                                                    controller,
+                                              ),
+
+                                              SizedBox(
+                                                height: 20.h,
+                                              ),
+                                              GetBuilder<CartController>(
+                                                builder: (_) => Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 20),
+                                                  child: AuthButton(
+                                                    press: SharedPrefs.instance
+                                                                .getString(
+                                                                    'token') ==
+                                                            null
+                                                        ? null
+                                                        : () => chicke(),
+                                                    text: 'Add to Cart',
                                                   ),
                                                 ),
-                                              ],
-                                            ),
-                                          ),
-
-                                          // "Description",
-                                          SizedBox(
-                                            height: 20.h,
-                                          ),
-
-                                          Description(),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          DescriptionText(
-                                            decoration: controller
-                                                .prodectData.value.description!,
-                                          ),
-
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 20),
-                                            child: Divider(
-                                              color: Colors.grey.shade400,
-                                              thickness: 1.5,
-                                            ),
-                                          ),
-
-                                          ItemCounter(
-                                            productDetailsController:
-                                                controller,
-                                          ),
-
-                                          SizedBox(
-                                            height: 20.h,
-                                          ),
-                                          GetBuilder<CartController>(
-                                            builder: (_) => Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 20),
-                                              child: AuthButton(
-                                                press: SharedPrefs.instance
-                                                            .getString(
-                                                                'token') ==
-                                                        null
-                                                    ? null
-                                                    : () => chicke(),
-                                                text: 'Add to Cart',
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      favoriteController.mangeFavourites(
-                                        controller.prodectData.value,
-                                      );
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 20,
-                                      ),
-                                      child: Align(
-                                        alignment: Alignment.topRight,
-                                        child: Container(
-                                          child: ClipPath(
-                                            clipper: CustomTriangle(),
-                                            child: Container(
-                                                width: 60,
-                                                height: 60,
-                                                color:
-                                                    Theme.of(context).cardColor,
-                                                child: favoriteController
-                                                        .isFavourites(
-                                                            controller
-                                                                .prodectData
-                                                                .value,
-                                                            controller
-                                                                .prodectData
-                                                                .value
-                                                                .id!)
-                                                    ? Icon(
-                                                        Icons.favorite,
-                                                        color: mainColor,
-                                                      )
-                                                    : Icon(
-                                                        Icons.favorite_border,
-                                                        color: mainColor,
-                                                      )),
+                                              )
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          favoriteController.mangeFavourites(
+                                            controller.prodectData.value,
+                                          );
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            right: 20,
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: Container(
+                                              child: ClipPath(
+                                                clipper: CustomTriangle(),
+                                                child: Container(
+                                                    width: 60,
+                                                    height: 60,
+                                                    color: Theme.of(context)
+                                                        .cardColor,
+                                                    child: favoriteController
+                                                            .isFavourites(
+                                                                controller
+                                                                    .prodectData
+                                                                    .value,
+                                                                controller
+                                                                    .prodectData
+                                                                    .value
+                                                                    .id!)
+                                                        ? Icon(
+                                                            Icons.favorite,
+                                                            color: mainColor,
+                                                          )
+                                                        : Icon(
+                                                            Icons
+                                                                .favorite_border,
+                                                            color: mainColor,
+                                                          )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ]),
-        ),
-      )
+                    ]),
+            ),
+          ))
     ]));
   }
 }

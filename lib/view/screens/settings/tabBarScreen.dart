@@ -24,75 +24,68 @@ class TapBarScreen extends StatelessWidget {
           left: 20.w,
           right: 20.w,
         ),
-        child: Card(
-          child: ListView.builder(
-            itemCount: 8,
-            itemBuilder: (context, i) {
-              return Container(
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(width: 1.0, color: Colors.grey.shade300),
-                  ),
-                ),
-                child: ListTile(
-                  title: Row(
-                    children: [
-                      ClipRRect(
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(30), // Image radius
-                          child: Image.asset('assets/hamburger.jpeg',
-                              fit: BoxFit.cover),
+        child: ListView.builder(
+          itemCount: 8,
+          itemBuilder: (context, i) {
+            return Card(
+              child: ListTile(
+                title: Row(
+                  children: [
+                    ClipRRect(
+                      child: SizedBox.fromSize(
+                        size: Size.fromRadius(30), // Image radius
+                        child: Image.asset('assets/hamburger.jpeg',
+                            fit: BoxFit.cover),
+                      ),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextWithFont().textWithRalewayFont(
+                            color:
+                                Get.isDarkMode ? Colors.white : Colors.black,
+                            fontSize: 18.sp,
+                            text: 'Mc Donalds',
+                            fontWeight: FontWeight.bold),
+                        SizedBox(
+                          height: 10.h,
                         ),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      SizedBox(
-                        width: 20.w,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextWithFont().textWithRalewayFont(
-                              color:
-                                  Get.isDarkMode ? Colors.white : Colors.black,
-                              fontSize: 18.sp,
-                              text: 'Mc Donalds',
-                              fontWeight: FontWeight.bold),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Row(
-                            children: [
-                              TextWithFont().textWithRalewayFont(
-                                  color:
-                                      Get.isDarkMode ? Colors.white : mainColor,
-                                  fontSize: 16.sp,
-                                  text: 'ID: ',
-                                  fontWeight: FontWeight.bold),
-                              TextWithFont().textWithRalewayFont(
-                                  color: Get.isDarkMode
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontSize: 16.sp,
-                                  text: '25864',
-                                  fontWeight: FontWeight.normal),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 60.h,
-                      ),
-                      TextWithFont().textWithRalewayFont(
-                          color: Get.isDarkMode ? Colors.white : Colors.green,
-                          fontSize: 16.sp,
-                          text: 'Waiting',
-                          fontWeight: FontWeight.w500),
-                    ],
-                  ),
+                        Row(
+                          children: [
+                            TextWithFont().textWithRalewayFont(
+                                color:
+                                    Get.isDarkMode ? Colors.white : mainColor,
+                                fontSize: 16.sp,
+                                text: 'ID: ',
+                                fontWeight: FontWeight.bold),
+                            TextWithFont().textWithRalewayFont(
+                                color: Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
+                                fontSize: 16.sp,
+                                text: '25864',
+                                fontWeight: FontWeight.normal),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 60.h,
+                    ),
+                    TextWithFont().textWithRalewayFont(
+                        color: Get.isDarkMode ? Colors.white : Colors.green,
+                        fontSize: 16.sp,
+                        text: 'Waiting',
+                        fontWeight: FontWeight.w500),
+                  ],
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
