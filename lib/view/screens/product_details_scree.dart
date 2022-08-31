@@ -201,6 +201,10 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.symmetric(
+
+
+
+                                                      
                                                         horizontal: 20),
                                                 child: Divider(
                                                   color: Colors.grey.shade400,
