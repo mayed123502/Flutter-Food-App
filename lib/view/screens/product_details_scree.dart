@@ -240,6 +240,8 @@ class ProductDetailsScreen extends GetView<ProductDetailsController> {
                                           ),
                                         ),
                                       ),
+
+                                      
                                       GestureDetector(
                                         onTap: () {
                                           favoriteController.mangeFavourites(
