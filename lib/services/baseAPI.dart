@@ -1,6 +1,5 @@
 class BaseAPI {
-  static String base = "https://tasneem.sirius-it.dev/api";
-  static String baseImage = "https://tasneem.sirius-it.dev/";
+
 
   static var api = base + "/api/v1";
   var customersPath = api + "/customers";
